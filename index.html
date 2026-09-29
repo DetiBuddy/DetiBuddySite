@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DetiBuddy — Documentação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2efe8;--fg:#1b1a17;--mut:#6d6a60;--line:#cfcabc;--ac:#c8481f;--ph:#e8e2d0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171613;--fg:#ece8dc;--mut:#9a9585;--line:#3a3831;--ac:#ee7a4f;--ph:#24221d}}
+:root[data-theme="dark"]{--bg:#171613;--fg:#ece8dc;--mut:#9a9585;--line:#3a3831;--ac:#ee7a4f;--ph:#24221d}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mut)}
+.w{max-width:1040px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;padding:72px 0 56px;align-items:end}
+h1{font:400 clamp(64px,13vw,148px)/.85 "Instrument Serif",Georgia,serif;margin:0;letter-spacing:-.03em}
+h1 em{color:var(--ac);font-style:italic}
+.hero p{margin:0 0 6px;max-width:34ch}
+section{padding:36px 0 44px;border-top:1px solid var(--line);display:grid;grid-template-columns:200px 1fr;gap:32px}
+h2{font:400 30px/1.1 "Instrument Serif",Georgia,serif;margin:0}
+h2 span{display:block;margin-bottom:6px}
+.row{display:grid;grid-template-columns:44px 1fr auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline;text-decoration:none;color:inherit}
+.row:first-child{padding-top:0}
+.row b{font-weight:500;font-size:18px}
+.row small{display:block;color:var(--mut);font-size:14px}
+a.row:hover b{color:var(--ac)}
+.ph{background:var(--ph);padding:1px 6px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
+.box{border:1px dashed var(--mut);min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--mut)}
+.people{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px;margin:0;padding:0;list-style:none}
+.people li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.people span{color:var(--mut);font-size:14px;text-align:right}
+.step{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.now{color:var(--ac)}
+footer{padding:28px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:720px){.hero,section{grid-template-columns:1fr;gap:20px}.hero{padding:44px 0 36px}.people{grid-template-columns:1fr}.row{grid-template-columns:32px 1fr}.row .ph{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top mono"><span>DETI / Universidade de Aveiro</span><span>UC 43675 · PEI 2026/2027</span></div>
+
+<header class="hero">
+  <h1>Deti<em>Buddy</em></h1>
+  <div>
+    <p>Um assistente com IA que responde às dúvidas dos alunos do DETI e trata das coisas chatas nos serviços da UA: horários, testes, refeições, regulamentos.</p>
+    <p class="mono" style="margin-top:14px">Estado: fase de Inception</p>
+  </div>
+</header>
+
+<section>
+  <h2><span class="mono">01</span>Documentação</h2>
+  <div>
+    <a class="row" href="#"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="#"><span class="mono">02</span><span><b>Arquitetura</b><small>Diagramas em draw.io e decisões técnicas</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="#"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception (8 min) e seguintes</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="#"><span class="mono">04</span><span><b>Requisitos</b><small>User stories e use cases</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="#"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="#"><span class="mono">06</span><span><b>Relatório de Inception</b><small>Baseado nos slides da UC e no documento de requisitos</small></span><span class="ph">[INSERIR LINK]</span></a>
+  </div>
+</section>
+
+<section>
+  <h2><span class="mono">02</span>Arquitetura</h2>
+  <div>
+    <div class="box"><span class="mono">[INSERIR DIAGRAMA DE ARQUITETURA — exportar do draw.io]</span></div>
+    <p style="margin:16px 0 0;color:var(--mut);max-width:60ch">O agente de IA vem do servidor skynet e fica alojado no servidor do DETI. O acesso ao PACO, e-learning, MySAS e email passa pelos STIC, por APIs e/ou Selenium. <span class="ph">[INSERIR DECISÃO FINAL]</span></p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="mono">03</span>Equipa</h2>
+  <ul class="people">
+    <li>Arthur Haerdy <span>Team Manager · backend, IA</span></li>
+    <li>Francisco Amaro <span>Product Owner · backend</span></li>
+    <li>Geovana Mayer <span>Comunicação · backend, APIs</span></li>
+    <li>Lisle Faria <span>DevOps · frontend, UI/UX</span></li>
+    <li>Samuel Ramos <span>Arquiteto · frontend, UI/UX</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="mono">04</span>Calendário</h2>
+  <div>
+    <div class="step"><span class="mono now">Inception</span><span>Apresentação, calendário e plano de comunicação. <span class="ph">[INSERIR DATA]</span></span></div>
+    <div class="step"><span class="mono">[FASE 2]</span><span class="ph">[INSERIR NOME E DATA]</span></div>
+    <div class="step"><span class="mono">[FASE 3]</span><span class="ph">[INSERIR NOME E DATA]</span></div>
+  </div>
+</section>
+
+<footer class="mono">
+  <span>Docente: Mário Antunes</span>
+  <span>Contacto: [INSERIR EMAIL]</span>
+  <span>Repositório: [INSERIR LINK]</span>
+</footer>
+</div>
+</body>
+</html>
