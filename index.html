@@ -4,14 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>DetiBuddy — Documentação</title>
+<link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f2efe8;--fg:#1b1a17;--mut:#6d6a60;--line:#cfcabc;--ac:#c8481f;--ph:#e8e2d0;
+:root{--bg:#f3f6f4;--fg:#19211f;--mut:#65736f;--line:#d5dfdb;--ac:#187d75;--ph:#e3efeb;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171613;--fg:#ece8dc;--mut:#9a9585;--line:#3a3831;--ac:#ee7a4f;--ph:#24221d}}
-:root[data-theme="dark"]{--bg:#171613;--fg:#ece8dc;--mut:#9a9585;--line:#3a3831;--ac:#ee7a4f;--ph:#24221d}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}}
+:root[data-theme="dark"]{--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
@@ -32,13 +33,25 @@ h2 span{display:block;margin-bottom:6px}
 a.row:hover b{color:var(--ac)}
 .ph{background:var(--ph);padding:1px 6px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
 .box{border:1px dashed var(--mut);min-height:220px;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--mut)}
-.people{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px;margin:0;padding:0;list-style:none}
-.people li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
-.people span{color:var(--mut);font-size:14px;text-align:right}
-.step{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.people{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;margin:0;padding:0;list-style:none}
+.people li{min-width:0;text-align:center}
+.people img{display:block;width:clamp(72px,9vw,112px);aspect-ratio:1;margin:0 auto 14px;border-radius:50%;object-fit:cover;background:var(--ph);border:2px solid var(--line)}
+.people b{display:block;font-size:clamp(13px,1.5vw,16px);font-weight:500}
+.people span{display:block;margin-top:4px;color:var(--mut);font-size:13px;line-height:1.45}
+.phase{padding:16px 0;border-bottom:1px solid var(--line)}
+.phase:first-child{padding-top:0}
+.phase-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.phase-head b{font-size:19px;font-weight:500}
+.phase-head .mono{color:var(--ac)}
+.phase p{margin:4px 0 8px;color:var(--mut);font-size:14px}
+.step{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:7px 0}
 .now{color:var(--ac)}
 footer{padding:28px 0 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:720px){.hero,section{grid-template-columns:1fr;gap:20px}.hero{padding:44px 0 36px}.people{grid-template-columns:1fr}.row{grid-template-columns:32px 1fr}.row .ph{grid-column:2}}
+footer.mono{margin:0 -24px;padding:24px;color:#f3f7f5;background:#172321;border-top:2px solid #50cfc3}
+footer.mono a{color:#fff;text-decoration-color:#50cfc3;text-underline-offset:3px}
+footer.mono a:hover{color:#8bf0d2}
+footer.mono a:focus-visible{outline:2px solid #8bf0d2;outline-offset:3px}
+@media(max-width:720px){.hero,section{grid-template-columns:1fr;gap:20px}.hero{padding:44px 0 36px}.people{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.row{grid-template-columns:32px 1fr}.row .ph{grid-column:2}}
 </style>
 </head>
 <body>
@@ -48,7 +61,7 @@ footer{padding:28px 0 40px;border-top:1px solid var(--line);display:flex;justify
 <header class="hero">
   <h1>Deti<em>Buddy</em></h1>
   <div>
-    <p>Um assistente com IA que responde às dúvidas dos alunos do DETI e trata das coisas chatas nos serviços da UA: horários, testes, refeições, regulamentos.</p>
+    <p>Um assistente com IA que acompanha os alunos do DETI no dia a dia, esclarece dúvidas, ajuda a organizar a agenda e nas pequenas decisões do quotidiano.</p>
     <p class="mono" style="margin-top:14px">Estado: fase de Inception</p>
   </div>
 </header>
@@ -56,12 +69,11 @@ footer{padding:28px 0 40px;border-top:1px solid var(--line);display:flex;justify
 <section>
   <h2><span class="mono">01</span>Documentação</h2>
   <div>
-    <a class="row" href="#"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente</small></span><span class="ph">[INSERIR LINK]</span></a>
-    <a class="row" href="#"><span class="mono">02</span><span><b>Arquitetura</b><small>Diagramas em draw.io e decisões técnicas</small></span><span class="ph">[INSERIR LINK]</span></a>
-    <a class="row" href="#"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception (8 min) e seguintes</small></span><span class="ph">[INSERIR LINK]</span></a>
-    <a class="row" href="#"><span class="mono">04</span><span><b>Requisitos</b><small>User stories e use cases</small></span><span class="ph">[INSERIR LINK]</span></a>
-    <a class="row" href="#"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil</small></span><span class="ph">[INSERIR LINK]</span></a>
-    <a class="row" href="#"><span class="mono">06</span><span><b>Relatório de Inception</b><small>Baseado nos slides da UC e no documento de requisitos</small></span><span class="ph">[INSERIR LINK]</span></a>
+    <a class="row" href="./documentacao/minutas.html"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/arquitetura.html"><span class="mono">02</span><span><b>Arquitetura</b><small>Diagramas em draw.io e decisões técnicas</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/apresentacoes.html"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception (8 min) e seguintes</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/requisitos.html"><span class="mono">04</span><span><b>Requisitos</b><small>User stories e use cases</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/calendario.html"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil</small></span><span class="ph">Abrir</span></a>
   </div>
 </section>
 
@@ -76,27 +88,43 @@ footer{padding:28px 0 40px;border-top:1px solid var(--line);display:flex;justify
 <section>
   <h2><span class="mono">03</span>Equipa</h2>
   <ul class="people">
-    <li>Arthur Haerdy <span>Team Manager · backend, IA</span></li>
-    <li>Francisco Amaro <span>Product Owner · backend</span></li>
-    <li>Geovana Mayer <span>Comunicação · backend, APIs</span></li>
-    <li>Lisle Faria <span>DevOps · frontend, UI/UX</span></li>
-    <li>Samuel Ramos <span>Arquiteto · frontend, UI/UX</span></li>
+    <li><img src="./fotos/arthur-haerdy.png" alt="Foto de perfil de Arthur Haerdy"><b>Arthur Haerdy</b><span>Team Manager<br>Backend, IA</span></li>
+    <li><img src="./fotos/francisco-amaro.png" alt="Foto de perfil de Francisco Amaro"><b>Francisco Amaro</b><span>Product Owner<br>Backend</span></li>
+    <li><img src="./fotos/geovana-mayer.png" alt="Foto de perfil de Geovana Mayer"><b>Geovana Mayer</b><span>Comunicação<br>Backend, APIs</span></li>
+    <li><img src="./fotos/lisle-faria.png" alt="Foto de perfil de Lisle Faria"><b>Lisle Faria</b><span>DevOps<br>Frontend, UI/UX</span></li>
+    <li><img src="./fotos/samuel-ramos.png" alt="Foto de perfil de Samuel Ramos"><b>Samuel Ramos</b><span>Arquiteto<br>Frontend, UI/UX</span></li>
   </ul>
 </section>
 
 <section>
   <h2><span class="mono">04</span>Calendário</h2>
   <div>
-    <div class="step"><span class="mono now">Inception</span><span>Apresentação, calendário e plano de comunicação. <span class="ph">[INSERIR DATA]</span></span></div>
-    <div class="step"><span class="mono">[FASE 2]</span><span class="ph">[INSERIR NOME E DATA]</span></div>
-    <div class="step"><span class="mono">[FASE 3]</span><span class="ph">[INSERIR NOME E DATA]</span></div>
+    <div class="phase">
+      <div class="phase-head"><b>Inception</b><span class="mono">Semanas 1–4 · 15/09–06/10</span></div>
+      <p>Formar a equipa, compreender a proposta e definir os objetivos do ciclo de vida e o calendário do projeto.</p>
+      <div class="step"><span class="mono now">M1 · 29/09</span><span>Apresentar os objetivos do ciclo de vida e o calendário do projeto.</span></div>
+    </div>
+    <div class="phase">
+      <div class="phase-head"><b>Elaboration</b><span class="mono">Semanas 5–10 · 13/10–17/11</span></div>
+      <p>Desenvolver e validar a arquitetura, reduzindo os principais riscos técnicos e preparando a construção da solução.</p>
+      <div class="step"><span class="mono now">M2 · 13/10</span><span>Apresentar a arquitetura do ciclo de vida; milestone concluído quando a arquitetura estiver validada.</span></div>
+      <div class="step"><span class="mono now">MS3 · 03/11</span><span>Marco de acessibilidade digital e usabilidade.</span></div>
+    </div>
+    <div class="phase">
+      <div class="phase-head"><b>Construction</b><span class="mono">Semanas 11–15 · 24/11–16/12</span></div>
+      <p>Construir e integrar a solução, avançando até um MVP e avaliando-o com supervisores e colegas.</p>
+      <div class="step"><span class="mono now">Check point · 24/11</span><span>Ponto de controlo do progresso do projeto.</span></div>
+      <div class="step"><span class="mono">01/12 e 08/12</span><span>Feriados assinalados no calendário; não estão previstas aulas.</span></div>
+      <div class="step"><span class="mono now">MS4 · 15/12</span><span>Apresentar o MVP aos supervisores e realizar a avaliação pelos pares.</span></div>
+      <div class="step"><span class="mono">16/12</span><span>Semana 15 do calendário letivo.</span></div>
+    </div>
   </div>
 </section>
 
 <footer class="mono">
   <span>Docente: Mário Antunes</span>
-  <span>Contacto: [INSERIR EMAIL]</span>
-  <span>Repositório: [INSERIR LINK]</span>
+  <span>Contacto: <a href="mailto:mario.antunes@ua.pt">mario.antunes@ua.pt</a></span>
+  <span>Repositório: <a href="https://github.com/detiuaveiro/DetiBuddy">github.com/detiuaveiro/DetiBuddy</a></span>
 </footer>
 </div>
 </body>
