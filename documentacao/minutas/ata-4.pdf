@@ -4,30 +4,123 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 78 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4819 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Ata 4 - substituir pelo PDF final) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Ata de Reuniao 4) Tj ET
+BT /F1 9 Tf 48 744 Td (Ata de Reuniao - DetiBuddy) Tj ET
+BT /F1 9 Tf 48 732 Td (Reuniao n.o: 4Data: 08/10/2026Hora: 09:00 - 11:00Modalidade: [ ] Presencial [ ] Online [X] HibridaLocal / Link: Sala 4.2.11, DETI \(presencial\) + grupo de WhatsApp \(online\)Secretario da ata: Samuel RamosModerador\(a\): Samuel Ramos) Tj ET
+BT /F2 11 Tf 48 711 Td (1. Presencas) Tj ET
+BT /F2 8 Tf 56 691 Td (Nome | Funcao / Papel | Presenca | Observacoes) Tj ET
+BT /F1 8 Tf 56 680 Td (Arthur Haerdy | Team Manager - Backend - AI Integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 669 Td (Samuel Ramos | Architect - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 658 Td (Lisle Faria | DevOps Master - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 647 Td (Geovana Mayer | Tester - Backend - API integration | [ ] Presencial [X] Online [ ] Ausente | Participou a) Tj ET
+BT /F1 8 Tf 56 636 Td (partir de casa) Tj ET
+BT /F1 8 Tf 56 625 Td (Francisco Amaro | Product Owner - General Implementation and integration | [X] Presencial [ ] Online [ ]) Tj ET
+BT /F1 8 Tf 56 614 Td (Ausente |) Tj ET
+BT /F1 9 Tf 48 599 Td (Ausencias justificadas: NenhumaConvidados externos: -) Tj ET
+BT /F2 11 Tf 48 579 Td (2. Ordem de Trabalhos \(Agenda\)) Tj ET
+BT /F1 9 Tf 48 563 Td (Aprovacao da ata anterior) Tj ET
+BT /F1 9 Tf 48 551 Td (Ponto de situacao do sprint) Tj ET
+BT /F1 9 Tf 48 539 Td (User Stories \(US\) e Use Cases \(UC\): conclusao e revisao dos atores) Tj ET
+BT /F1 9 Tf 48 527 Td (Definicao das tecnologias e do tipo de arquitetura) Tj ET
+BT /F1 9 Tf 48 515 Td (Distribuicao de tarefas) Tj ET
+BT /F2 11 Tf 48 495 Td (3. Aprovacao da Ata Anterior) Tj ET
+BT /F1 9 Tf 48 479 Td ([X] Aprovada sem alteracoes [ ] Aprovada com alteracoes) Tj ET
+BT /F2 11 Tf 48 459 Td (4. Ponto de Situacao) Tj ET
+BT /F1 9 Tf 48 443 Td (Sprint / Fase atual: [a preencher]Objetivo do sprint: [descricao]) Tj ET
+BT /F1 9 Tf 48 431 Td (Foi feito o ponto de situacao do sprint. Estado do que foi trabalhado nesta reuniao:) Tj ET
+BT /F2 8 Tf 56 415 Td (Tarefa | Responsavel | Estado | Notas) Tj ET
+BT /F1 8 Tf 56 404 Td (User Stories | Samuel Ramos | [X] Em curso | Falta a finalizacao) Tj ET
+BT /F1 8 Tf 56 393 Td (Use Cases e atores | Equipa | [X] Em curso | Atores revistos na reuniao) Tj ET
+BT /F1 8 Tf 56 382 Td (Requisitos funcionais e nao funcionais | Samuel Ramos | [X] Em curso | Versao de 08/10/2026) Tj ET
+BT /F1 8 Tf 56 371 Td (Arquitetura \(draw.io\) | Lisle Faria | [X] Em curso | Com decisoes por tomar) Tj ET
+BT /F1 9 Tf 48 356 Td (Bloqueios / impedimentos:) Tj ET
+BT /F1 9 Tf 48 344 Td ([nenhum indicado]) Tj ET
+BT /F1 9 Tf 48 332 Td (Riscos identificados:) Tj ET
+BT /F1 9 Tf 48 320 Td (Aprovacao dos STIC para autenticacao e acesso a dados pessoais \(dependencia registada nos) Tj ET
+BT /F1 9 Tf 48 308 Td (requisitos:) Tj ET
+BT /F1 9 Tf 48 296 Td (Tivemos uma resposta de que o processo esta a ser analisado, mas ainda nada concretamente ao) Tj ET
+BT /F1 9 Tf 48 284 Td (nosso projeto \)) Tj ET
+BT /F2 11 Tf 48 264 Td (5. Discussao e Decisoes) Tj ET
+BT /F2 10 Tf 58 248 Td (5.1 User Stories, Use Cases e atores) Tj ET
+BT /F1 9 Tf 48 234 Td (Resumo da discussao: As User Stories e os Use Cases foram revistos, bem como os atores.) Tj ET
+BT /F1 9 Tf 48 222 Td (Discutiu-se quais as US a incluir e quais ficam de fora, o que ficou refletido na priorizacao) Tj ET
+BT /F1 9 Tf 48 210 Td (MoSCoW do documento de requisitos.Decisao: As US ficam concluidas. O Samuel fica responsavel) Tj ET
+BT /F1 9 Tf 48 198 Td (pela finalizacao.Resultado da priorizacao: a app Android fica como Won't \(por agora\); saldo) Tj ET
+BT /F1 9 Tf 48 186 Td (MySAS e propinas/situacao academica ficam fora de ambito.Justificacao:Retiramos estas ultimas) Tj ET
+BT /F1 9 Tf 48 174 Td (porque achamos que os STIC nao irao permitir o nosso acesso a estes servicos devido a sua) Tj ET
+BT /F1 9 Tf 48 162 Td (sensibilidade.) Tj ET
+BT /F2 10 Tf 58 150 Td (5.2 Tecnologias e tipo de arquitetura) Tj ET
+BT /F1 9 Tf 48 136 Td (Resumo da discussao: Definiram-se as tecnologias a usar e o tipo de arquitetura. A versao de) Tj ET
+BT /F1 9 Tf 48 124 Td (trabalho \(v2\) assenta em:) Tj ET
+BT /F1 9 Tf 48 112 Td (Edge e frontend: Traefik e React PWA) Tj ET
+BT /F1 9 Tf 48 100 Td (Backend API em FastAPI \(autenticacao, sessoes, SSE\), com Keycloak como IdP simulado \(OIDC\)) Tj ET
+BT /F1 9 Tf 48 88 Td (PostgreSQL com pgvector e Redis \(cache, filas, sessoes\), com worker ARQ para RAG e notificacoes) Tj ET
+BT /F1 9 Tf 48 76 Td (Orquestrador do agente com tool calling, RAG \(busca hibrida\) e servidores MCP, um por dominio) Tj ET
+BT /F1 9 Tf 48 64 Td (LLM no Skynet) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 4 - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 2604 >>
+stream
+BT /F1 9 Tf 48 770 Td (Servicos simulados \(mock\) para PACO/MySAS, e-learning \(Moodle\) e email \(M365\), com contrato) Tj ET
+BT /F1 9 Tf 48 758 Td (OpenAPI para trocar pelo real) Tj ET
+BT /F1 9 Tf 48 746 Td (APIs abertas: SAS \(ementa\), IPMA, OpenStreetMap, parques e senhas; biblioteca \(SALInA\) a) Tj ET
+BT /F1 9 Tf 48 734 Td (confirmar a integracao ainda) Tj ET
+BT /F1 9 Tf 48 722 Td (Decisao: decisoes por tomar; a v2 e uma das versoes em analise. A versao final em draw.io fica) Tj ET
+BT /F1 9 Tf 48 710 Td (a cargo da Lisle.Justificacao tecnica:) Tj ET
+BT /F2 11 Tf 48 690 Td (6. Acoes a Realizar \(Action Items\)) Tj ET
+BT /F2 8 Tf 56 670 Td (N.o | Acao | Responsavel | Prazo | Prioridade | Estado) Tj ET
+BT /F1 8 Tf 56 659 Td (1 | Finalizar as User Stories | Samuel Ramos | 08/10/2026 \(hoje, ate ao fim do dia\) | Alta | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 648 Td (2 | Fazer o diagrama de dominio | Arthur Haerdy | 10/10/2026 \(sabado, ate ao fim do dia\) | Alta | [ ]) Tj ET
+BT /F1 8 Tf 56 637 Td (Aberta) Tj ET
+BT /F1 8 Tf 56 626 Td (3 | Fazer o diagrama de Use Cases | Francisco Amaro | 10/10/2026 \(sabado, ate ao fim do dia\) | Alta | [ ]) Tj ET
+BT /F1 8 Tf 56 615 Td (Aberta) Tj ET
+BT /F1 8 Tf 56 604 Td (4 | Contactar os nucleos \(ex. NEI, NETA\) e perceber como extrair a informacao deles \(API ou estatica\) |) Tj ET
+BT /F1 8 Tf 56 593 Td (Geovana Mayer | 10/10/2026 \(sabado, ate ao fim do dia\) | Media | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 582 Td (5 | Perceber como extrair a informacao das farmacias e da universidade | Geovana Mayer | 10/10/2026) Tj ET
+BT /F1 8 Tf 56 571 Td (\(sabado, ate ao fim do dia\) | Media | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 560 Td (6 | Passar a arquitetura para o draw.io e enviar ao Samuel | Lisle Faria | 10/10/2026 \(sabado, ate ao fim) Tj ET
+BT /F1 8 Tf 56 549 Td (do dia\) | Alta | [ ] Aberta) Tj ET
+BT /F1 9 Tf 48 534 Td (Acoes pendentes da reuniao anterior:) Tj ET
+BT /F2 11 Tf 48 514 Td (7. Assuntos Gerais) Tj ET
+BT /F1 9 Tf 48 498 Td (-) Tj ET
+BT /F2 11 Tf 48 478 Td (8. Proxima Reuniao) Tj ET
+BT /F1 9 Tf 48 462 Td (Data: segunda-feira, 12/10/2026, com o professor orientador Mario AntunesHora: [a definir]Modalidade: [X] Presencial [ ] Online [ ] HibridaLocal / Link: IT \(sala a definir\)Pontos a preparar: Diagramas de dominio e de UC, arquitetura em draw.io, resultados dos contactos com nucleos e servicos e US, UC, Requisitos Funcionais e nao funcionais) Tj ET
+BT /F1 9 Tf 48 449 Td (Ata redigida por: Samuel Ramos em 08/10/2026Validada por: [Nome] em [DD/MM/AAAA]) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 4 - Pagina 2) Tj ET
 endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000005279 00000 n 
+0000005415 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 9 /Root 1 0 R >>
 startxref
-445
+8071
 %%EOF

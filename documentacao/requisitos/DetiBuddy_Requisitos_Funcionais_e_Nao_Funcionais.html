@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Requisitos Funcionais e Não Funcionais — DetiBuddy</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--fg:#19211f;--mut:#65736f;--line:#d5dfdb;--ac:#187d75;--ph:#e3efeb}
+@media(prefers-color-scheme:dark){:root{--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mut)}
+.w{max-width:960px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.nav{margin:20px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.back{display:inline-flex;align-items:center;color:var(--fg);text-decoration:none;font-weight:500}
+.back:hover{color:var(--ac)}
+article{padding-bottom:40px}
+h1{font:400 clamp(32px,5vw,50px)/1.08 "Instrument Serif",Georgia,serif;margin:28px 0 16px}
+h2{font:400 clamp(24px,3.8vw,34px)/1.15 "Instrument Serif",Georgia,serif;margin:36px 0 14px;border-top:1px solid var(--line);padding-top:24px}
+h3{font-size:19px;font-weight:600;margin:24px 0 8px}
+p,li{font-size:15px;line-height:1.65;color:inherit}
+li{margin-bottom:6px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+blockquote{margin:16px 0;padding:12px 20px;border-left:3px solid var(--ac);background:var(--ph);color:var(--fg);border-radius:0 6px 6px 0}
+code{background:var(--ph);padding:2px 6px;border-radius:4px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+pre{background:rgba(0,0,0,.04);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+th{background:var(--ph);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top mono"><span>DETI / Universidade de Aveiro</span><span>UC 43675 · PEI 2026/2027</span></div>
+<div class="nav"><a class="back" href="../requisitos.html">← Voltar</a><span class="mono">Documento DetiBuddy</span></div>
+<article>
+<h1>DetiBuddy — Requisitos Funcionais e Não Funcionais</h1>
+<blockquote><b>Fase de Elaboração — Projeto em Engenharia Informática (PEI 2026/2027)</b></blockquote>
+<blockquote><b>Versão:</b> 2.0 (Fase de Elaboração — Outubro de 2026)</blockquote>
+<blockquote><b>Autores:</b> Arthur Haerdy, Francisco Amaro, Geovana Mayer, Lisle Faria, Samuel Ramos</blockquote>
+<blockquote><b>Orientador:</b> Prof. Mário Antunes</blockquote>
+<hr>
+<h2>1. Como Ler Este Documento</h2>
+<p>Este documento especifica formalmente as capacidades comportamentais (<b>Requisitos Funcionais — FR</b>), as regras organizacionais (<b>Regras de Negócio — RN</b>), a matriz de controlo de acessos (<b>RBAC</b>), as propriedades de qualidade e restrições técnicas (<b>Requisitos Não Funcionais — NFR</b>), e o enquadramento de <b>Pressupostos, Dependências e Restrições</b> do sistema DetiBuddy.</p>
+<p>A rastreabilidade com as <em>User Stories</em> do documento homólogo é garantida pela coluna <b>US</b>.</p>
+<p>A priorização segue a metodologia <b>MoSCoW</b>:</p>
+<ul>
+<li><b>M (Must have):</b> Requisito inegociável para o MVP funcional da Fase de Elaboração.</li>
+<li><b>S (Should have):</b> Requisito de elevado valor a integrar assim que o núcleo estiver estabilizado.</li>
+<li><b>C (Could have):</b> Requisito desejável mas não impeditivo da operação básica.</li>
+<li><b>W (Won&#x27;t have):</b> Funcionalidade fora do âmbito do ciclo de desenvolvimento atual.</li>
+</ul>
+<hr>
+<h2>2. Requisitos Funcionais (FR)</h2>
+<h3>2.1 Autenticação e Gestão de Sessão</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-01</td><td>O sistema deve autenticar o estudante com a conta institucional UA (<code>@ua.pt</code>) através do serviço IdP/SSO da UA. <em>(Método sujeito à aprovação e integração com os STIC).</em></td><td>US-01</td><td>M</td></tr>
+<tr><td>FR-02</td><td>O sistema deve criar e manter uma sessão cifrada associada ao estudante autenticado, expirando-a automaticamente após 30 minutos de inatividade.</td><td>US-01</td><td>M</td></tr>
+<tr><td>FR-03</td><td>O sistema só deve exigir autenticação quando o pedido envolver dados de caráter pessoal ou académico privado; perguntas de cariz público devem ser respondidas sem login prévio.</td><td>US-01</td><td>M</td></tr>
+<tr><td>FR-04</td><td>O sistema deve implementar controlo de taxa (<em>rate limiting</em>) e limitar o número de tentativas consecutivas de autenticação falhadas para mitigar ataques de força bruta.</td><td>US-01</td><td>M</td></tr>
+<tr><td>FR-05</td><td>Em caso de indisponibilidade transitória do serviço de autenticação da UA, o sistema deve informar o utilizador e disponibilizar apenas as funcionalidades de domínio público.</td><td>US-01</td><td>M</td></tr>
+</tbody></table></div>
+<h3>2.2 Privacidade e Gestão de Dados Pessoais</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-06</td><td>O sistema deve permitir ao estudante solicitar a eliminação imediata e definitiva do seu histórico de conversas, exigindo confirmação explícita prévia.</td><td>US-03</td><td>S</td></tr>
+<tr><td>FR-07</td><td>O sistema não deve transmitir conteúdo de mensagens ou identificadores de estudantes a serviços externos fora da rede da UA; as invocações a APIs de terceiros (IPMA, mapas) devem conter apenas parâmetros anónimos estritamente necessários (ex.: coordenadas/cidade).</td><td>US-02</td><td>M</td></tr>
+</tbody></table></div>
+<h3>2.3 Assistente Conversacional e Orquestração de Agente</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-08</td><td>O sistema deve classificar semanticamente a intenção do utilizador e despachar a execução para o conector de serviço ou pipeline RAG apropriado (<em>Tool Calling</em>).</td><td>todas</td><td>M</td></tr>
+<tr><td>FR-09</td><td>O sistema deve processar linguagem natural e responder fluentemente em Português de Portugal e, opcionalmente, em Inglês.</td><td>todas</td><td>S</td></tr>
+<tr><td>FR-10</td><td>Perante a falha de um serviço ou conector, o sistema deve assumir a incapacidade de obter a resposta e nunca inventar dados (<em>Mecanismo Anti-Alucinação</em>).</td><td>US-04, US-05</td><td>M</td></tr>
+<tr><td>FR-11</td><td>As respostas factuais obtidas através de conectores devem indicar a fonte oficial consultada e o <em>timestamp</em> da leitura.</td><td>US-05, US-15</td><td>M</td></tr>
+<tr><td>FR-12</td><td>Quando uma questão for semanticamente ambígua (ex.: siglas de unidades curriculares partilhadas ou docentes homónimos), o sistema deve solicitar clarificação ao utilizador.</td><td>US-05, US-23</td><td>S</td></tr>
+</tbody></table></div>
+<h3>2.4 Serviços Académicos e de Campus da UA</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-13</td><td>O sistema deve devolver o horário letivo do estudante (disciplinas, salas, horários e tipologias de aula) para a data solicitada, obtido através da integração com o PACO.</td><td>US-04</td><td>M</td></tr>
+<tr><td>FR-14</td><td>O sistema deve devolver as datas de testes e entregas de uma dada unidade curricular, resolvendo o nome informal para o identificador do plano de estudos.</td><td>US-05</td><td>M</td></tr>
+<tr><td>FR-15</td><td>Caso as datas de avaliação de uma UC constem unicamente no interior de apresentações PowerPoint não estruturadas, o sistema deve informar que não é possível obter o dado automaticamente.</td><td>US-05</td><td>M</td></tr>
+<tr><td>FR-16</td><td>O sistema deve fornecer a ementa diária das cantinas do campus (SAS) sem exigir autenticação do utilizador.</td><td>US-06</td><td>M</td></tr>
+<tr><td>FR-17</td><td>O sistema deve indicar a lotação dos parques de estacionamento e sugerir o parque com maior disponibilidade, assinalando se os dados de telemetria tiverem mais de 15 minutos.</td><td>US-07</td><td>S</td></tr>
+<tr><td>FR-18</td><td>O sistema deve consultar e devolver o estado atual da senha de atendimento presencial nos serviços académicos ou SAS.</td><td>US-08</td><td>S</td></tr>
+<tr><td>FR-19</td><td>O sistema deve permitir a consulta em modo de leitura (<em>read-only</em>) dos cabeçalhos e resumos dos emails recentes da conta UA do estudante.</td><td>US-09</td><td>C</td></tr>
+</tbody></table></div>
+<h3>2.5 Assistente Pessoal e Produtividade</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-20</td><td>O sistema deve extrair os dados necessários (participantes, data, hora, assunto) para agendar uma reunião de grupo quando solicitado pelo utilizador.</td><td>US-10</td><td>S</td></tr>
+<tr><td>FR-21</td><td>Antes de expedir emails de convocatória ou registar eventos no calendário, o sistema deve apresentar um resumo formal da ação e exigir validação explícita do estudante.</td><td>US-10, US-11</td><td>S</td></tr>
+<tr><td>FR-22</td><td>Após a confirmação do estudante, o sistema deve despachar os emails aos participantes e adicionar o evento ao calendário institucional (Microsoft 365 / Graph).</td><td>US-10</td><td>S</td></tr>
+<tr><td>FR-23</td><td>O sistema deve organizar a agenda diária combinando os horários do PACO, reuniões do calendário e avisos recebidos por correio eletrónico.</td><td>US-11</td><td>S</td></tr>
+<tr><td>FR-24</td><td>O sistema deve sincronizar no calendário institucional os blocos de estudo ou compromissos que o estudante aceitar na proposta de organização do dia.</td><td>US-11</td><td>S</td></tr>
+<tr><td>FR-25</td><td>O sistema deve gerar uma recomendação contextual de indumentária cruzando a previsão meteorológica do IPMA com o percurso pedestre/rodoviário até ao campus.</td><td>US-12</td><td>C</td></tr>
+</tbody></table></div>
+<h3>2.6 Orientação no Campus e Serviços</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-26</td><td>O sistema deve indicar a localização dos balcões do PACO e apresentar um guia passo a passo para o percurso com base no manual institucional.</td><td>US-13</td><td>S</td></tr>
+<tr><td>FR-27</td><td>O sistema deve descrever os requisitos documentais e procedimentos para a tramitação de processos académicos (ex.: passe de transporte público, certidões).</td><td>US-14</td><td>S</td></tr>
+<tr><td>FR-28</td><td>O sistema deve pesquisar no catálogo das bibliotecas da UA a disponibilidade de exemplares físicos para requisição recomendados para uma disciplina.</td><td>US-15</td><td>S</td></tr>
+<tr><td>FR-29</td><td>O sistema deve informar sobre a localização e horários de funcionamento de serviços de apoio no campus (postos de CTT, farmácia, gabinetes da CUA).</td><td>US-16</td><td>S</td></tr>
+</tbody></table></div>
+<h3>2.7 Vida Académica, Desporto e Comunidade</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-30</td><td>O sistema deve prestar esclarecimentos sobre a oferta desportiva da UA: modalidades disponíveis, preçários de ginásio e regras de reserva dos pavilhões desportivos.</td><td>US-17</td><td>S</td></tr>
+<tr><td>FR-31</td><td>O sistema deve listar os jogos da Taça UA a decorrer na data e os respetivos resultados atualizados.</td><td>US-18</td><td>C</td></tr>
+<tr><td>FR-32</td><td>O sistema deve disponibilizar guias informativos, prazos de candidatura e critérios de elegibilidade para o programa Erasmus+.</td><td>US-19</td><td>C</td></tr>
+<tr><td>FR-33</td><td>O sistema deve fornecer contactos e informações institucionais dos núcleos de estudantes do departamento (NEI, NETA) e da Associação Académica (AAUAv).</td><td>US-20</td><td>S</td></tr>
+<tr><td>FR-34</td><td>O sistema deve informar como ingressar em grupos técnicos extracurriculares sediados no DETI (GLUA, NERD, UAC, Nave).</td><td>US-21</td><td>C</td></tr>
+</tbody></table></div>
+<h3>2.8 Conhecimento Oficial do DETI e Regulamentos (RAG)</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-35</td><td>O sistema deve formular respostas sobre o regulamento pedagógico e de avaliação com base estrita nos excertos indexados na base de conhecimento.</td><td>US-22</td><td>M</td></tr>
+<tr><td>FR-36</td><td>As respostas fundamentadas em documentos normativos devem citar explicitamente o documento, número do artigo e alínea correspondente.</td><td>US-25</td><td>M</td></tr>
+<tr><td>FR-37</td><td>Na ausência de excertos com grau de similaridade semântica suficiente para responder com certeza, o sistema deve admitir desconhecimento e indicar o contacto oficial competente.</td><td>US-22, US-25</td><td>M</td></tr>
+<tr><td>FR-38</td><td>Perante revisões regulamentares concorrentes, o sistema deve dar precedência à versão mais recente e assinalar que se trata de uma versão atualizada.</td><td>US-22</td><td>S</td></tr>
+<tr><td>FR-39</td><td>O sistema deve devolver o endereço eletrónico, localização do gabinete físico e horários de atendimento institucional de docentes do departamento.</td><td>US-23</td><td>M</td></tr>
+<tr><td>FR-40</td><td>O sistema deve responder a questões relativas ao calendário escolar oficial (paragens letivas, períodos de avaliação e feriados).</td><td>US-24</td><td>S</td></tr>
+</tbody></table></div>
+<h3>2.9 Canais de Acesso</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-41</td><td>O sistema deve disponibilizar uma interface gráfica web moderna e responsiva (desktop e mobile) em navegador, sem necessidade de instalação de software cliente.</td><td>US-26</td><td>M</td></tr>
+<tr><td>FR-42</td><td>O sistema deve disponibilizar um bot conversacional na plataforma Discord com suporte a mensagens diretas privadas.</td><td>US-27</td><td>C</td></tr>
+<tr><td>FR-43</td><td>O sistema deve disponibilizar uma aplicação cliente móvel nativa para sistema operativo Android. <em>(Classificada como Could have).</em></td><td>US-28</td><td>C</td></tr>
+</tbody></table></div>
+<h3>2.10 Notificações Proativas</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-44</td><td>O sistema deve permitir aos estudantes subscrever alertas de atendimento e despachar notificações quando a sua senha estiver próxima de ser atendida.</td><td>US-29</td><td>S</td></tr>
+<tr><td>FR-45</td><td>O sistema deve permitir configurar um parque de estacionamento predefinido e notificar o utilizador da existência de vagas no início do período letivo.</td><td>US-30</td><td>C</td></tr>
+<tr><td>FR-46</td><td>O estudante deve poder consultar, suspender ou eliminar qualquer subscrição de alertas ativa em qualquer momento.</td><td>US-31</td><td>S</td></tr>
+<tr><td>FR-47</td><td>Em caso de falha transitória na entrega de notificações pelo canal ativo, o sistema deve tentar reenvio com retrocesso exponencial (<em>exponential backoff</em>).</td><td>US-29</td><td>S</td></tr>
+</tbody></table></div>
+<h3>2.11 Administração e Extensibilidade</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-48</td><td>O sistema deve disponibilizar uma interface administrativa para submissão de novos documentos normativos em PDF com registo de data de validade/vigência temporal, executando automaticamente extração, segmentação (<em>chunking</em>), geração de <em>embeddings</em> e configurando alertas automáticos de expiração documental.</td><td>US-32</td><td>M</td></tr>
+<tr><td>FR-49</td><td>Perante ficheiros corrompidos ou em formatos não autorizados, o sistema deve rejeitar o carregamento com código de erro descritivo, preservando o estado íntegro da base vetorial.</td><td>US-32</td><td>M</td></tr>
+<tr><td>FR-50</td><td>O sistema deve suportar o registo dinâmico de novos conectores de dados via manifesto sem necessidade de modificação do código central do agente (<em>Plugin/Modular Architecture</em>).</td><td>US-33</td><td>M</td></tr>
+<tr><td>FR-51</td><td>O sistema deve disponibilizar um painel de controlo de métricas para os administradores com relatórios de volume de pedidos, taxas de erro e tempos de resposta.</td><td>US-34</td><td>S</td></tr>
+</tbody></table></div>
+<h3>2.12 Avaliação e Melhoria Contínua</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Requisito</th><th>US</th><th>Prio</th></tr></thead><tbody>
+<tr><td>FR-52</td><td>O sistema deve disponibilizar botões de feedback rápido (👍 / 👎) e caixa de comentário em cada resposta, registando a classificação de forma totalmente dissociada da identidade do aluno.</td><td>US-35</td><td>S</td></tr>
+</tbody></table></div>
+<hr>
+<h2>3. Regras de Negócio (RN)</h2>
+<p>As Regras de Negócio definem as políticas institucionais e restrições lógicas inegociáveis que orientam o comportamento do DetiBuddy:</p>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Nome da Regra</th><th>Descrição e Aplicação</th></tr></thead><tbody>
+<tr><td><b>RN-01</b></td><td><b>Veracidade e Grounding (Tolerância Zero a Alucinações)</b></td><td>O assistente está expressamente proibido de conjeturar ou inventar regras académicas ou datas de avaliação. Se a confiança estatística da recuperação for inferior a 0.70, o sistema deve emitir a mensagem padrão de desconhecimento e reencaminhar o utilizador para o canal humano competente. Este limiar de 0.70 aplica-se estritamente à ferramenta de RAG de normativos e regulamentos após classificação de intenção; mensagens sociais/saudações e ferramentas dinâmicas de campus (refeições SAS, estacionamento, meteorologia) são encaminhadas pelo orquestrador e processadas nos seus respetivos fluxos sem serem bloqueadas por este limiar.</td></tr>
+<tr><td><b>RN-02</b></td><td><b>Confirmação Prévia para Ações de Efeito Externo</b></td><td>Nenhuma ação que resulte em escrita ou transmissão de dados para o exterior (ex.: envio de email de convocatória, criação de evento em calendário público ou partilhado) pode ser despachada sem validação explícita. O backend emite um evento estruturado de proposta de ação, renderizando na interface web um cartão interativo com botões [Confirmar] e [Cancelar] e resumo dos dados (remetente, destinatários, data, hora e conteúdo), eliminando ambiguidades de confirmação textual livre.</td></tr>
+<tr><td><b>RN-03</b></td><td><b>Minimização de Dados em Serviços Externos</b></td><td>Quaisquer chamadas dirigidas a serviços de terceiros fora da infraestrutura da UA (ex.: IPMA) são estritamente anónimas. É expressamente interdito enviar nestes pedidos nomes de alunos, emails, identificadores de sessão ou excertos de conversa.</td></tr>
+<tr><td><b>RN-04</b></td><td><b>Soberania Territorial e Tecnológica dos Dados</b></td><td>O modelo de linguagem de grande escala (LLM) e os repositórios de dados (PostgreSQL com extensão pgvector) devem residir fisicamente na infraestrutura do DETI e servidores Skynet da UA. É proibido o envio de dados de conversação para APIs de inferência em nuvens públicas comerciais.</td></tr>
+<tr><td><b>RN-05</b></td><td><b>Citação Obrigatória de Fontes Documentais e Vigência Temporal</b></td><td>Qualquer resposta com base em RAG deve apresentar a identificação do documento oficial (ex.: <em>Regulamento de Avaliação Discente da UA</em>), a respetiva secção/artigo no original e a verificação da vigência temporal (metadados <code>data_inicio_vigencia</code> e <code>data_fim_vigencia</code>). Caso a data de validade tenha expirado, a resposta é obrigatoriamente apresentada com um aviso em destaque: <em>&quot;⚠️ Aviso de Vigência: Este regulamento cessou a sua vigência em [data]. Confirme a existência de adenda atualizada junto dos serviços.&quot;</em></td></tr>
+<tr><td><b>RN-06</b></td><td><b>Acesso Livre a Informação Pública</b></td><td>Consultas relativas a ementas diárias, contactos e gabinetes de docentes, localização de edifícios e regulamentos gerais não requerem qualquer autenticação do utilizador, devendo ser servidas imediatamente a qualquer visitante.</td></tr>
+<tr><td><b>RN-07</b></td><td><b>Isolamento de Turmas e Inscrições</b></td><td>O assistente só tem permissão para aceder e divulgar dados de horários e trabalhos laboratoriais relativos a Unidades Curriculares nas quais o aluno se encontre com inscrição regular e ativa no PACO.</td></tr>
+<tr><td><b>RN-08</b></td><td><b>Janela de Validade de Telemetria</b></td><td>Informações sobre a disponibilidade de vagas de parques e senhas de atendimento só podem ser apresentadas se a última leitura válida de telemetria tiver ocorrido há menos de 15 minutos; caso contrário, devem ser acompanhadas de um aviso proeminente de potencial desatualização.</td></tr>
+<tr><td><b>RN-09</b></td><td><b>Anonimização Integral do Feedback de Utilizadores</b></td><td>O registo de classificações de respostas (👍/👎) e comentários de avaliação não pode incluir chaves estrangeiras que liguem o feedback à identidade do estudante, salvaguardando a liberdade de avaliação do utilizador.</td></tr>
+<tr><td><b>RN-10</b></td><td><b>Direito ao Esquecimento Imediato (<em>Right to be Forgotten</em>)</b></td><td>A receção de um pedido de eliminação de histórico de conversas (FR-06) despoleta a destruição atómica e irreversível de todas as mensagens de chat e representações vetoriais associadas ao identificador do estudante na base de dados.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>4. Matriz de Autenticação e Autorização (RBAC)</h2>
+<p>O DetiBuddy adota um modelo de Controlo de Acessos Baseado em Perfis (<em>Role-Based Access Control</em> — RBAC) com três perfis bem delimitados:</p>
+<pre><code class="language-mermaid">
+classDiagram
+    class UtilizadorNaoAutenticado {
+        +ConsultarEmentas()
+        +ConsultarDocentes()
+        +ConsultarRegulamentosPublicos()
+        +AvaliarRespostaPublica()
+    }
+    class EstudanteAutenticado {
+        +ConsultarHorarioPACO()
+        +ConsultarTestesMoodle()
+        +ConsultarEmailsUA()
+        +MarcarReuniao()
+        +OrganizarAgenda()
+        +SubscreverAlertasSenhas()
+        +ApagarProprioHistorico()
+    }
+    class AdministradorSistema {
+        +SubmeterDocumentosRAG()
+        +ReindexarBaseVetorial()
+        +RegistarConectores()
+        +ConsultarMetricasAgregadas()
+        +AuditarErrosTecnicos()
+    }
+    UtilizadorNaoAutenticado &lt;|-- EstudanteAutenticado : Herda permissões públicas
+</code></pre>
+<blockquote><b>Nota de Enquadramento de Perfis:</b> Docentes e investigadores da UA acedem sob as permissões da classe <code>EstudanteAutenticado</code> (interpretada como utilizador institucional autenticado da comunidade UA para efeitos de consulta pessoal de horários, eventos de calendário e emails), estando reservadas para fases pós-MVP eventuais permissões de escrita ou gestão pedagógica exclusiva de docentes.</blockquote>
+<h3>Matriz de Permissões Operacionais</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>Recurso / Operação</th><th>Visitante / Não Autenticado</th><th>Estudante Autenticado (@ua.pt)</th><th>Administrador do Sistema</th></tr></thead><tbody>
+<tr><td><b>Consultar Ementas e Horários de Serviços</b></td><td>Permitido</td><td>Permitido</td><td>Permitido</td></tr>
+<tr><td><b>Consultar Regulamentos Gerais (RAG)</b></td><td>Permitido</td><td>Permitido</td><td>Permitido</td></tr>
+<tr><td><b>Consultar Horário Pessoal (PACO)</b></td><td>❌ Requer Login</td><td>Permitido</td><td>❌ Proibido (privacidade)</td></tr>
+<tr><td><b>Consultar Avaliações e Entregas (Moodle)</b></td><td>❌ Requer Login</td><td>Permitido</td><td>❌ Proibido (privacidade)</td></tr>
+<tr><td><b>Consultar Emails Institucionais (Graph)</b></td><td>❌ Requer Login</td><td>Permitido</td><td>❌ Proibido (privacidade)</td></tr>
+<tr><td><b>Agendar Reuniões e Modificar Calendário</b></td><td>❌ Requer Login</td><td>Permitido</td><td>❌ Proibido (privacidade)</td></tr>
+<tr><td><b>Subscrever Alertas de Senha de Atendimento</b></td><td>❌ Requer Login</td><td>Permitido</td><td>❌ Proibido (privacidade)</td></tr>
+<tr><td><b>Apagar Histórico Pessoal de Conversas</b></td><td>❌ Não aplicável</td><td>Permitido (apenas o seu)</td><td>❌ Não (apenas purga global)</td></tr>
+<tr><td><b>Submeter / Atualizar Documentos RAG</b></td><td>❌ Proibido</td><td>❌ Proibido</td><td>Permitido</td></tr>
+<tr><td><b>Registar / Configurar Conectores de APIs</b></td><td>❌ Proibido</td><td>❌ Proibido</td><td>Permitido</td></tr>
+<tr><td><b>Visualizar Painel de Métricas e Diagnóstico</b></td><td>❌ Proibido</td><td>❌ Proibido</td><td>Permitido</td></tr>
+</tbody></table></div>
+<hr>
+<h2>5. Auditoria, Observabilidade e Retenção de Dados (RGPD)</h2>
+<h3>5.1 Registo de Auditoria (<em>Logging</em>) Sem Dados Pessoais</h3>
+<p>Para cumprir as diretrizes europeias do RGPD e o requisito NFR-07:</p>
+<ul>
+<li>Os ficheiros de log do backend FastAPI registam apenas: <em>timestamp</em>, identificador interno de correlação de pedido (<em>request-id</em>), conector invocado, código de estado HTTP e tempo de execução em milissegundos.</li>
+<li><b>Dados Estritamente Interditos nos Logs:</b> Palavras-passe, <em>tokens</em> JWT de autenticação, conteúdos de mensagens redigidas por utilizadores, identificadores de números de estudante e endereços de correio eletrónico.</li>
+</ul>
+<h3>5.2 Painel de Relatórios (<em>Reporting</em>)</h3>
+<p>O painel de administração disponibiliza métricas analíticas em conformidade com o FR-51:</p>
+<ul>
+<li><b>Taxa de Disponibilidade por Conector:</b> Percentagem de sucesso nas invocações a PACO, Moodle, SAS e Skynet.</li>
+<li><b>Latência Média de Inferência:</b> Tempo médio decorrido entre a submissão da pergunta e a receção do primeiro token (<em>TTFT</em>) emitido pelo LLM na Skynet.</li>
+<li><b>Índice de Confiança RAG:</b> Frequência com que o motor vetorial devolve resultados acima do limiar de relevância vs. ativação do fallback de recusa.</li>
+<li><b>Taxa de Satisfação Agregada:</b> Rácio global de avaliações positivas (👍) e negativas (👎) recebidas.</li>
+</ul>
+<h3>5.3 Política de Retenção e Ciclo de Vida dos Dados</h3>
+<ul>
+<li><b>Sessões Voláteis:</b> As sessões expiram ao fim de 30 minutos de inatividade, sendo os dados em memória efémera invalidados de imediato.</li>
+<li><b>Histórico de Conversas:</b> As mensagens armazenadas em base de dados são mantidas apenas durante o semestre letivo em curso, sendo programada uma rotina automática de expurgo semestral para salvaguarda da privacidade.</li>
+<li><b>Eliminação Imediata:</b> A invocação do UC-17 desencadeia uma operação de eliminação física (<em>hard delete</em>) sem cópias de segurança permanentes dos identificadores associados.</li>
+</ul>
+<hr>
+<h2>6. Requisitos Não Funcionais (NFR)</h2>
+<p>Os requisitos não funcionais especificam os critérios de qualidade e as restrições arquiteturais quantificadas do sistema:</p>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>Categoria</th><th>Especificação e Métrica Quantificável</th><th>Prio</th></tr></thead><tbody>
+<tr><td><b>NFR-01</b></td><td><b>Privacidade e Soberania</b></td><td>Todo o processamento de linguagem natural e inferência de modelos de IA deve decorrer estritamente em servidores físicos sediados na UA (Skynet e cluster do DETI). Zero dados de estudantes transmitidos para APIs cloud públicas.</td><td>M</td></tr>
+<tr><td><b>NFR-02</b></td><td><b>Conformidade RGPD</b></td><td>O sistema deve recolher exclusivamente os atributos mínimos para a prestação do serviço (<em>Privacy by Design</em>). Suporte obrigatório a eliminação integral de dados do aluno a pedido e purga periódica.</td><td>M</td></tr>
+<tr><td><b>NFR-03</b></td><td><b>Fiabilidade / Anti-Alucinação (Busca Híbrida)</b></td><td>Respostas relativas a regulamentos e notas devem apresentar 0% de dados inventados; o pipeline RAG em PostgreSQL com extensão pgvector combina <b>Busca Híbrida</b> (similaridade semântica densa vetorial + busca léxica por palavras-chave/trigramas para nomes de docentes e artigos legais). Na ausência de evidência documental com score de similaridade ponderado ≥ 0.70, o sistema recusa a resposta e faculta o contacto competente com citação da fonte.</td><td>M</td></tr>
+<tr><td><b>NFR-04</b></td><td><b>Desempenho (Latência)</b></td><td>O tempo total de resposta não deve exceder <b>10 segundos</b> no percentil 95 (P95). Em pedidos com geração de texto longo, o tempo até à chegada do primeiro token (<em>Time-to-First-Token — TTFT</em>) via streaming não deve exceder <b>2 segundos</b>. O tempo de resposta individual de cada conector de serviço deve ser inferior a <b>1.5 segundos</b>.</td><td>M</td></tr>
+<tr><td><b>NFR-05</b></td><td><b>Extensibilidade</b></td><td>A arquitetura de conectores deve ser desacoplada; a adição de um novo conector através de interface padronizada não deve exigir qualquer alteração no código do orquestrador do agente (<em>Open-Closed Principle</em>).</td><td>M</td></tr>
+<tr><td><b>NFR-06</b></td><td><b>Segurança de Comunicações</b></td><td>Todas as comunicações em trânsito devem ser cifradas através de protocolos TLS 1.3 (HTTPS e SSE roteados via proxy reverso Traefik; WSS/WebSocket opcional). Credenciais de autenticação nunca são armazenadas em texto legível.</td><td>M</td></tr>
+<tr><td><b>NFR-07</b></td><td><b>Segurança de Logs</b></td><td>Os ficheiros de registo e auditoria de erros não podem conter dados de identificação pessoal (<em>PII</em>), números de estudante ou credenciais.</td><td>M</td></tr>
+<tr><td><b>NFR-08</b></td><td><b>Integridade em Ações Críticas</b></td><td>Ações de efeito externo (envio de emails institucionais e alterações de calendário) exigem confirmação explícita em dois passos mediada por cartão interativo na interface web com botões de confirmação/cancelamento, eliminando agendamentos acidentais ou ambiguidades textuais.</td><td>M</td></tr>
+<tr><td><b>NFR-09</b></td><td><b>Gestão de Caches, Sessões e Filas Assíncronas</b></td><td>Dados pessoais sensíveis e dados voláteis de telemetria (ementas, parques) são geridos em memória no <b>Redis (cache, sessões e filas)</b> com tempo de vida máximo (<em>TTL</em>) de 15 minutos; o processamento em segundo plano (ingestão de documentos para RAG e disparo de notificações) é delegado a um <b>Worker assíncrono (ARQ)</b>, isolando a API FastAPI de bloqueios.</td><td>S</td></tr>
+<tr><td><b>NFR-10</b></td><td><b>Usabilidade e Bilinguismo</b></td><td>A interface conversacional deve permitir interação fluida em linguagem natural com capacidade de desambiguação de contexto em <b>Português de Portugal</b> e em <b>Inglês</b> (suportando a integração da persona internacional Liam). O pipeline de RAG deve empregar um modelo de <em>embeddings</em> multilingue para permitir pesquisa semântica em inglês sobre documentação institucional em português.</td><td>M</td></tr>
+<tr><td><b>NFR-11</b></td><td><b>Rastreabilidade Documental</b></td><td>100% das respostas sobre normativos do DETI devem indicar a proveniência exata da citação (documento oficial, artigo e data de vigor).</td><td>M</td></tr>
+<tr><td><b>NFR-12</b></td><td><b>Resiliência e Isolamento de Falhas</b></td><td>A indisponibilidade de um serviço terceiro (ex.: falha de rede na obtenção de ementas dos SAS) deve ficar contida no conector respetivo com degradação graciosa, sem interromper as restantes funcionalidades do assistente.</td><td>S</td></tr>
+<tr><td><b>NFR-13</b></td><td><b>Disponibilidade</b></td><td>O sistema deve apresentar uma disponibilidade global de <b>99.0%</b> no horário letivo (08h00 às 20h00, dias úteis) e <b>98.0%</b> nos restantes períodos, excluindo janelas de manutenção acordadas.</td><td>S</td></tr>
+<tr><td><b>NFR-14</b></td><td><b>Escalabilidade e Capacidade</b></td><td>O backend FastAPI deve suportar pelo menos <b>50 sessões ativas simultâneas</b> e um débito mínimo de <b>10 pedidos por segundo</b> sem degradação perceptível de tempos de resposta, condicionado à capacidade de inferência de GPU da Skynet.</td><td>S</td></tr>
+<tr><td><b>NFR-15</b></td><td><b>Observabilidade</b></td><td>O sistema deve recolher métricas padronizadas de operação (latência de inferência, códigos de resposta HTTP e taxas de acerto do RAG) acessíveis em painel administrativo.</td><td>S</td></tr>
+<tr><td><b>NFR-16</b></td><td><b>Facilidade de Manutenção e Atualização</b></td><td>A atualização da base documental deve poder ser efetuada pela equipa administrativa através de <em>scripts</em> ou interface sem necessidade de recompilação do sistema.</td><td>M</td></tr>
+<tr><td><b>NFR-17</b></td><td><b>Acessibilidade</b></td><td>A aplicação web deve respeitar as diretrizes de acessibilidade <em>WCAG 2.1 nível AA</em>, permitindo navegação por teclado e compatibilidade com leitores de ecrã.</td><td>C</td></tr>
+<tr><td><b>NFR-18</b></td><td><b>Recuperabilidade (Recoverability)</b></td><td>Em caso de falha inesperada de um processo ou contentor de conector, o sistema de supervisão deve reiniciar o serviço automaticamente num tempo inferior a <b>5 segundos</b>, preservando a integridade das sessões em curso.</td><td>S</td></tr>
+<tr><td><b>NFR-19</b></td><td><b>Integridade de Dados (Data Integrity)</b></td><td>As operações de modificação de utilizador, subscrições de notificações e purga de histórico devem garantir propriedades ACID no PostgreSQL. A indexação de documentos na base vetorial deve ser atómica, impedindo estados parciais ou corrompidos de <em>embeddings</em>.</td><td>M</td></tr>
+<tr><td><b>NFR-20</b></td><td><b>Interoperabilidade e Protocolos de Transporte</b></td><td>O sistema adota uma divisão arquitetural de transporte clara: endpoints <b>REST (OpenAPI 3.0)</b> para operações de ciclo de vida (autenticação, histórico de sessões, upload de ficheiros e configurações administrativas) e canal <b>SSE (<em>Server-Sent Events</em>)</b> de alto desempenho (com payloads em formato JSON para streaming de tokens em tempo real, cartões interativos de ação e citações de fontes). O protocolo WebSocket é suportado como canal secundário caso venham a ser necessárias comunicações bidirecionais contínuas. A comunicação interna com ferramentas segue a especificação <b>MCP (<em>Model Context Protocol</em>)</b>, com um servidor MCP por domínio funcional (<code>campo mode no registo</code>).</td><td>M</td></tr>
+</tbody></table></div>
+<hr>
+<h2>7. Pressupostos, Dependências e Restrições</h2>
+<p>Para garantir a coerência da engenharia de requisitos da Fase de Elaboração, distinguem-se com rigor metodológico os três conceitos:</p>
+<h3>7.1 Pressupostos (<em>Assumptions</em>)</h3>
+<ol>
+<li><b>Conetividade Universitária:</b> Assume-se que os estudantes e docentes do DETI dispõem de acesso à rede institucional da UA (eduroam ou ligação externa com acesso aos serviços web).</li>
+<li><b>Capacidade Computacional da Skynet:</b> Assume-se que o cluster Skynet alocado dispõe de recursos de aceleração gráfica (GPUs com VRAM adequada) suficientes para executar modelos de linguagem abertos (ex.: Llama 3 / Mistral de 8B ou 70B quantizados) com latências inferiores a 2 segundos por token.</li>
+<li><b>Estabilidade dos Regulamentos:</b> Assume-se que as regras de avaliação e calendários oficiais da UA são publicados em documentos digitais inteligíveis em formato PDF com texto pesquisável antes do início de cada semestre.</li>
+<li><b>Permissões de Estudante:</b> Assume-se que os estudantes possuem legitimidade e credenciais ativas para aceder aos seus próprios registos no PACO e no Moodle.</li>
+</ol>
+<h3>7.2 Dependências Externas (<em>Dependencies</em>)</h3>
+<h3>7.2 Dependências Externas (<em>Dependencies</em>)</h3>
+<ol>
+<li><b>Aprovação Técnica dos STIC e IdP Institucional:</b> A implementação do mecanismo de autenticação institucional (FR-01) e o acesso a dados de horários dependem diretamente da validação, emissão de credenciais de aplicação e autorização de segurança pelos STIC da UA (Plano A). Como ambiente de desenvolvimento e plano de contingência ativo plenamente funcional, o sistema incorpora um <b>IdP simulado via Keycloak (OIDC)</b> executado localmente em contentor Docker (Plano B), replicando fielmente os contratos OpenID Connect e tokens JWT institucionais.</li>
+<li><b>APIs e Interfaces do PACO e e-learning:</b> A obtenção programática de dados de turmas e testes depende da disponibilização ou autorização de endpoints REST pelos STIC (Plano A). Como contingência ativa, o sistema conta com mocks de APIs do e-learning (Moodle em Docker) e PACO (FastAPI) prontos e funcionais desenvolvidos pela equipa com contratos OpenAPI estritos (Plano B), incorporando o serviço real caso seja autorizado, ou automação web/scraping via Playwright caso estritamente necessário e autorizado (Plano C). A comutação entre estes modos é operada transparentemente via servidores <b>MCP (<em>Model Context Protocol</em>)</b> dedicados por domínio através do atributo <code>mode</code> no registo (<code>mode=mock|real|scraper</code>), partilhando os mesmos contratos de dados Pydantic.</li>
+<li><b>Microsoft Graph API:</b> A leitura de emails e marcação de eventos no calendário institucional dependem dos serviços cloud Microsoft 365 da Universidade de Aveiro e do consentimento explícito dos utilizadores (reservado para a Fase 2 do projeto).</li>
+<li><b>Serviços Públicos de Campus e Externos:</b> A precisão das respostas sobre refeições e meteorologia depende da continuidade dos serviços web abertos dos SAS e do IPMA (incluídos no MVP). Os dados de telemetria dos parques de estacionamento da UA (com recurso a estratégias de <em>quickload</em> / cache em memória Redis) e mapas georreferenciados via OpenStreetMap (tiles renderizados diretamente pelo browser) integram a expansão do sistema.</li>
+</ol>
+<h3>7.3 Restrições Arquiteturais e de Projeto (<em>Constraints</em>)</h3>
+<ol>
+<li><b>Restrição de Confinamento Geográfico/Rede:</b> Todo o processamento de conversação, raciocínio de agentes e dados com caráter de identificação pessoal deve obrigatoriamente residir em servidores da UA/DETI e cluster Skynet. É expressamente interdito submeter texto de estudantes para APIs na cloud pública comercial.</li>
+<li><b>Pilhas Tecnológicas Pré-definidas (Arquitetura v2):</b> A solução estrutura-se estritamente na topologia validada da Arquitetura v2:</li>
+</ol>
+<ul>
+<li><b>Edge e Frontend:</b> Proxy reverso de borda <b>Traefik</b> e cliente web <b>React PWA</b> (<em>Progressive Web App</em> responsiva, com modo claro/escuro e instalável em dispositivos móveis).</li>
+<li><b>Backend API:</b> Desenvolvido em Python com a framework assíncrona <b>FastAPI</b>, gerindo sessões, segurança e streaming de respostas em tempo real via <b>SSE (<em>Server-Sent Events</em>)</b>.</li>
+<li><b>Identidade:</b> Instância de <b>Keycloak (IdP simulado OIDC)</b> para emissão e validação padronizada de tokens de sessão.</li>
+<li><b>Base de Dados e RAG Híbrido:</b> <b>PostgreSQL com extensão pgvector</b> fornecendo integridade transacional ACID e suporte a <b>Busca Híbrida</b> (combinação de similaridade de embeddings vetoriais com pesquisa léxica BM25/trigramas para normativos e catálogo de docentes).</li>
+<li><b>Cache, Sessões e Filas:</b> <b>Redis</b> gerindo dados efêmeros de sessão e telemetria, complementado por um <b>Worker assíncrono (ARQ)</b> para processamento de ingestão de documentos RAG e despacho de notificações.</li>
+<li><b>Conectores e Extensibilidade:</b> Arquitetura desacoplada via <b>Servidores MCP</b> (1 por domínio funcional, com comutação via campo <code>mode</code>).</li>
+<li><b>Inferência Local:</b> Servidor <b>Skynet</b> alojando LLM via API interna de inferência de alta velocidade.</li>
+</ul>
+<ol>
+<li><b>Compatibilidade Web e Mobilidade Universal:</b> O cliente principal do assistente corre em qualquer navegador moderno (Chrome, Firefox, Safari, Edge) e pode ser adicionado ao ecrã inicial de dispositivos móveis como uma <b>PWA</b>, dispensando a dependência inicial de lojas de aplicações.</li>
+</ol>
+<h3>7.4 Justificação de Alinhamento de Âmbito (Elaboração vs. Inception)</h3>
+<p>Durante a fase de <em>Inception</em>, foram abordadas preliminarmente funcionalidades de consulta de saldo do cartão SAS e pagamento de propinas académicas. No decurso dos contactos com stakeholders e na avaliação de riscos da presente <b>Fase de Elaboração</b>, deliberou-se fundamentadamente o alinhamento de prioridades:</p>
+<ul>
+<li><b>Razão de Segurança e Risco:</b> Operações de transação bancária e consulta de saldos implicam conformidade financeira e exigências de certificação adicionais por parte dos SAS e entidades bancárias, o que colocaria em causa o prazo de entrega do projeto. Tais funcionalidades financeiras foram, portanto, excluídas do âmbito (<em>Won&#x27;t have</em>).</li>
+<li><b>Foco no Núcleo de Valor:</b> O valor principal do DetiBuddy para os estudantes reside na agregação pedagógica, resolução de dúvidas sobre o regulamento através de RAG híbrido local, consulta de horários e alertas em tempo real. A aplicação nativa Android foi reclassificada como <em>Could have</em>, ficando a mobilidade e usabilidade no campus plenamente asseguradas no MVP através da <b>React PWA</b> instalável.</li>
+</ul>
+</article>
+<footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>
+</div>
+</body>
+</html>

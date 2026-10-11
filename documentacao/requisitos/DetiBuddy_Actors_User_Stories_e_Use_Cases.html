@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atores, User Stories e Use Cases — DetiBuddy</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--fg:#19211f;--mut:#65736f;--line:#d5dfdb;--ac:#187d75;--ph:#e3efeb}
+@media(prefers-color-scheme:dark){:root{--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mut)}
+.w{max-width:960px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.nav{margin:20px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.back{display:inline-flex;align-items:center;color:var(--fg);text-decoration:none;font-weight:500}
+.back:hover{color:var(--ac)}
+article{padding-bottom:40px}
+h1{font:400 clamp(32px,5vw,50px)/1.08 "Instrument Serif",Georgia,serif;margin:28px 0 16px}
+h2{font:400 clamp(24px,3.8vw,34px)/1.15 "Instrument Serif",Georgia,serif;margin:36px 0 14px;border-top:1px solid var(--line);padding-top:24px}
+h3{font-size:19px;font-weight:600;margin:24px 0 8px}
+p,li{font-size:15px;line-height:1.65;color:inherit}
+li{margin-bottom:6px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+blockquote{margin:16px 0;padding:12px 20px;border-left:3px solid var(--ac);background:var(--ph);color:var(--fg);border-radius:0 6px 6px 0}
+code{background:var(--ph);padding:2px 6px;border-radius:4px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+pre{background:rgba(0,0,0,.04);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+th{background:var(--ph);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top mono"><span>DETI / Universidade de Aveiro</span><span>UC 43675 · PEI 2026/2027</span></div>
+<div class="nav"><a class="back" href="../requisitos.html">← Voltar</a><span class="mono">Documento DetiBuddy</span></div>
+<article>
+<h1>DetiBuddy — Atores, User Stories e Use Cases</h1>
+<blockquote><b>Fase de Elaboração — Projeto em Engenharia Informática (PEI 2026/2027)</b></blockquote>
+<blockquote><b>Versão:</b> 2.0 (Fase de Elaboração — Outubro de 2026)</blockquote>
+<blockquote><b>Autores:</b> Arthur Haerdy, Francisco Amaro, Geovana Mayer, Lisle Faria, Samuel Ramos</blockquote>
+<blockquote><b>Orientador:</b> Prof. Mário Antunes</blockquote>
+<hr>
+<h2>1. Atores do Sistema</h2>
+<p>Os intervenientes no sistema dividem-se em <b>Atores do Sistema</b> — que iniciam interações diretas com o DetiBuddy para atingir objetivos — e <b>Sistemas Secundários e de Suporte</b> — plataformas e serviços externos com os quais o DetiBuddy comunica para recolher dados, inferir respostas ou executar tarefas.</p>
+<pre><code class="language-mermaid">
+graph TD
+    subgraph Atores do Sistema
+        A[Estudante Autenticado]
+        B[Utilizador Não Autenticado / Visitante]
+        C[Administrador do Sistema]
+    end
+
+    subgraph Sistema DetiBuddy
+        D((DetiBuddy Core &amp; Agent))
+    end
+
+    subgraph Sistemas Secundários e de Suporte
+        E[IdP UA / STIC SSO]
+        F[Serviços UA: PACO, Moodle, SAS, Parques, Biblioteca]
+        G[Skynet: Servidor de Inferência LLM]
+        H[Serviços Externos: IPMA, MS 365 Graph, OpenMap]
+    end
+
+    A --&gt;|Interage| D
+    B --&gt;|Interage| D
+    C --&gt;|Gere e Monitoriza| D
+    D &lt;--&gt; E
+    D &lt;--&gt; F
+    D &lt;--&gt; G
+    D &lt;--&gt; H
+</code></pre>
+<h3>1.1 Atores do Sistema</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>Ator</th><th>Descrição e Perfil</th></tr></thead><tbody>
+<tr><td><b>Estudante Autenticado</b></td><td>Aluno matriculado num curso do DETI que acede ao sistema com as credenciais institucionais <code>@ua.pt</code>. Possui acesso a dados académicos confidenciais (horários, salas, avaliações no PACO/Moodle, emails) e pode solicitar ações personalizadas (reuniões, notificações de senhas). É exemplificado pelas personas <em>Eunice</em> (caloiro nacional), <em>Paulo</em> (finalista nacional) e <em>Liam</em> (estudante internacional/Erasmus).</td></tr>
+<tr><td><b>Utilizador Não Autenticado / Visitante</b></td><td>Qualquer membro da comunidade universitária, candidato ou visitante que acede ao assistente sem efetuar login. Acede unicamente a dados e serviços públicos (ementas das cantinas, regulamentos públicos do DETI, localização geral de edifícios e serviços do campus). Previsto no requisito FR-03.</td></tr>
+<tr><td><b>Administrador do Sistema</b></td><td>Elemento da equipa técnica ou docente do DETI responsável pela manutenção e ciclo de vida do assistente. Carrega e atualiza documentos normativos na base de conhecimento vetorial (RAG) com controlo de validade, regista e configura novos conectores de serviços e analisa métricas agregadas de desempenho, utilização e erros. É personificado pelo <em>Eng. Rui</em>.</td></tr>
+</tbody></table></div>
+<blockquote><b>Nota sobre Docentes e Investigadores:</b> Docentes e investigadores da UA que utilizem o assistente acedem com as suas credenciais sob o perfil de utilizador institucional autenticado (usufruindo de consultas de horários, reuniões e serviços comuns do campus), não existindo no âmbito do MVP da Fase de Elaboração funcionalidades privativas de pautas ou gestão pedagógica exclusiva de docentes.</blockquote>
+<p>#### Perfil Detalhado do Administrador</p>
+<ul>
+<li><b>Papel:</b> Gestão da infraestrutura lógica do agente, qualidade do conhecimento e observabilidade.</li>
+<li><b>Competências:</b> Conhecimentos de gestão de APIs, indexação de documentos (chunking e embeddings) e diagnóstico de conectores.</li>
+<li><b>Preocupações Principais:</b> Assegurar que os regulamentos indexados estão atualizados e não contêm versões revogadas; configurar alertas de expiração de documentos normativos; garantir que nenhum dado pessoal de estudantes é exposto nos logs; monitorizar a latência e estabilidade da ligação à Skynet.</li>
+</ul>
+<h3>1.2 Sistemas Secundários e de Suporte</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>Ator / Sistema</th><th>Tipo</th><th>Papel e Interação</th><th>Alternativa / Contingência</th></tr></thead><tbody>
+<tr><td><b>IdP UA / STIC</b></td><td>Secundário (Autenticação)</td><td>Provedor de Identidade institucional da Universidade de Aveiro. Valida as credenciais do utilizador (SSO / OAuth2) e emite tokens de sessão seguros.</td><td><b>Plano B:</b> IdP simulado via <b>Keycloak (OIDC)</b> em contentor Docker; tokens de sessão JWT efémeros e autenticação local de contingência</td></tr>
+<tr><td><b>Serviços Académicos e de Campus da UA</b></td><td>Secundário (Plataformas UA)</td><td>Conjunto de plataformas institucionais que alimentam as respostas do assistente: <b>PACO</b> (horários), <b>e-learning / Moodle</b> (datas de testes e avisos), <b>SAS</b> (ementas e senhas de atendimento), <b>Sistema de Parques</b> (ocupação de lugares) e <b>Biblioteca / SBIDM</b> (catálogo de livros).</td><td><b>Plano B:</b> Mocks de APIs prontos (PACO e e-learning) desenvolvidos pela equipa;&lt;br&gt;<b>Plano C:</b> Web scraping / automação via Playwright;&lt;br&gt;<b>Quickload:</b> Pré-carregamento e cache estática em memória para dados de ementas SAS e parques</td></tr>
+<tr><td><b>Servidor Skynet</b></td><td>Secundário (Infraestrutura)</td><td>Servidor de cálculo local da UA que hospeda o modelo de linguagem de grande escala (LLM <em>on-premise</em>). Responsável pelo processamento de linguagem natural, raciocínio (<em>reasoning</em>) e orquestração de chamadas de ferramentas (<em>tool calling</em>), garantindo a soberania dos dados.</td><td>Modelos quantizados locais mais leves de contingência (execução local)</td></tr>
+<tr><td><b>Serviços Externos de Apoio</b></td><td>Secundário (Sistemas Externos)</td><td><b>IPMA</b> (Instituto Português do Mar e da Atmosfera — previsão meteorológica) e <b>Microsoft 365 / Graph API</b> (leitura de emails recentes e gestão de eventos no calendário do estudante).</td><td>Cache local com última previsão válida / Quickload</td></tr>
+<tr><td><b>OpenStreetMap (OpenMap)</b></td><td>Secundário (Cartografia)</td><td>Serviço aberto de cartografia e dados geoespaciais para mapas do campus, cálculo de rotas pedonais e percursos passo a passo entre edifícios e departamentos da UA.</td><td>Quickload de mapas estáticos / dados cartográficos locais em cache</td></tr>
+</tbody></table></div>
+<hr>
+<h2>2. Prioridades de Desenvolvimento (MoSCoW)</h2>
+<ul>
+<li><b>M — Must have (Crítico para MVP da Elaboração):</b> Requisitos essenciais sem os quais o sistema não entra em produção nem atinge os objetivos de negócio.</li>
+<li><b>S — Should have (Importante):</b> Requisitos de grande valor funcional que devem ser incluídos assim que o núcleo MVP estiver estável.</li>
+<li><b>C — Could have (Desejável):</b> Funcionalidades complementares, a incorporar caso haja folga temporal (ex.: bot de Discord e aplicação nativa Android).</li>
+<li><b>W — Won&#x27;t have (Fora de Âmbito agora):</b> Funcionalidades expressamente descartadas para esta fase do projeto (ex.: pagamentos de propinas e saldo do cartão SAS).</li>
+</ul>
+<hr>
+<h2>3. User Stories (Histórias de Utilizador)</h2>
+<p>Formato: <em>Como \&lt;ator&gt;, quero \&lt;objetivo&gt;, para \&lt;benefício&gt;.</em></p>
+<p>Critérios de aceitação expressos em <em>Dado que / Quando / Então</em>.</p>
+<h3>E1 — Privacidade e Autenticação</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-01</td><td>Como <b>estudante</b>, quero autenticar-me com a minha conta UA, para que o assistente aceda aos meus dados pessoais e académicos em meu nome. <em>(Método de autenticação sujeito à validação técnica dos STIC.)</em></td><td>M</td></tr>
+<tr><td>US-02</td><td>Como <b>estudante</b>, quero ter a garantia de que as minhas conversas e dados pessoais não saem da infraestrutura da UA, para confiar plenamente no assistente.</td><td>M</td></tr>
+<tr><td>US-03</td><td>Como <b>estudante</b>, quero poder apagar o meu histórico de conversas a qualquer momento, para manter o controlo integral sobre os meus dados (conformidade RGPD).</td><td>S</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-01:</b> Dado um estudante não autenticado, quando solicita uma informação privada (ex.: o seu horário ou emails), então o assistente solicita autenticação institucional e só procede após sucesso. Credenciais e palavras-passe nunca são registadas em texto legível ou logs.</li>
+<li><b>Critérios US-02:</b> Verificável por auditoria de tráfego de rede: nenhum pedido direcionado para APIs públicas fora da UA contém mensagens, números de aluno ou nomes.</li>
+<li><b>Critérios US-03:</b> Dado um histórico de mensagens existente, quando o estudante solicita a sua eliminação com confirmação, então o histórico é permanentemente purgado do armazenamento.</li>
+</ul>
+<h3>E2 — Serviços da UA</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-04</td><td>Como <b>estudante</b>, quero perguntar pelo meu horário letivo, para saber rapidamente onde e quando tenho aulas sem ter de abrir o PACO.</td><td>M</td></tr>
+<tr><td>US-05</td><td>Como <b>estudante</b>, quero saber as datas de testes e entregas de uma disciplina, para me organizar atempadamente (PACO / e-learning). <em>Exceção documentada: testes cujas datas só constem em ficheiros PowerPoint.</em></td><td>M</td></tr>
+<tr><td>US-06</td><td>Como <b>estudante</b>, quero consultar a ementa da cantina do dia, para decidir onde almoçar no campus (SAS).</td><td>M</td></tr>
+<tr><td>US-07</td><td>Como <b>estudante</b>, quero saber a ocupação dos parques de estacionamento, para escolher onde estacionar antes de chegar à universidade.</td><td>S</td></tr>
+<tr><td>US-08</td><td>Como <b>estudante</b>, quero consultar o estado da minha senha de atendimento presencial nos serviços, para gerir o meu tempo sem ficar na fila.</td><td>S</td></tr>
+<tr><td>US-09</td><td>Como <b>estudante</b>, quero consultar os meus emails recentes da UA, para não perder avisos pedagógicos urgentes.</td><td>C</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-04:</b> Tempo de resposta inferior a 10 s; perante falha do PACO, o assistente devolve uma mensagem clara de indisponibilidade sem inventar horários.</li>
+<li><b>Critérios US-05:</b> Dado o nome ou código de uma disciplina, o assistente apresenta as datas acompanhadas da fonte oficial e hora de consulta. Se as datas apenas existirem em apresentações PowerPoint não indexadas, o assistente informa explicitamente que não é possível obter o dado.</li>
+</ul>
+<h3>E3 — Assistente Pessoal (Organização e Produtividade)</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-10</td><td>Como <b>estudante</b>, quero pedir ao assistente para marcar uma reunião de grupo de projeto, para que envie os convites por email e crie o evento no calendário.</td><td>S</td></tr>
+<tr><td>US-11</td><td>Como <b>estudante</b>, quero pedir ao assistente para organizar o meu dia, para receber um plano unificado de aulas, entregas e eventos relevantes.</td><td>S</td></tr>
+<tr><td>US-12</td><td>Como <b>estudante</b>, quero uma recomendação de indumentária baseada no tempo e no percurso para a universidade, para me preparar adequadamente.</td><td>C</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-10:</b> O assistente identifica participantes, data e hora; apresenta um resumo detalhado e <b>só envia emails ou altera o calendário após confirmação explícita</b> do estudante.</li>
+<li><b>Critérios US-11:</b> O assistente combina horário do PACO e compromissos do calendário; gera uma proposta estruturada e só faz marcações após validação.</li>
+<li><b>Critérios US-12:</b> A recomendação consulta o serviço IPMA; em caso de indisponibilidade da meteorologia, avisa que o dado meteorológico não foi obtido.</li>
+</ul>
+<h3>E4 — Orientação no Campus e Serviços de Apoio</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-13</td><td>Como <b>estudante</b>, quero perguntar pela localização dos balcões do PACO e receber direções passo a passo, para me orientar rapidamente.</td><td>S</td></tr>
+<tr><td>US-14</td><td>Como <b>estudante</b>, quero saber quais os procedimentos e documentos necessários para tratar de um processo académico (ex.: passe de autocarro, certidões), para resolver o assunto à primeira.</td><td>S</td></tr>
+<tr><td>US-15</td><td>Como <b>estudante</b>, quero saber se a biblioteca dispõe de livros recomendados para uma disciplina e se estão disponíveis para empréstimo.</td><td>S</td></tr>
+<tr><td>US-16</td><td>Como <b>estudante</b>, quero saber que serviços existem no campus (CTT, farmácia, CUA) e os respetivos horários de funcionamento.</td><td>S</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-13 a US-16:</b> As respostas baseiam-se nos manuais e documentação indexada; se a informação for inexistente, o assistente recusa-se a inventar (<em>&quot;Não disponho dessa informação&quot;</em>) e fornece o contacto oficial do serviço.</li>
+</ul>
+<h3>E5 — Vida Académica, Desporto e Comunidade</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-17</td><td>Como <b>estudante</b>, quero informações sobre atividades desportivas na UA (modalidades, horários, ginásio, tarifas e reserva da nave desportiva), para manter uma rotina ativa.</td><td>S</td></tr>
+<tr><td>US-18</td><td>Como <b>estudante</b>, quero saber quais os jogos da Taça UA a decorrer, para poder acompanhar a competição.</td><td>C</td></tr>
+<tr><td>US-19</td><td>Como <b>estudante</b>, quero obter guias e prazos sobre o programa Erasmus+, para me candidatar com sucesso.</td><td>C</td></tr>
+<tr><td>US-20</td><td>Como <b>estudante</b>, quero conhecer os núcleos do DETI (ex.: NEI, NETA) e a associação académica, para me integrar na comunidade.</td><td>S</td></tr>
+<tr><td>US-21</td><td>Como <b>estudante</b>, quero saber como participar em grupos de interesse técnico e extracurricular (GLUA, NERD, UAC, Nave).</td><td>C</td></tr>
+</tbody></table></div>
+<h3>E6 — Conhecimento Oficial do DETI e Regulamentos (RAG)</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-22</td><td>Como <b>estudante</b>, quero fazer perguntas sobre o regulamento pedagógico (faltas, épocas especiais, regime de avaliação), para esclarecer dúvidas com segurança.</td><td>M</td></tr>
+<tr><td>US-23</td><td>Como <b>estudante</b>, quero consultar os contactos institucionais e o número de gabinete de um docente, para falar com ele presencialmente ou por email.</td><td>M</td></tr>
+<tr><td>US-24</td><td>Como <b>estudante</b>, quero consultar as datas-chave do calendário escolar (feriados letivos, paragens e épocas de exames).</td><td>S</td></tr>
+<tr><td>US-25</td><td>Como <b>estudante</b>, quero que cada resposta sobre regulamentos inclua a citação explícita da fonte oficial (nome do documento e artigo/secção), para poder conferir a veracidade.</td><td>M</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-22 e US-25:</b> Toda a resposta baseada em RAG cita expressamente o documento e secção de suporte. Na ausência de excertos com alta confiança, o assistente não alucina e indica o contacto da secretaria do DETI.</li>
+</ul>
+<h3>E7 — Canais de Interação</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-26</td><td>Como <b>estudante</b>, quero interagir com o assistente através de uma interface web responsiva e instalável (<b>React PWA</b> para desktop e mobile), sem necessitar de recorrer a lojas de aplicações.</td><td>M</td></tr>
+<tr><td>US-27</td><td>Como <b>estudante</b>, quero poder aceder ao assistente via Discord num canal privado, para usar a plataforma onde já comunico com os colegas.</td><td>C</td></tr>
+<tr><td>US-28</td><td>Como <b>estudante</b>, quero opcionalmente uma aplicação Android nativa empacotada para usar no campus. <em>(Classificada como Could have, estando a mobilidade principal já assegurada pela React PWA).</em></td><td>C</td></tr>
+</tbody></table></div>
+<h3>E8 — Notificações Proativas</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-29</td><td>Como <b>estudante</b>, quero receber uma notificação automática quando a minha senha de atendimento presencial estiver próxima de ser chamada.</td><td>S</td></tr>
+<tr><td>US-30</td><td>Como <b>estudante</b>, quero ser notificado quando existirem vagas disponíveis no meu parque de estacionamento habitual.</td><td>C</td></tr>
+<tr><td>US-31</td><td>Como <b>estudante</b>, quero poder gerir e cancelar a qualquer momento as minhas subscrições de notificações ativas.</td><td>S</td></tr>
+</tbody></table></div>
+<h3>E9 — Administração e Extensibilidade</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-32</td><td>Como <b>administrador</b>, quero carregar ou atualizar documentos em PDF da base de conhecimento com metadados de validade e alertas automáticos de expiração, para manter as respostas do assistente corretas e atuais.</td><td>M</td></tr>
+<tr><td>US-33</td><td>Como <b>administrador</b>, quero registar novos conectores de serviços através de uma interface padronizada, sem alterar o núcleo do sistema (<em>Modular Conector Architecture</em>).</td><td>M</td></tr>
+<tr><td>US-34</td><td>Como <b>administrador</b>, quero monitorizar painéis de utilização, tempos de resposta e ocorrências de erros por conector, para otimizar o sistema.</td><td>S</td></tr>
+</tbody></table></div>
+<h3>E10 — Avaliação Contínua da Solução</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-35</td><td>Como <b>estudante</b>, quero poder classificar cada resposta com 👍/👎 e submeter um comentário opcional, para ajudar a equipa a aperfeiçoar o assistente.</td><td>S</td></tr>
+</tbody></table></div>
+<hr>
+<h2>4. Use Cases (Casos de Uso) Organizados por Pacotes</h2>
+<p>Os 22 Casos de Uso do sistema encontram-se estruturados em <b>6 Pacotes Lógicos (<em>Packages</em>)</b>, de acordo com as boas práticas de Engenharia de Software e modelação ágil:</p>
+<pre><code class="language-mermaid">
+graph TD
+    subgraph PKG-1 [Pacote 1: Autenticação, Sessão e Perfil]
+        UC01(UC-01: Autenticar estudante)
+        UC17(UC-17: Apagar histórico)
+        UC20(UC-20: Configurar notificações)
+        UC22(UC-22: Aceder por canal)
+    end
+
+    subgraph PKG-2 [Pacote 2: Atividades e Gestão Académica]
+        UC02(UC-02: Consultar horário)
+        UC03(UC-03: Consultar testes/entregas)
+        UC07(UC-07: Contacto de docente)
+        UC15(UC-15: Disponibilidade de livros)
+        UC18(UC-18: Consultar emails recentes)
+        UC19(UC-19: Calendário escolar)
+    end
+
+    subgraph PKG-3 [Pacote 3: Campus, Serviços e Comunidade]
+        UC04(UC-04: Consultar ementa)
+        UC05(UC-05: Ocupação de parques)
+        UC14(UC-14: Orientação no campus)
+        UC16(UC-16: Desporto e comunidade)
+    end
+
+    subgraph PKG-4 [Pacote 4: Assistente Pessoal e Produtividade]
+        UC08(UC-08: Receber notificação proativa)
+        UC12(UC-12: Marcar reunião de grupo)
+        UC13(UC-13: Organizar o dia)
+    end
+
+    subgraph PKG-5 [Pacote 5: Conhecimento Institucional e RAG]
+        UC06(UC-06: Perguntar regulamento)
+        UC11(UC-11: Dar feedback)
+    end
+
+    subgraph PKG-6 [Pacote 6: Administração e Extensibilidade]
+        UC09(UC-09: Atualizar base RAG)
+        UC10(UC-10: Registar novo conector)
+        UC21(UC-21: Consultar métricas)
+    end
+</code></pre>
+<blockquote><b>Artefactos Visuais de Modelação (UML):</b> A modelação visual completa de Casos de Uso segundo o padrão <em>Agile Modeling</em> encontra-se disponível na pasta <code>docs/diagrams/use_case/</code>: consulte o [Diagrama Geral Completo com 22 Casos de Uso](../diagrams/use_case/DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](../diagrams/use_case/DetiBuddy_Use_Cases_Simplificado.png).</blockquote>
+<blockquote><b>Nota de Rastreabilidade:</b> A história <b>US-02</b> (<em>Privacidade e confinamento on-premise</em>) representa um requisito transversal de qualidade e governança. Encontra-se coberta diretamente pelos requisitos <b>NFR-01</b>, <b>NFR-02</b> e <b>FR-07</b>, não necessitando de um caso de uso operacional isolado.</blockquote>
+<h3>Índice Resumo de Casos de Uso por Pacotes</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>Pacote</th><th>ID</th><th>Caso de Uso</th><th>Ator Principal</th><th>Histórias de Utilizador</th></tr></thead><tbody>
+<tr><td><b>Pacote 1: Autenticação, Sessão e Perfil</b></td><td><b>UC-01</b></td><td>Autenticar estudante</td><td>Estudante</td><td>US-01</td></tr>
+<tr><td></td><td><b>UC-17</b></td><td>Apagar histórico de conversas</td><td>Estudante</td><td>US-03</td></tr>
+<tr><td></td><td><b>UC-20</b></td><td>Configurar notificações</td><td>Estudante</td><td>US-31</td></tr>
+<tr><td></td><td><b>UC-22</b></td><td>Aceder ao assistente por um canal</td><td>Estudante / Visitante</td><td>US-26, US-27, US-28</td></tr>
+<tr><td><b>Pacote 2: Atividades e Gestão Académica</b></td><td><b>UC-02</b></td><td>Consultar horário letivo</td><td>Estudante</td><td>US-04</td></tr>
+<tr><td></td><td><b>UC-03</b></td><td>Consultar datas de testes e entregas</td><td>Estudante</td><td>US-05</td></tr>
+<tr><td></td><td><b>UC-07</b></td><td>Consultar contacto e gabinete de docente</td><td>Estudante / Visitante</td><td>US-23</td></tr>
+<tr><td></td><td><b>UC-15</b></td><td>Consultar disponibilidade de livros</td><td>Estudante</td><td>US-15</td></tr>
+<tr><td></td><td><b>UC-18</b></td><td>Consultar emails recentes da UA</td><td>Estudante</td><td>US-09</td></tr>
+<tr><td></td><td><b>UC-19</b></td><td>Consultar calendário escolar</td><td>Estudante / Visitante</td><td>US-24</td></tr>
+<tr><td><b>Pacote 3: Campus, Serviços e Comunidade</b></td><td><b>UC-04</b></td><td>Consultar ementa da cantina</td><td>Estudante / Visitante</td><td>US-06</td></tr>
+<tr><td></td><td><b>UC-05</b></td><td>Consultar ocupação de parques</td><td>Estudante</td><td>US-07</td></tr>
+<tr><td></td><td><b>UC-14</b></td><td>Orientar no campus e explicar procedimentos</td><td>Estudante / Visitante</td><td>US-13, US-14, US-16</td></tr>
+<tr><td></td><td><b>UC-16</b></td><td>Consultar informação de desporto e comunidade</td><td>Estudante</td><td>US-17, US-18, US-19, US-20, US-21</td></tr>
+<tr><td><b>Pacote 4: Assistente Pessoal e Produtividade</b></td><td><b>UC-08</b></td><td>Receber notificação proativa</td><td>Estudante</td><td>US-08, US-29, US-30</td></tr>
+<tr><td></td><td><b>UC-12</b></td><td>Marcar reunião de grupo de projeto</td><td>Estudante</td><td>US-10</td></tr>
+<tr><td></td><td><b>UC-13</b></td><td>Organizar o dia</td><td>Estudante</td><td>US-11, US-12</td></tr>
+<tr><td><b>Pacote 5: Conhecimento Institucional (RAG)</b></td><td><b>UC-06</b></td><td>Perguntar sobre regulamento pedagógico</td><td>Estudante / Visitante</td><td>US-22, US-25</td></tr>
+<tr><td></td><td><b>UC-11</b></td><td>Dar feedback sobre resposta</td><td>Estudante / Visitante</td><td>US-35</td></tr>
+<tr><td><b>Pacote 6: Administração e Extensibilidade</b></td><td><b>UC-09</b></td><td>Atualizar base de conhecimento</td><td>Administrador</td><td>US-32</td></tr>
+<tr><td></td><td><b>UC-10</b></td><td>Registar novo conector de serviço</td><td>Administrador</td><td>US-33</td></tr>
+<tr><td></td><td><b>UC-21</b></td><td>Consultar métricas de utilização e diagnóstico</td><td>Administrador</td><td>US-34</td></tr>
+</tbody></table></div>
+<hr>
+<h3>Pacote 1 — Autenticação, Sessão e Gestão de Perfil</h3>
+<p>#### UC-01 — Autenticar estudante</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> IdP UA / STIC</li>
+<li><b>Pré-condições:</b> O estudante possui conta institucional <code>@ua.pt</code> ativa.</li>
+<li><b>Garantias de Sucesso (Pós-condições):</b> Sessão autenticada criada; token JWT seguro emitido; credenciais e palavras-passe nunca são registadas em texto limpo nem em ficheiros de log.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante envia uma mensagem através do canal de chat solicitando dados pessoais ou académicos.</li>
+<li>O assistente deteta a necessidade de autenticação e devolve a ligação segura para login federado da UA.</li>
+<li>O estudante insere as suas credenciais no portal oficial da UA.</li>
+<li>O IdP valida o utilizador e devolve a confirmação com o token seguro ao backend do DetiBuddy.</li>
+<li>O assistente cria a sessão cifrada e retoma o atendimento ao pedido inicial do utilizador.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos e Exceções:</b></li>
+<li><b>3a. Credenciais Inválidas:</b> O portal institucional informa o erro; o sistema bloqueia tentativas repetitivas de acordo com a política de segurança da UA.</li>
+<li><b>4a. Serviço de Autenticação dos STIC Indisponível:</b> O assistente informa o utilizador sobre a falha temporária e mantém o funcionamento restrito apenas a questões públicas informativas (UC-04, UC-06).</li>
+</ul>
+<p>#### UC-17 — Apagar histórico de conversas</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> PostgreSQL / Repositório de Dados</li>
+<li><b>Pré-condições:</b> O estudante tem sessão ativa.</li>
+<li><b>Garantias de Sucesso (Pós-condições):</b> Todas as mensagens, dados de contexto de chat e metadados associados ao utilizador são permanentemente eliminados do armazenamento.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante solicita verbalmente ou através da interface a eliminação do seu histórico (<em>&quot;Apagar as minhas conversas&quot;</em>).</li>
+<li>O assistente solicita confirmação explícita do utilizador, avisando que a ação é irreversível.</li>
+<li>O estudante confirma a ação.</li>
+<li>O sistema purga todas as instâncias de mensagens da base de dados e limpa a memória da sessão atual.</li>
+<li>O assistente confirma a eliminação com sucesso.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>3a. Cancelamento:</b> O estudante recusa ou não confirma; o sistema mantém o histórico intacto.</li>
+</ul>
+<p>#### UC-20 — Configurar notificações</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante</li>
+<li><b>Pré-condições:</b> Sessão ativa.</li>
+<li><b>Garantias de Sucesso:</b> Preferências de notificação persistidas na base de dados.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante solicita ver ou alterar as suas notificações ativas.</li>
+<li>O assistente lista as subscrições configuradas (ex.: alerta de senha de atendimento, parque predefinido).</li>
+<li>O estudante especifica as alterações desejadas (ativar, suspender ou eliminar subscrição).</li>
+<li>O sistema atualiza o registo e devolve uma mensagem de confirmação.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Sem subscrições ativas:</b> O assistente informa que não há alertas pendentes e sugere comandos para criar novas notificações.</li>
+</ul>
+<p>#### UC-22 — Aceder ao assistente por um canal</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Frontend Web, Discord</li>
+<li><b>Pré-condições:</b> Conetividade de rede disponível.</li>
+<li><b>Garantias de Sucesso:</b> Canal de conversação inicializado com sucesso.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador acede à aplicação web do DetiBuddy (React PWA) através do browser (ou Discord, caso disponível).</li>
+<li>A interface estabelece uma ligação segura (HTTPS e canal de streaming SSE) com o backend FastAPI através do proxy reverso Traefik.</li>
+<li>O assistente apresenta uma mensagem de boas-vindas e aguarda instruções.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>1a. Indisponibilidade temporária de canal:</b> A interface apresenta mensagem amigável de reconexão e convida o utilizador a tentar instantes depois.</li>
+</ul>
+<hr>
+<h3>Pacote 2 — Gestão e Atividades Académicas</h3>
+<p>#### UC-02 — Consultar horário letivo</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> PACO, Skynet</li>
+<li><b>Pré-condições:</b> Sessão autenticada ativa (UC-01).</li>
+<li><b>Garantias de Sucesso:</b> Informação rigorosa de aulas, salas, docentes e horas apresentada ao estudante; dados do horário não são persistidos além da sessão.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante pergunta: <em>&quot;Que aulas tenho hoje à tarde?&quot;</em>.</li>
+<li>O modelo de linguagem identifica a intenção e invoca o conector do PACO com os parâmetros temporais.</li>
+<li>O conector consulta o horário oficial do estudante.</li>
+<li>O assistente formata e devolve a listagem clara com nome da disciplina, tipo de aula (T/TP/PL), hora e sala.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>3a. Conector PACO Indisponível / Sem Conexão:</b> O sistema devolve mensagem clara de falha técnica temporária sem inventar nem deduzir aulas.</li>
+<li><b>3b. Ausência de aulas na data solicitada:</b> O assistente informa cordialmente: <em>&quot;Não tens aulas agendadas para essa data&quot;</em>.</li>
+</ul>
+<p>#### UC-03 — Consultar datas de testes e entregas</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> e-learning / Moodle, PACO, Skynet</li>
+<li><b>Pré-condições:</b> Sessão autenticada ativa; estudante devidamente inscrito na UC.</li>
+<li><b>Garantias de Sucesso:</b> Prazos e datas apresentados com indicação da fonte oficial e timestamp de consulta.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante pergunta: <em>&quot;Quando é a primeira entrega de PEI?&quot;</em>.</li>
+<li>O assistente resolve o nome informal para o identificador da UC e chama o conector pedagógico.</li>
+<li>O conector acede às avaliações registadas na página da disciplina no Moodle/PACO.</li>
+<li>O assistente extrai as datas, apresenta-as ao utilizador e adiciona a fonte oficial e hora de recolha.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Disciplina Ambígua:</b> O assistente solicita clarificação (<em>&quot;Referes-te a PEI de LEI ou PEI de MIEET?&quot;</em>).</li>
+<li><b>3a. Datas Ausentes ou Apenas em Diapositivos PowerPoint:</b> O assistente informa explicitamente que a avaliação não está registada nos campos oficiais do e-learning e sugere consultar o docente (UC-07).</li>
+<li><b>3b. Aluno não inscrito:</b> O assistente indica a impossibilidade de aceder à página da UC por ausência de inscrição.</li>
+</ul>
+<p>#### UC-07 — Consultar contacto e gabinete de docente</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Base de Dados DETI / RAG</li>
+<li><b>Pré-condições:</b> Nenhuma (informação de natureza pública).</li>
+<li><b>Garantias de Sucesso:</b> Email institucional, sala/gabinete e horário de atendimento comunicados.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador questiona: <em>&quot;Onde fica o gabinete do Professor Mário Antunes?&quot;</em>.</li>
+<li>O assistente pesquisa na base de dados de docentes e diretório do DETI.</li>
+<li>O assistente apresenta o gabinete, o email oficial e o horário de atendimento aos alunos.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Ambiguidade de nome:</b> O sistema apresenta a lista de docentes correspondentes para seleção do utilizador.</li>
+<li><b>2b. Docente não encontrado:</b> O assistente informa a inexistência de registo e faculta o contacto geral da secretaria do DETI.</li>
+</ul>
+<p>#### UC-15 — Consultar disponibilidade de livros na biblioteca</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> SBIDM / Biblioteca UA</li>
+<li><b>Pré-condições:</b> Conexão ativa aos serviços da biblioteca.</li>
+<li><b>Garantias de Sucesso:</b> Estado dos exemplares apresentado de forma precisa.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante pesquisa por bibliografia de uma disciplina ou por um título específico de livro.</li>
+<li>O conector consulta o catálogo bibliográfico da UA.</li>
+<li>O assistente indica a cota, a biblioteca onde se encontra e se está atualmente disponível ou requisitado.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Falha no catálogo:</b> Informa a indisponibilidade momentânea do serviço da biblioteca.</li>
+</ul>
+<p>#### UC-18 — Consultar emails recentes da UA</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Microsoft 365 / Graph API</li>
+<li><b>Pré-condições:</b> Sessão ativa com consentimento concedido para leitura de emails institucionais.</li>
+<li><b>Garantias de Sucesso:</b> Resumo dos remetentes, assuntos e datas dos últimos emails em formato de leitura exclusiva.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante pergunta: <em>&quot;Tenho algum email novo de professores hoje?&quot;</em>.</li>
+<li>O conector de email acede via Graph API à caixa de entrada (modo <em>read-only</em>).</li>
+<li>O assistente extrai e sintetiza os emails mais recentes, destacando remetente e assunto.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Caixa de correio sem novas mensagens:</b> O assistente informa que não existem emails novos por ler.</li>
+<li><b>2b. Falha de autorização OAuth:</b> O assistente solicita renovação da autorização de acesso ao correio.</li>
+</ul>
+<p>#### UC-19 — Consultar calendário escolar</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Base de Conhecimento RAG</li>
+<li><b>Pré-condições:</b> Nenhuma (dados públicos).</li>
+<li><b>Garantias de Sucesso:</b> Datas oficiais de interrupções, feriados e períodos de avaliação comunicadas com rigor.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador questiona: <em>&quot;Quando começam as férias de Natal e a época de exames?&quot;</em>.</li>
+<li>O sistema faz a recuperação vetorial sobre o documento oficial do Calendário Escolar da UA 2026/2027.</li>
+<li>O assistente devolve os intervalos de datas exatos, citando o despacho reitoral de homologação.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Informação contraditória ou revisão em curso:</b> O assistente indica a versão mais recente em vigor e assinala a data da última atualização.</li>
+</ul>
+<hr>
+<h3>Pacote 3 — Campus, Serviços e Comunidade</h3>
+<p>#### UC-04 — Consultar ementa da cantina</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> SAS</li>
+<li><b>Pré-condições:</b> Nenhuma (acesso público).</li>
+<li><b>Garantias de Sucesso:</b> Ementa diária das cantinas do campus apresentada discriminada por pratos.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador pergunta: <em>&quot;O que há hoje para o almoço na cantina do Crasto?&quot;</em>.</li>
+<li>O assistente invoca o conector dos SAS para obter o menu da data atual.</li>
+<li>O assistente apresenta as opções (Carne, Peixe, Dieta, Vegetariano e Sobremesa).</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Ementa ainda não disponibilizada pelos SAS:</b> O assistente avisa que a ementa para a refeição selecionada ainda não se encontra publicada pelos serviços.</li>
+</ul>
+<p>#### UC-05 — Consultar ocupação de parques de estacionamento</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Sistema de Gestão de Parques UA</li>
+<li><b>Pré-condições:</b> Disponibilidade de dados de telemetria dos parques.</li>
+<li><b>Garantias de Sucesso:</b> Número de lugares livres e indicação do parque mais vantajoso.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante questiona: <em>&quot;Há lugares no parque do DETI ou no parque central?&quot;</em>.</li>
+<li>O conector consulta o estado em tempo real dos sensores de contagem de viaturas.</li>
+<li>O assistente informa a disponibilidade em cada parque e assinala o parque com maior número de vagas livres.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Telemetria com atraso superior a 15 minutos:</b> O assistente apresenta os valores, mas avisa expressamente o utilizador quanto à data/hora da última leitura válida.</li>
+</ul>
+<p>#### UC-14 — Orientar no campus e explicar procedimentos</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Base de Conhecimento RAG, OpenMap</li>
+<li><b>Pré-condições:</b> Manuais e mapas do campus indexados.</li>
+<li><b>Garantias de Sucesso:</b> Instruções passo a passo sobre percursos e documentação exigida.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador pergunta: <em>&quot;Onde trato do passe de autocarro e o que preciso de levar?&quot;</em>.</li>
+<li>O assistente pesquisa a base documental e identifica o local competente (ex.: balcão dos serviços académicos / terminal de Aveiro) e documentos obrigatórios (declaração de matrícula do PACO).</li>
+<li>O assistente apresenta a lista de requisitos e instruções de acesso físico apoiadas pelo OpenMap.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Procedimento não documentado:</b> O assistente admite não ter o procedimento nos seus registos e faculta o contacto dos serviços académicos.</li>
+</ul>
+<p>#### UC-16 — Consultar informação de desporto e comunidade</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Base de Conhecimento RAG</li>
+<li><b>Pré-condições:</b> Dados institucionais desportivos indexados.</li>
+<li><b>Garantias de Sucesso:</b> Modalidades, preçários, horários e contactos de núcleos do DETI apresentados.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante questiona sobre inscrições no ginásio da universidade, horários da pista de atletismo ou núcleos estudantis (NEI, GLUA).</li>
+<li>O assistente consulta a base RAG e apresenta os horários, preços para alunos e formas de contacto.</li>
+</ol>
+<hr>
+<h3>Pacote 4 — Assistente Pessoal e Produtividade</h3>
+<p>#### UC-08 — Receber notificação proativa</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Conectores SAS / Parques, Canal Web/Push</li>
+<li><b>Pré-condições:</b> Subscrição prévia de alerta ativa (UC-20).</li>
+<li><b>Garantias de Sucesso:</b> Notificação atempada entregue ao utilizador quando o limiar de evento é atingido.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O serviço de tarefas em segundo plano (<em>background worker</em>) monitoriza ciclicamente a condição (ex.: faltam 3 senhas para a vez do estudante nos SAS).</li>
+<li>O sistema deteta o cumprimento do critério.</li>
+<li>O assistente despacha a mensagem de notificação prioritária para a interface web/dispositivo do estudante.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>3a. Falha temporária no canal:</b> O sistema armazena a notificação em fila de espera para reenvio ou assinala como pendente.</li>
+</ul>
+<p>#### UC-12 — Marcar reunião de grupo de projeto</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Microsoft 365 Graph, Skynet</li>
+<li><b>Pré-condições:</b> Sessão autenticada ativa com permissão delegada de escrita no calendário e email.</li>
+<li><b>Garantias de Sucesso:</b> Convites enviados por correio eletrónico e evento adicionado ao calendário institucional.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante introduz o pedido: <em>&quot;Marca uma reunião com o meu grupo de PEI na próxima terça às 14h sobre os casos de uso&quot;</em>.</li>
+<li>O assistente analisa a mensagem, identifica colegas envolvidos e dados em falta.</li>
+<li>O assistente gera e apresenta um resumo da operação (Participantes, Assunto, Data e Hora) num <b>cartão interativo de ação</b> na interface web e exige confirmação explícita através de botões <code>[Confirmar]</code> e <code>[Cancelar]</code>.</li>
+<li>O estudante clica em Confirmar (ou submete confirmação explícita).</li>
+<li>O assistente envia os emails aos destinatários e cria o evento de calendário via Graph API.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Faltam emails ou dados:</b> O assistente solicita os dados ausentes antes de avançar.</li>
+<li><b>4a. O estudante clica em Cancelar ou solicita alteração:</b> Nenhuma ação externa é despachada.</li>
+<li><b>5a. Falha no envio da API:</b> O assistente avisa claramente sobre a falha e indica que o evento não foi agendado.</li>
+</ul>
+<p>#### UC-13 — Organizar o dia</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> PACO, Calendário, IPMA, Skynet</li>
+<li><b>Pré-condições:</b> Sessão autenticada.</li>
+<li><b>Garantias de Sucesso:</b> Proposta de agenda diária integrada apresentada ao estudante.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante solicita: <em>&quot;Organiza o meu dia de amanhã&quot;</em>.</li>
+<li>O assistente reúne aulas do PACO, eventos do calendário institucional e dados meteorológicos do IPMA.</li>
+<li>O LLM constrói uma proposta integrada com blocos de tempo para aulas, estudo, pausas de refeição e recomendações contextuais.</li>
+<li>O estudante valida os itens sugeridos.</li>
+<li>Os novos itens aceites são sincronizados no calendário.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Falha no conector IPMA ou e-learning:</b> O assistente organiza o plano com base nos dados disponíveis, explicitando as fontes que não puderam ser consultadas.</li>
+</ul>
+<hr>
+<h3>Pacote 5 — Conhecimento Institucional e Regulamentos (RAG)</h3>
+<p>#### UC-06 — Perguntar sobre regulamento pedagógico</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Base Vetorial (PostgreSQL + pgvector — Busca Híbrida), Skynet</li>
+<li><b>Pré-condições:</b> Documentos normativos oficiais do DETI previamente indexados e atualizados.</li>
+<li><b>Garantias de Sucesso:</b> Resposta exata estritamente baseada em artigos regulamentares, acompanhada pela referência formal do artigo e documento.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador questiona: <em>&quot;A quantas aulas laboratoriais posso faltar sem perder frequência?&quot;</em>.</li>
+<li>O sistema gera os <em>embeddings</em> da pergunta e recupera os excertos mais relevantes da base vetorial.</li>
+<li>O LLM formula a resposta restringindo-se estritamente ao conteúdo recuperado.</li>
+<li>O assistente devolve a resposta final, incluindo a citação obrigatória (ex.: <em>Regulamento de Avaliação Discente da UA, Artigo 14.º, N.º 2</em>).</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Similaridade Semântica Insuficiente (Score abaixo do limiar):</b> O assistente recusa-se a especular, declarando: <em>&quot;Esta matéria não se encontra descrita nos regulamentos indexados&quot;</em> e faculta o contacto da Direção de Curso ou Secretaria.</li>
+<li><b>2b. Conflito entre Versões Documentais:</b> O assistente prioriza a versão mais recente e menciona a revogação da norma anterior.</li>
+</ul>
+<p>#### UC-11 — Dar feedback sobre resposta</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Base de Dados do Sistema</li>
+<li><b>Pré-condições:</b> Resposta emitida previamente pelo assistente na sessão atual.</li>
+<li><b>Garantias de Sucesso:</b> Registo anónimo de avaliação (👍 / 👎) e comentário técnico armazenado para auditoria e melhoria do modelo.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador seleciona o botão de feedback associado à mensagem do bot e, opcionalmente, redige uma justificação.</li>
+<li>O sistema associa a pontuação ao identificador da resposta e aos parâmetros de recuperação utilizados (sem associar dados de identificação pessoal do aluno).</li>
+<li>A interface apresenta uma confirmação discreta de agradecimento pelo contributo.</li>
+</ol>
+<hr>
+<h3>Pacote 6 — Administração do Sistema e Auditoria</h3>
+<p>#### UC-09 — Atualizar base de conhecimento</p>
+<ul>
+<li><b>Ator Principal:</b> Administrador · <b>Atores Secundários:</b> Módulo RAG, Base Vetorial</li>
+<li><b>Pré-condições:</b> Administrador autenticado com privilégios de gestão.</li>
+<li><b>Garantias de Sucesso:</b> Novo documento fatiado (<em>chunking</em>), transformado em vetores de características, indexado na base vetorial com metadados de validade temporal e alertas de expiração configurados.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O administrador acede à consola de gestão e submete um ficheiro documental (PDF / Markdown), definindo a data de validade/vigência temporal do documento ou despacho.</li>
+<li>O pipeline de ingestão valida a integridade do ficheiro, extrai o texto, remove formatações espúrias e segmenta o conteúdo em pedaços com sobreposição (<em>chunking</em>).</li>
+<li>O módulo gera os <em>embeddings</em> através do modelo local da Skynet e persiste-os na base vetorial juntamente com os metadados de vigência.</li>
+<li>O sistema agenda alertas automáticos para avisar os administradores quando a data de validade do documento estiver próxima de terminar ou expirada.</li>
+<li>O sistema executa automaticamente uma bateria de consultas de validação e confirma a conclusão ao administrador.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Formato de ficheiro inválido ou ficheiro corrompido:</b> O sistema rejeita o ficheiro, emite mensagem de erro detalhada e mantém a base de dados inalterada.</li>
+</ul>
+<p>#### UC-10 — Registar novo conector de serviço</p>
+<ul>
+<li><b>Ator Principal:</b> Administrador / Desenvolvedor · <b>Atores Secundários:</b> Orquestrador de Agente</li>
+<li><b>Pré-condições:</b> O novo conector implementa a interface padronizada de ferramentas do DetiBuddy (MCP / BaseTool).</li>
+<li><b>Garantias de Sucesso:</b> Nova capacidade operacional registada no catálogo de ferramentas do agente sem necessidade de modificar ou recompilar o núcleo do sistema.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O administrador acede ao painel de conectores e introduz o manifesto do conector (nome, descrição semântica das capacidades, esquemas de entrada/saída JSON e permissões exigidas).</li>
+<li>O sistema valida a conformidade da interface e regista a ferramenta no orquestrador.</li>
+<li>O modelo de linguagem passa imediatamente a poder invocar o conector quando deteta intenções correspondentes.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Esquema de parâmetros inválido:</b> O orquestrador assinala a não conformidade e impede a ativação do conector.</li>
+</ul>
+<p>#### UC-21 — Consultar métricas de utilização e diagnóstico</p>
+<ul>
+<li><b>Ator Principal:</b> Administrador · <b>Atores Secundários:</b> PostgreSQL / Dashboard de Métricas</li>
+<li><b>Pré-condições:</b> Administrador autenticado com privilégios.</li>
+<li><b>Garantias de Sucesso:</b> Relatórios agregados de desempenho e saúde do sistema apresentados.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O administrador abre a interface de observabilidade.</li>
+<li>O sistema processa os registos de auditoria e apresenta gráficos de: latência média por conector, taxa de acerto do RAG, distribuição de intenções, falhas de conectores e avaliações dos utilizadores.</li>
+<li>O administrador pode filtrar as métricas por período temporal ou serviço específico.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Ausência de dados no intervalo:</b> O painel indica a inexistência de pedidos registados no período selecionado.</li>
+</ul>
+</article>
+<footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>
+</div>
+</body>
+</html>
