@@ -70,7 +70,7 @@ footer.mono a:focus-visible{outline:2px solid #8bf0d2;outline-offset:3px}
   <h2><span class="mono">01</span>Documentação</h2>
   <div>
     <a class="row" href="./documentacao/minutas.html"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente (Atas 1 a 5)</small></span><span class="ph">Abrir</span></a>
-    <a class="row" href="./documentacao/arquitetura.html"><span class="mono">02</span><span><b>Arquitetura</b><small>Topologia v2, modelo de domínio UML e ficheiros draw.io</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/arquitetura.html"><span class="mono">02</span><span><b>Arquitetura e Decisões</b><small>Topologia v2, documento formal de decisões (ADRs) e modelo de domínio UML</small></span><span class="ph">Abrir</span></a>
     <a class="row" href="./documentacao/apresentacoes.html"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception e relatórios</small></span><span class="ph">Abrir</span></a>
     <a class="row" href="./documentacao/requisitos.html"><span class="mono">04</span><span><b>Requisitos</b><small>22 Use cases nos 6 pacotes, histórias, personas e matriz de requisitos v2</small></span><span class="ph">Abrir</span></a>
     <a class="row" href="./documentacao/calendario.html"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil e planeamento de marcos</small></span><span class="ph">Abrir</span></a>
@@ -80,24 +80,47 @@ footer.mono a:focus-visible{outline:2px solid #8bf0d2;outline-offset:3px}
 <section>
   <h2><span class="mono">02</span>Arquitetura</h2>
   <div>
-    <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
-      <a href="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" target="_blank" title="Clique para abrir o diagrama de arquitetura em tamanho original">
-        <img src="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" alt="Diagrama de Arquitetura v2 do DetiBuddy" style="display:block;width:100%;height:auto;max-height:540px;object-fit:contain;background:#fff;padding:8px">
+    <!-- Imagem da Arquitetura v2 -->
+    <div style="border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+      <a href="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" target="_blank" title="Clique para abrir a imagem da arquitetura em resolução máxima">
+        <img src="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" alt="Diagrama da Arquitetura v2 do DetiBuddy" style="display:block;width:100%;height:auto;max-height:580px;object-fit:contain;background:#fff;padding:12px">
       </a>
+      <div style="padding:10px 16px;background:var(--ph);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px" class="mono">
+        <span>Diagrama de Arquitetura v2 (Fase de Elaboração — Milestone 2)</span>
+        <a href="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" target="_blank" style="color:var(--ac);text-decoration:none;font-weight:500">Abrir imagem completa ↗</a>
+      </div>
     </div>
-    <p style="margin:0 0 10px;font-weight:500">Arquitetura v2 (Fase de Elaboração) — Visão Geral do Sistema:</p>
-    <p style="margin:0 0 12px;color:var(--mut);font-size:14.5px;line-height:1.6">A solução adota uma topologia modular e desacoplada assente em microsserviços e no padrão <em>Model Context Protocol (MCP)</em>:</p>
-    <ul style="margin:0 0 16px;padding-left:20px;color:var(--mut);font-size:14px;line-height:1.6">
-      <li><b>Edge &amp; Frontend:</b> Proxy reverso <code>Traefik</code> e cliente web <code>React PWA</code> instalável (responsivo móvel, com suporte a modos claro/escuro).</li>
-      <li><b>Backend API:</b> Python com <code>FastAPI</code> assíncrono, gerindo autenticação, sessões e streaming em tempo real via SSE (<em>Server-Sent Events</em>).</li>
-      <li><b>Identidade &amp; SSO:</b> Contentor <code>Keycloak</code> a operar como IdP simulado OIDC para emissão e validação estrita de tokens JWT institucionais.</li>
-      <li><b>Persistência &amp; RAG Híbrido:</b> <code>PostgreSQL</code> com extensão <code>pgvector</code> (combinação de similaridade vetorial com pesquisa léxica BM25) e <code>Redis</code> com worker assíncrono <code>ARQ</code> para cache e filas de tarefas.</li>
-      <li><b>Conectores MCP Desacoplados:</b> Servidores dedicados por domínio (PACO, Moodle, SAS, M365, IPMA, Parques, Bibliotecas), comutáveis entre mock e real.</li>
-      <li><b>Soberania e Privacidade:</b> Inferência de LLM executada no cluster <code>Skynet</code> do DETI, garantindo conformidade com o RGPD e total confinamento institucional dos dados.</li>
+
+    <!-- Caixa de Destaque: Documento de Decisões de Arquitetura (ADRs) -->
+    <div style="padding:18px 22px;background:rgba(24,125,117,0.06);border:1px solid var(--line);border-left:4px solid var(--ac);border-radius:8px;margin-bottom:22px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div>
+          <b style="font-size:17px;display:block;margin-bottom:4px">Documento de Decisões de Arquitetura (ADRs v2)</b>
+          <span style="font-size:14px;color:var(--mut)">Especificação formal de 8 Decisões de Arquitetura (ADR-01 a ADR-08), fundamentações técnicas e mitigação de riscos.</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="ph" href="./documentacao/arquitetura/DetiBuddy_Decisoes_Arquitetura.html" style="text-decoration:none;font-weight:500;padding:7px 14px;background:var(--ac);color:#fff;border-radius:6px">Ler Decisões (Web)</a>
+          <a class="ph" href="./documentacao/arquitetura/arquitetura_decisoes.pdf" target="_blank" style="text-decoration:none;font-weight:500;padding:7px 14px;background:var(--ph);color:var(--fg);border:1px solid var(--line);border-radius:6px">PDF Decisões</a>
+          <a class="ph" href="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.xml" download style="text-decoration:none;font-weight:500;padding:7px 14px;background:var(--ph);color:var(--fg);border:1px solid var(--line);border-radius:6px">Draw.io XML</a>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin:0 0 10px;font-weight:500">Resumo das Decisões Arquiteturais Consolidadas (Arquitetura v2):</p>
+    <ul style="margin:0 0 18px;padding-left:20px;color:var(--mut);font-size:14px;line-height:1.65">
+      <li><b>ADR-01 (Edge &amp; Frontend):</b> Proxy <code>Traefik</code> e cliente <code>React PWA</code> instalável (responsivo móvel, com suporte a modos claro/escuro).</li>
+      <li><b>ADR-02 (Backend Assíncrono):</b> Python com <code>FastAPI</code> assíncrono e streaming de respostas em tempo real via SSE (<em>Server-Sent Events</em>).</li>
+      <li><b>ADR-03 (Desacoplamento MCP):</b> Servidores <code>Model Context Protocol (MCP)</code> isolados por domínio (PACO, Moodle, SAS, M365, IPMA, Parques, Bibliotecas), comutáveis entre mock e real.</li>
+      <li><b>ADR-04 (Identidade Institucional):</b> Contentor <code>Keycloak</code> em modo OIDC simulando o IdP dos STIC para testes fiéis de tokens JWT e perfis RBAC.</li>
+      <li><b>ADR-05 (Persistência &amp; RAG Híbrido):</b> <code>PostgreSQL</code> com <code>pgvector</code> unificando dados relacionais e Busca Híbrida (vetorial densa + léxica BM25) num único contentor ACID.</li>
+      <li><b>ADR-06 (Cache e Workers):</b> <code>Redis</code> com worker assíncrono <code>ARQ</code> para telemetria em quickload, ingestão documental e notificações push.</li>
+      <li><b>ADR-07 (Soberania Skynet):</b> Inferência de LLM confinada ao cluster <code>Skynet</code> do DETI, assegurando que nenhum dado transita para clouds públicas comerciais.</li>
+      <li><b>ADR-08 (Alinhamento de Âmbito):</b> Exclusão deliberada de transações financeiras para eliminar dependências de risco e garantir a entrega de um MVP robusto no prazo.</li>
     </ul>
+
     <div style="display:flex;gap:16px;flex-wrap:wrap">
-      <a class="mono" href="./documentacao/arquitetura.html" style="color:var(--ac);text-decoration:none;font-weight:500">Ver documentação completa de arquitetura →</a>
-      <a class="mono" href="./documentacao/arquitetura/DetiBuddy_Modelo_Dominio.html" target="_blank" style="color:var(--ac);text-decoration:none;font-weight:500">Abrir Modelo de Domínio interativo →</a>
+      <a class="mono" href="./documentacao/arquitetura.html" style="color:var(--ac);text-decoration:none;font-weight:500">Página de documentação de arquitetura →</a>
+      <a class="mono" href="./documentacao/arquitetura/DetiBuddy_Modelo_Dominio.html" target="_blank" style="color:var(--ac);text-decoration:none;font-weight:500">Visualizador do Modelo de Domínio UML →</a>
     </div>
   </div>
 </section>

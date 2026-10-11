@@ -4,30 +4,166 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 62 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 5141 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Decisoes tecnicas) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Decisoes de Arquitetura \(ADRs\)) Tj ET
+BT /F1 10 Tf 48 748 Td (Engenharia de Software - Fase de Elaboracao \(Milestone 2\)) Tj ET
+BT /F2 11 Tf 48 716 Td (Resumo Executivo da Arquitetura v2) Tj ET
+BT /F1 9 Tf 48 700 Td (A arquitetura do **DetiBuddy** foi consolidada e validada durante a Fase de Elaboracao) Tj ET
+BT /F1 9 Tf 48 688 Td (\(Milestone 2\), evoluindo da visao preliminar da *Inception* para a **Arquitetura v2**, uma) Tj ET
+BT /F1 9 Tf 48 676 Td (topologia modular, assincrona e desacoplada baseada em microsservicos e no protocolo **MCP) Tj ET
+BT /F1 9 Tf 48 664 Td (\(*Model Context Protocol*\)**.) Tj ET
+BT /F1 9 Tf 48 652 Td (O sistema esta confinado a infraestrutura soberana da Universidade de Aveiro \(servidores DETI e) Tj ET
+BT /F1 9 Tf 48 640 Td (cluster Skynet\), garantindo conformidade rigorosa com o RGPD e total soberania dos dados dos) Tj ET
+BT /F1 9 Tf 48 628 Td (estudantes e da comunidade academica.) Tj ET
+BT /F2 11 Tf 48 608 Td (ADR-01: Topologia de Borda e Cliente Web \(Traefik + React PWA\)) Tj ET
+BT /F1 9 Tf 56 592 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 580 Td (Contexto:** Os estudantes acedem ao assistente atraves de smartphones, computadores portateis e) Tj ET
+BT /F1 9 Tf 56 568 Td (tablets tanto na rede do campus como no exterior.) Tj ET
+BT /F1 9 Tf 56 556 Td (Decisao:** Adocao do proxy reverso de borda **Traefik** e de uma aplicacao web progressiva) Tj ET
+BT /F1 9 Tf 56 544 Td (**React PWA** \(*Progressive Web App*\).) Tj ET
+BT /F1 9 Tf 56 532 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 520 Td (* Permite instalacao direta no ecra inicial do smartphone sem friccao de lojas de aplicacoes.) Tj ET
+BT /F1 9 Tf 48 508 Td (* Suporte nativo a modos claro/escuro \(*Dark/Light Mode*\) e design responsivo fluido.) Tj ET
+BT /F1 9 Tf 48 496 Td (* O Traefik gere terminacao TLS/SSL, encaminhamento de rotas por subdominio e *rate limiting*) Tj ET
+BT /F1 9 Tf 48 484 Td (preventivo.) Tj ET
+BT /F1 9 Tf 56 472 Td (Consequencias:** A aplicacao nativa Android passa a requisito de expansao \(*Could Have*\),) Tj ET
+BT /F1 9 Tf 56 460 Td (garantindo cobertura universal no MVP atraves da web movel.) Tj ET
+BT /F2 11 Tf 48 440 Td (ADR-02: Backend Assincrono com Server-Sent Events \(FastAPI + SSE\)) Tj ET
+BT /F1 9 Tf 56 424 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 412 Td (Contexto:** Assistentes baseados em LLM geram texto token a token. O tempo ate a primeira) Tj ET
+BT /F1 9 Tf 56 400 Td (resposta \(*Time To First Token - TTFT*\) e critico para a experiencia conversacional.) Tj ET
+BT /F1 9 Tf 56 388 Td (Decisao:** Desenvolvimento do backend em Python utilizando a framework assincrona **FastAPI**) Tj ET
+BT /F1 9 Tf 56 376 Td (com streaming de respostas via **SSE \(*Server-Sent Events*\)**.) Tj ET
+BT /F1 9 Tf 56 364 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 352 Td (* O SSE opera sobre HTTP standard, contorna firewalls institucionais sem bloqueios de) Tj ET
+BT /F1 9 Tf 48 340 Td (WebSockets e suporta reconexao automatica nativa no browser.) Tj ET
+BT /F1 9 Tf 48 328 Td (* O FastAPI assegura tipagem estrita com Pydantic v2 e alto desempenho em I/O assincrono.) Tj ET
+BT /F1 9 Tf 56 316 Td (Consequencias:** Menor overhead operacional do que sockets bidirecionais permanentes, com) Tj ET
+BT /F1 9 Tf 56 304 Td (streaming fluido das respostas do LLM.) Tj ET
+BT /F2 11 Tf 48 284 Td (ADR-03: Desacoplamento de Servicos Externos via Model Context Protocol \(MCP\)) Tj ET
+BT /F1 9 Tf 56 268 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 256 Td (Contexto:** O DetiBuddy integra multiplos sistemas universitarios \(PACO, Moodle, SAS, M365,) Tj ET
+BT /F1 9 Tf 56 244 Td (IPMA, Parques, Bibliotecas\). Alguns dependem de autorizacao dos STIC e outros disponibilizam) Tj ET
+BT /F1 9 Tf 56 232 Td (APIs abertas.) Tj ET
+BT /F1 9 Tf 56 220 Td (Decisao:** Cada dominio funcional e isolado no seu proprio **Servidor MCP dedicado**, comutavel) Tj ET
+BT /F1 9 Tf 56 208 Td (via variavel de ambiente entre `mock`, `real` e `scraper`.) Tj ET
+BT /F1 9 Tf 56 196 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 184 Td (* O MCP padroniza as *tool calls* do agente de IA atraves de esquemas JSON-RPC estruturados.) Tj ET
+BT /F1 9 Tf 48 172 Td (* Permite testar o sistema de ponta a ponta com mocks realistas enquanto decorrem as aprovacoes) Tj ET
+BT /F1 9 Tf 48 160 Td (institucionais de seguranca \(Planos de Contingencia A, B e C\).) Tj ET
+BT /F1 9 Tf 56 148 Td (Consequencias:** Qualquer alteracao na API de um servico externo afeta apenas o respetivo) Tj ET
+BT /F1 9 Tf 56 136 Td (servidor MCP, sem impacto no nucleo conversacional do agente.) Tj ET
+BT /F2 11 Tf 48 116 Td (ADR-04: Autenticacao Institucional e IdP Simulado \(Keycloak OIDC\)) Tj ET
+BT /F1 9 Tf 56 100 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 88 Td (Contexto:** A autenticacao final requer integracao com o IdP dos STIC \(OpenID Connect / SAML\).) Tj ET
+BT /F1 9 Tf 56 76 Td (Durante o desenvolvimento, a equipa necessita de testar fluxos com multiplos perfis de) Tj ET
+BT /F1 9 Tf 56 64 Td (estudante e docente.) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Decisoes de Arquitetura \(ADRs\) - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 5297 >>
+stream
+BT /F1 9 Tf 56 770 Td (Decisao:** Incorporacao de uma instancia Docker do **Keycloak** a replicar o IdP institucional) Tj ET
+BT /F1 9 Tf 56 758 Td (da UA em modo OIDC.) Tj ET
+BT /F1 9 Tf 56 746 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 734 Td (* Permite emitir tokens JWT com os mesmos *claims* \(NMEC, perfil, curso\) e testar a politica de) Tj ET
+BT /F1 9 Tf 48 722 Td (acessos RBAC sem depender de credenciais reais dos STIC.) Tj ET
+BT /F1 9 Tf 56 710 Td (Consequencias:** A transicao para o IdP de producao exige apenas a alteracao dos endpoints de) Tj ET
+BT /F1 9 Tf 56 698 Td (autorizacao e chaves publicas no `.env`.) Tj ET
+BT /F2 11 Tf 48 678 Td (ADR-05: Persistencia Hibrida e Base de Dados Vetorial \(PostgreSQL + pgvector\)) Tj ET
+BT /F1 9 Tf 56 662 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 650 Td (Contexto:** O sistema necessita de armazenar dados relacionais \(sessoes, utilizadores,) Tj ET
+BT /F1 9 Tf 56 638 Td (historico efemero de conversas\) e realizar pesquisa semantica em regulamentos pedagogicos e) Tj ET
+BT /F1 9 Tf 56 626 Td (bibliografia.) Tj ET
+BT /F1 9 Tf 56 614 Td (Decisao:** Unificacao da persistencia em **PostgreSQL** com a extensao **pgvector**.) Tj ET
+BT /F1 9 Tf 56 602 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 590 Td (* Evita a complexidade operacional e risco de desfasamento de manter uma base relacional e uma) Tj ET
+BT /F1 9 Tf 48 578 Td (base vetorial dedicada \(como Qdrant ou Pinecone\) em contentores separados.) Tj ET
+BT /F1 9 Tf 48 566 Td (* Suporta **Busca Hibrida** combinando similaridade densa de embeddings vetoriais com pesquisa) Tj ET
+BT /F1 9 Tf 48 554 Td (lexica BM25 / trigramas para codigos de UC e nomes de docentes.) Tj ET
+BT /F1 9 Tf 56 542 Td (Consequencias:** Simplificacao arquitetural, integridade transacional ACID estrita e backups) Tj ET
+BT /F1 9 Tf 56 530 Td (unificados num unico volume persistente.) Tj ET
+BT /F2 11 Tf 48 510 Td (ADR-06: Cache, Filas de Mensagens e Workers Assincronos \(Redis + ARQ\)) Tj ET
+BT /F1 9 Tf 56 494 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 482 Td (Contexto:** Consulta frequente de ementas, estado de ocupacao de parques e processamento pesado) Tj ET
+BT /F1 9 Tf 56 470 Td (de indexacao de PDFs regulamentares e envio de notificacoes push.) Tj ET
+BT /F1 9 Tf 56 458 Td (Decisao:** Adocao de **Redis** em memoria associado a um worker assincrono **ARQ**.) Tj ET
+BT /F1 9 Tf 56 446 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 434 Td (* Implementacao de estrategia *quickload* com TTL \(cache de curta duracao para parques e) Tj ET
+BT /F1 9 Tf 48 422 Td (ementas\).) Tj ET
+BT /F1 9 Tf 48 410 Td (* O worker ARQ descarrega o processo principal da API durante o chunking e embedding de) Tj ET
+BT /F1 9 Tf 48 398 Td (regulamentos e no despacho de notificacoes.) Tj ET
+BT /F1 9 Tf 56 386 Td (Consequencias:** Reducao drastica da latencia para chamadas repetidas e resposta instantanea) Tj ET
+BT /F1 9 Tf 56 374 Td (para utilizadores concorrentes.) Tj ET
+BT /F2 11 Tf 48 354 Td (ADR-07: Inferencia Soberana de LLM \(Cluster Skynet do DETI\)) Tj ET
+BT /F1 9 Tf 56 338 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 326 Td (Contexto:** Protecao de dados pessoais e regulamentacao europeia \(RGPD\) no tratamento de) Tj ET
+BT /F1 9 Tf 56 314 Td (conversas e dados academicos de estudantes universitarios.) Tj ET
+BT /F1 9 Tf 56 302 Td (Decisao:** O modelo de linguagem \(LLM\) corre localmente no cluster de servidores **Skynet** do) Tj ET
+BT /F1 9 Tf 56 290 Td (Departamento de Eletronica, Telecomunicacoes e Informatica \(DETI\).) Tj ET
+BT /F1 9 Tf 56 278 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 266 Td (* Garantia absoluta de que nenhuma mensagem, duvida academica ou dado de contexto transita para) Tj ET
+BT /F1 9 Tf 48 254 Td (servidores de clouds comerciais \(OpenAI, Anthropic ou Google\).) Tj ET
+BT /F1 9 Tf 48 242 Td (* API de inferencia de alta velocidade compativel com o padrao OpenAI via rede interna segura.) Tj ET
+BT /F1 9 Tf 56 230 Td (Consequencias:** Soberania tecnica completa e custos de operacao nulos em subscricoes externas) Tj ET
+BT /F1 9 Tf 56 218 Td (de APIs proprietarias.) Tj ET
+BT /F2 11 Tf 48 198 Td (ADR-08: Alinhamento de Ambito e Gestao de Riscos \(Elaboracao vs. Inception\)) Tj ET
+BT /F1 9 Tf 56 182 Td (Estado:** Aprovado) Tj ET
+BT /F1 9 Tf 56 170 Td (Contexto:** Na fase de Inception foram identificadas ideias alargadas, incluindo consulta de) Tj ET
+BT /F1 9 Tf 56 158 Td (saldo de cartoes bancarios SAS e pagamento de propinas.) Tj ET
+BT /F1 9 Tf 56 146 Td (Decisao:** Exclusao fundamentada de transacoes bancarias e saldos monetarios do ambito do) Tj ET
+BT /F1 9 Tf 56 134 Td (projeto \(*Won't Have*\).) Tj ET
+BT /F1 9 Tf 56 122 Td (Justificacao:**) Tj ET
+BT /F1 9 Tf 48 110 Td (* Operacoes financeiras acarretam requisitos de certificacao bancaria \(PCI-DSS\) e autorizacoes) Tj ET
+BT /F1 9 Tf 48 98 Td (institucionais complexas que inviabilizariam o cronograma semestral de PEI.) Tj ET
+BT /F1 9 Tf 48 86 Td (* Foco prioritario na agregacao pedagogica, RAG de regulamentos, horarios, avaliacoes e) Tj ET
+BT /F1 9 Tf 48 74 Td (servicos de campus.) Tj ET
+BT /F1 9 Tf 56 62 Td (Consequencias:** Reducao de riscos criticos e garantia de entrega de um MVP robusto, funcional) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Decisoes de Arquitetura \(ADRs\) - Pagina 2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 140 >>
+stream
+BT /F1 9 Tf 56 770 Td (e perfeitamente testavel.) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Decisoes de Arquitetura \(ADRs\) - Pagina 3) Tj ET
 endstream
 endobj
 xref
-0 6
+0 11
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000133 00000 n 
+0000000203 00000 n 
+0000000278 00000 n 
+0000000414 00000 n 
+0000005607 00000 n 
+0000005743 00000 n 
+0000011092 00000 n 
+0000011229 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 11 /Root 1 0 R >>
 startxref
-429
+11421
 %%EOF
