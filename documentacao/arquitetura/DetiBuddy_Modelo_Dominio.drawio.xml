@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram id="detibuddy-domain-model" name="Modelo de Domínio">
+    <mxGraphModel dx="1600" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1850" pageHeight="1400" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title_header" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" value="&amp;lt;span style=&amp;quot;font-size: 13px; font-weight: 700; color: #1e5792; letter-spacing: 2px;&amp;quot;&amp;gt;DETIBUDDY · ENGENHARIA DE SOFTWARE (FASE DE ELABORAÇÃO)&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;span style=&amp;quot;font-size: 26px; font-weight: 700; color: #14243b;&amp;quot;&amp;gt;Modelo de Domínio Conceptual (UML Domain Model)&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt;&amp;lt;span style=&amp;quot;font-size: 13px; color: #52647a;&amp;quot;&amp;gt;Classes conceptuais de negócio, atributos intrínsecos e associações em 5 aglomerados funcionais&amp;lt;/span&amp;gt;" vertex="1">
+          <mxGeometry x="40" y="30" width="900" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_1" parent="1" style="rounded=1;arcSize=4;dashed=1;dashPattern=6 4;fillColor=#f8fafc;strokeColor=#cbd5e1;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;html=1;" vertex="1">
+          <mxGeometry x="40" y="150" width="640" height="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_1_title" parent="1" style="rounded=1;arcSize=10;strokeColor=none;fillColor=#e0f2fe;fontColor=#1e5792;fontStyle=1;fontSize=13;align=left;spacingLeft=10;html=1;" value="Cluster 1: Identidade e Conversação" vertex="1">
+          <mxGeometry x="55" y="165" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_2" parent="1" style="rounded=1;arcSize=4;dashed=1;dashPattern=6 4;fillColor=#faf5ff;strokeColor=#e9d5ff;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;html=1;" vertex="1">
+          <mxGeometry x="710" y="150" width="310" height="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_2_title" parent="1" style="rounded=1;arcSize=10;strokeColor=none;fillColor=#f3e8ff;fontColor=#6c35a8;fontStyle=1;fontSize=13;align=left;spacingLeft=10;html=1;" value="Cluster 2: Conhecimento &amp; RAG" vertex="1">
+          <mxGeometry x="725" y="165" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_3" parent="1" style="rounded=1;arcSize=4;dashed=1;dashPattern=6 4;fillColor=#f0fdfa;strokeColor=#ccfbf1;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;html=1;" vertex="1">
+          <mxGeometry x="1050" y="150" width="350" height="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_3_title" parent="1" style="rounded=1;arcSize=10;strokeColor=none;fillColor=#ccfbf1;fontColor=#087d78;fontStyle=1;fontSize=13;align=left;spacingLeft=10;html=1;" value="Cluster 3: Académico (PACO &amp; Moodle)" vertex="1">
+          <mxGeometry x="1065" y="165" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_4" parent="1" style="rounded=1;arcSize=4;dashed=1;dashPattern=6 4;fillColor=#fffbeb;strokeColor=#fde68a;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;html=1;" vertex="1">
+          <mxGeometry x="1430" y="150" width="330" height="1160" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_4_title" parent="1" style="rounded=1;arcSize=10;strokeColor=none;fillColor=#fef3c7;fontColor=#b35c00;fontStyle=1;fontSize=13;align=left;spacingLeft=10;html=1;" value="Cluster 4: Serviços de Campus &amp; Logística" vertex="1">
+          <mxGeometry x="1445" y="165" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_5" parent="1" style="rounded=1;arcSize=4;dashed=1;dashPattern=6 4;fillColor=#fff1f2;strokeColor=#fecdd3;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;html=1;" vertex="1">
+          <mxGeometry x="40" y="930" width="980" height="380" as="geometry"/>
+        </mxCell>
+        <mxCell id="cluster_5_title" parent="1" style="rounded=1;arcSize=10;strokeColor=none;fillColor=#ffe4e6;fontColor=#c0264b;fontStyle=1;fontSize=13;align=left;spacingLeft=10;html=1;" value="Cluster 5: Alertas e Proatividade (ARQ Worker)" vertex="1">
+          <mxGeometry x="55" y="945" width="310" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_utilizador" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Utilizador&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String nmec&lt;br&gt;+ String nome&lt;br&gt;+ String emailInstitucional&lt;br&gt;+ TipoPerfil perfil&lt;br&gt;+ DateTime dataRegisto&lt;/div&gt;" vertex="1">
+          <mxGeometry x="65" y="210" width="250" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_estudante" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Estudante&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String curso&lt;br&gt;+ Int anoCurricular&lt;br&gt;+ String estatutoEspecial&lt;/div&gt;" vertex="1">
+          <mxGeometry x="55" y="400" width="160" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_docente" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Docente&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String departamento&lt;br&gt;+ String gabinete&lt;br&gt;+ String horarioAtendimento&lt;/div&gt;" vertex="1">
+          <mxGeometry x="235" y="400" width="170" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_sessao" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Sessao&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idSessao&lt;br&gt;+ Canal canalOrigem&lt;br&gt;+ DateTime dataInicio&lt;br&gt;+ DateTime expiraEm&lt;br&gt;+ Boolean ativa&lt;/div&gt;" vertex="1">
+          <mxGeometry x="430" y="210" width="225" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_conversa" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Conversa&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idConversa&lt;br&gt;+ String tituloResumo&lt;br&gt;+ DateTime criadaEm&lt;/div&gt;" vertex="1">
+          <mxGeometry x="430" y="390" width="225" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_mensagem" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Mensagem&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idMensagem&lt;br&gt;+ PapelAutor autor&lt;br&gt;+ String textoConteudo&lt;br&gt;+ DateTime timestamp&lt;br&gt;+ Int tokensProcessados&lt;/div&gt;" vertex="1">
+          <mxGeometry x="430" y="535" width="225" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_feedback" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e5792;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #1e5792; padding: 4px 6px; background: #f0f7ff; font-weight: bold; color: #1e5792; text-align: center; font-size: 13px;'&gt;Feedback&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idFeedback&lt;br&gt;+ Classificacao rating&lt;br&gt;+ String comentario&lt;br&gt;+ DateTime registadoEm&lt;/div&gt;" vertex="1">
+          <mxGeometry x="430" y="720" width="225" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_documentonormativo" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c35a8;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #6c35a8; padding: 4px 6px; background: #fdf4ff; font-weight: bold; color: #6c35a8; text-align: center; font-size: 13px;'&gt;DocumentoNormativo&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idDocumento&lt;br&gt;+ String titulo&lt;br&gt;+ TipoDocumento categoria&lt;br&gt;+ String orgaoEmissor&lt;br&gt;+ Date dataAprovacao&lt;br&gt;+ Date dataValidade&lt;br&gt;+ EstadoDoc estado&lt;/div&gt;" vertex="1">
+          <mxGeometry x="735" y="210" width="260" height="165" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_chunkdocumento" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c35a8;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #6c35a8; padding: 4px 6px; background: #fdf4ff; font-weight: bold; color: #6c35a8; text-align: center; font-size: 13px;'&gt;ChunkDocumento&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idChunk&lt;br&gt;+ Int sequencia&lt;br&gt;+ String textoExcerto&lt;br&gt;+ Vector1536 embedding&lt;br&gt;+ String artigoReferenciado&lt;br&gt;+ Int pagina&lt;/div&gt;" vertex="1">
+          <mxGeometry x="735" y="445" width="260" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_citacaofonte" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c35a8;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #6c35a8; padding: 4px 6px; background: #fdf4ff; font-weight: bold; color: #6c35a8; text-align: center; font-size: 13px;'&gt;CitacaoFonte&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String artigoFormal&lt;br&gt;+ String documentoOrigem&lt;br&gt;+ Float scoreSimilaridade&lt;br&gt;+ String urlOficial&lt;/div&gt;" vertex="1">
+          <mxGeometry x="735" y="670" width="260" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_unidadecurricular" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#087d78;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #087d78; padding: 4px 6px; background: #f0fdfa; font-weight: bold; color: #087d78; text-align: center; font-size: 13px;'&gt;UnidadeCurricular&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String codigoUC&lt;br&gt;+ String designacao&lt;br&gt;+ String sigla&lt;br&gt;+ String anoLetivo&lt;br&gt;+ Int semestre&lt;br&gt;+ Float ects&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1080" y="210" width="280" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_inscricao" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#087d78;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #087d78; padding: 4px 6px; background: #f0fdfa; font-weight: bold; color: #087d78; text-align: center; font-size: 13px;'&gt;Inscricao&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String anoMatricula&lt;br&gt;+ EstadoInscricao estado&lt;br&gt;+ String turmaPratica&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1080" y="420" width="230" height="95" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_aulahorario" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#087d78;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #087d78; padding: 4px 6px; background: #f0fdfa; font-weight: bold; color: #087d78; text-align: center; font-size: 13px;'&gt;AulaHorario&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ DiaSemana diaSemana&lt;br&gt;+ Time horaInicio&lt;br&gt;+ Time horaFim&lt;br&gt;+ TipoAula tipologia&lt;br&gt;+ String sala&lt;br&gt;+ String edificio&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1080" y="555" width="240" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_avaliacao" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#087d78;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #087d78; padding: 4px 6px; background: #f0fdfa; font-weight: bold; color: #087d78; text-align: center; font-size: 13px;'&gt;Avaliacao&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idAvaliacao&lt;br&gt;+ TipoAvaliacao tipo&lt;br&gt;+ DateTime dataHora&lt;br&gt;+ String sala&lt;br&gt;+ Float pesoPercentual&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1080" y="735" width="250" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_cantina" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;Cantina&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String nomeCantina&lt;br&gt;+ String localizacaoCampus&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="210" width="250" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_ementadiaria" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;EmentaDiaria&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ Date dataRefeicao&lt;br&gt;+ TipoRefeicao refeicao&lt;br&gt;+ String pratoCarne&lt;br&gt;+ String pratoPeixe&lt;br&gt;+ String opcaoVegetariana&lt;br&gt;+ String opcaoDieta&lt;br&gt;+ String sopa&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="335" width="260" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_parqueestacionamento" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;ParqueEstacionamento&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String nomeParque&lt;br&gt;+ Int lotacaoMaxima&lt;br&gt;+ Int lugaresOcupados&lt;br&gt;+ Float taxaOcupacao&lt;br&gt;+ DateTime dataTelemetria&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="540" width="260" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_servicoatendimento" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;ServicoAtendimento&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String nomeServico&lt;br&gt;+ String localizacaoBalcao&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="725" width="250" height="85" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_senhainatendimento" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;SenhaAtendimento&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ String letraNumero&lt;br&gt;+ EstadoSenha estado&lt;br&gt;+ DateTime dataEmissao&lt;br&gt;+ Int tempoEsperaEstimadoMin&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="850" width="260" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_previsaometeorologica" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b35c00;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #b35c00; padding: 4px 6px; background: #fffbeb; font-weight: bold; color: #b35c00; text-align: center; font-size: 13px;'&gt;PrevisaoMeteorologica&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ DateTime dataHora&lt;br&gt;+ Float temperaturaMin&lt;br&gt;+ Float temperaturaMax&lt;br&gt;+ Int probabilidadeChuva&lt;br&gt;+ String condicaoCeu&lt;/div&gt;" vertex="1">
+          <mxGeometry x="1460" y="1015" width="260" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_subscricaoalerta" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c0264b;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #c0264b; padding: 4px 6px; background: #fff1f2; font-weight: bold; color: #c0264b; text-align: center; font-size: 13px;'&gt;SubscricaoAlerta&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idSubscricao&lt;br&gt;+ TipoAlerta tipo&lt;br&gt;+ CanalEntrega canal&lt;br&gt;+ Boolean ativo&lt;br&gt;+ DateTime criadaEm&lt;/div&gt;" vertex="1">
+          <mxGeometry x="70" y="1000" width="260" height="145" as="geometry"/>
+        </mxCell>
+        <mxCell id="class_notificacao" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#c0264b;strokeWidth=1.5;verticalAlign=top;align=center;overflow=hidden;" value="&lt;div style='border-bottom: 1.5px solid #c0264b; padding: 4px 6px; background: #fff1f2; font-weight: bold; color: #c0264b; text-align: center; font-size: 13px;'&gt;Notificacao&lt;/div&gt;&lt;div style='padding: 6px 8px; font-family: monospace; font-size: 11px; color: #2c3e50; line-height: 1.45; text-align: left;'&gt;+ UUID idNotificacao&lt;br&gt;+ String titulo&lt;br&gt;+ String conteudo&lt;br&gt;+ DateTime dataEnvio&lt;br&gt;+ EstadoEntrega estado&lt;/div&gt;" vertex="1">
+          <mxGeometry x="430" y="1000" width="240" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_heranca_estudante" parent="1" value="herda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=0;endSize=10;" edge="1" source="class_estudante" target="class_utilizador">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_heranca_docente" parent="1" value="herda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=0;endSize=10;" edge="1" source="class_docente" target="class_utilizador">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_utilizador_sessao" parent="1" value="estabelece" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_utilizador" target="class_sessao">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_utilizador_sessao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_utilizador_sessao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_utilizador_sessao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_utilizador_sessao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_sessao_conversa" parent="1" value="agrega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_sessao" target="class_conversa">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_sessao_conversa_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_sessao_conversa">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_sessao_conversa_tgt" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_sessao_conversa">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_conversa_mensagem" parent="1" value="contém" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_conversa" target="class_mensagem">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_conversa_mensagem_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_conversa_mensagem">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_conversa_mensagem_tgt" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_conversa_mensagem">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_mensagem_feedback" parent="1" value="recebe" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1e5792;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_mensagem" target="class_feedback">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_mensagem_feedback_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_mensagem_feedback">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_mensagem_feedback_tgt" value="0..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_mensagem_feedback">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_mensagem_citacao" parent="1" value="cita" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=1.5;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;" edge="1" source="class_mensagem" target="class_citacaofonte">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_mensagem_citacao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_mensagem_citacao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_mensagem_citacao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_mensagem_citacao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_documento_chunk" parent="1" value="particionado" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c35a8;strokeWidth=1.5;startArrow=diamond;startFill=1;startSize=12;endArrow=none;" edge="1" source="class_documentonormativo" target="class_chunkdocumento">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_documento_chunk_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_documento_chunk">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_documento_chunk_tgt" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_documento_chunk">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_chunk_citacao" parent="1" value="evidência" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c35a8;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_chunkdocumento" target="class_citacaofonte">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_chunk_citacao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_chunk_citacao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_chunk_citacao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_chunk_citacao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_estudante_inscricao" parent="1" value="possui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=1.5;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;" edge="1" source="class_estudante" target="class_inscricao">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_estudante_inscricao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_estudante_inscricao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_estudante_inscricao_tgt" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_estudante_inscricao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_inscricao_uc" parent="1" value="refere" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#087d78;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_inscricao" target="class_unidadecurricular">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_inscricao_uc_src" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_inscricao_uc">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_inscricao_uc_tgt" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_inscricao_uc">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_uc_horario" parent="1" value="tem" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#087d78;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_unidadecurricular" target="class_aulahorario">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_uc_horario_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_uc_horario">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_uc_horario_tgt" value="1..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_uc_horario">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_uc_avaliacao" parent="1" value="agenda" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#087d78;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_unidadecurricular" target="class_avaliacao">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_uc_avaliacao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_uc_avaliacao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_uc_avaliacao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_uc_avaliacao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_cantina_ementa" parent="1" value="serve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b35c00;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_cantina" target="class_ementadiaria">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_cantina_ementa_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_cantina_ementa">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_cantina_ementa_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_cantina_ementa">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_servico_senha" parent="1" value="despacha" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b35c00;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_servicoatendimento" target="class_senhainatendimento">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_servico_senha_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_servico_senha">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_servico_senha_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_servico_senha">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_utilizador_subscricao" parent="1" value="subscreve" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=1.5;dashed=1;dashPattern=4 3;endArrow=block;endFill=1;" edge="1" source="class_utilizador" target="class_subscricaoalerta">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_utilizador_subscricao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_utilizador_subscricao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_utilizador_subscricao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_utilizador_subscricao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_subscricao_notificacao" parent="1" value="despoleta" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#c0264b;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" source="class_subscricaoalerta" target="class_notificacao">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_subscricao_notificacao_src" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_subscricao_notificacao">
+          <mxGeometry x="-0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_subscricao_notificacao_tgt" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontStyle=1;fontColor=#1e293b;" vertex="1" connectable="0" parent="edge_subscricao_notificacao">
+          <mxGeometry x="0.8" relative="1" as="geometry">
+            <mxPoint y="-12" as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_alerta_senha" parent="1" value="vigia senha / fila" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=1.2;dashed=1;dashPattern=3 3;endArrow=open;endFill=0;" edge="1" source="class_subscricaoalerta" target="class_senhainatendimento">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_alerta_avaliacao" parent="1" value="alerta teste / entrega" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748b;strokeWidth=1.2;dashed=1;dashPattern=3 3;endArrow=open;endFill=0;" edge="1" source="class_subscricaoalerta" target="class_avaliacao">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;arcSize=6;fillColor=#ffffff;strokeColor=#cbd5e1;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=12;spacingTop=8;html=1;" value="&amp;lt;b style=&amp;quot;font-size:12px;color:#1e293b;&amp;quot;&amp;gt;Notação e Legenda UML&amp;lt;/b&amp;gt;&amp;lt;br&amp;gt;&amp;lt;font style=&amp;quot;font-size:11px;color:#475569;&amp;quot;&amp;gt;• &amp;lt;b&amp;gt;Triângulo Vazio:&amp;lt;/b&amp;gt; Generalização / Herança&amp;lt;br&amp;gt;• &amp;lt;b&amp;gt;Losango Cheio:&amp;lt;/b&amp;gt; Composição Forte&amp;lt;br&amp;gt;• &amp;lt;b&amp;gt;Seta Cheia:&amp;lt;/b&amp;gt; Associação Direcionada&amp;lt;br&amp;gt;• &amp;lt;b&amp;gt;Tracejado:&amp;lt;/b&amp;gt; Dependência / Monitorização&amp;lt;/font&amp;gt;" vertex="1">
+          <mxGeometry x="710" y="1000" width="290" height="135" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

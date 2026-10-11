@@ -229,7 +229,7 @@ graph TD
     end
 ```
 
-> **Artefactos Visuais de Modelação (UML):** A modelação visual completa de Casos de Uso segundo o padrão *Agile Modeling* encontra-se disponível na pasta `docs/diagrams/use_case/`: consulte o [Diagrama Geral Completo com 22 Casos de Uso](../diagrams/use_case/DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](../diagrams/use_case/DetiBuddy_Use_Cases_Simplificado.png).  
+> **Artefactos Visuais de Modelação (UML):** A modelação visual completa de Casos de Uso segundo o padrão *Agile Modeling* encontra-se disponível: consulte o [Diagrama Geral Completo com 22 Casos de Uso](./DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](./DetiBuddy_Use_Cases_Simplificado.png).  
 > **Nota de Rastreabilidade:** A história **US-02** (*Privacidade e confinamento on-premise*) representa um requisito transversal de qualidade e governança. Encontra-se coberta diretamente pelos requisitos **NFR-01**, **NFR-02** e **FR-07**, não necessitando de um caso de uso operacional isolado.
 
 ### Índice Resumo de Casos de Uso por Pacotes

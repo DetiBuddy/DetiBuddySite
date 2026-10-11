@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DetiBuddy — Pitch 90 Segundos: Um Dia na Vida da Eunice</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            deti: {
+              space: '#05070e',
+              deep: '#0a0f1d',
+              surface: '#0f172a',
+              card: '#152038',
+              border: '#1e293b',
+              neonCyan: '#38e1db',
+              neonGreen: '#7aff7a',
+              lime: '#84ff6a'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+    body {
+      background-color: #03050a;
+      overflow: hidden;
+    }
+    .glow-eyes {
+      filter: drop-shadow(0 0 10px rgba(122, 255, 122, 0.55)) drop-shadow(0 0 20px rgba(56, 225, 219, 0.4));
+    }
+    .glow-cyan {
+      filter: drop-shadow(0 0 12px rgba(56, 225, 219, 0.45));
+    }
+    .phone-glass {
+      background: rgba(10, 15, 29, 0.94);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 225, 219, 0.2);
+    }
+    /* Animações de Fade e Transições */
+    .fade-enter {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.35s ease-out;
+    }
+    .fade-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Barra de progresso personalizada */
+    .timeline-indicator {
+      transition: width 0.1s linear;
+    }
+    /* Mockup de notch do telemóvel */
+    .dynamic-island {
+      width: 100px;
+      height: 22px;
+      background: #000;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+
+<body class="w-screen h-screen flex flex-col justify-between text-slate-100 font-sans select-none relative">
+
+  <!-- =========================================================================
+       BACKGROUND CINEMÁTICO ADAPTATIVO POR ATO
+       ========================================================================= -->
+  <div id="bgContainer" class="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out opacity-40 bg-cover bg-center"
+       style="background-image: url('assets/deti_campus_building.jpg'); filter: brightness(0.65) blur(3px);">
+  </div>
+  <div class="absolute inset-0 z-0 bg-gradient-to-t from-deti-space via-deti-space/70 to-deti-space/50 pointer-events-none"></div>
+
+  <!-- =========================================================================
+       BARRA SUPERIOR DE INFORMAÇÃO E METADADOS DO PITCH
+       ========================================================================= -->
+  <header class="relative z-20 h-16 border-b border-deti-border/70 bg-deti-deep/80 backdrop-blur-md px-6 flex items-center justify-between">
+    <!-- Logótipo e Título da Apresentação -->
+    <div class="flex items-center gap-3.5">
+      <div class="flex items-center gap-2">
+        <svg class="w-8 h-5 glow-eyes" viewBox="0 0 160 100" fill="none">
+          <defs>
+            <linearGradient id="headerEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#38e1db"/>
+              <stop offset="100%" stop-color="#7aff7a"/>
+            </linearGradient>
+          </defs>
+          <rect x="4" y="4" width="152" height="92" rx="46" fill="#000" stroke="#38e1db" stroke-width="4.5"/>
+          <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#headerEyeGrad)"/>
+          <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#headerEyeGrad)"/>
+        </svg>
+        <span class="font-extrabold text-lg tracking-wide bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen bg-clip-text text-transparent">
+          DetiBuddy
+        </span>
+      </div>
+      <div class="h-4 w-[1px] bg-slate-700"></div>
+      <span class="text-xs font-semibold text-slate-300">
+        PEI — Fase de Elaboração (Milestone 2) • Apresentação de Requisitos e User Stories
+      </span>
+    </div>
+
+    <!-- Indicador de Ato Atual e Timecode -->
+    <div class="flex items-center gap-4">
+      <div id="badgeCurrentAct" class="px-3.5 py-1 rounded-full text-xs font-bold bg-deti-card border border-deti-neonCyan/40 text-deti-neonCyan flex items-center gap-2 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-deti-neonGreen animate-pulse"></span>
+        <span id="actLabel">Ato 1 de 6: Autenticação & Acesso</span>
+      </div>
+
+      <div class="font-mono text-sm font-bold text-slate-200 bg-deti-surface px-3 py-1 rounded-xl border border-deti-border">
+        <span id="timecodeDisplay">00:00</span> / <span class="text-slate-500">01:30</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       ÁREA CENTRAL DO PALCO: TELEMÓVEL COM O MOCKUP REAL + PAINEL DE NARRATIVA
+       ========================================================================= -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-6 py-4 gap-8 max-w-7xl mx-auto w-full">
+
+    <!-- LADO ESQUERDO: CARTÃO DA NARRATIVA DA EUNICE E ESPECIFICAÇÃO DE REQUISITOS -->
+    <div class="w-1/2 flex flex-col justify-center space-y-4">
+      
+      <!-- Cartão Informativo de Arquitetura / Pacote -->
+      <div class="p-6 rounded-3xl bg-deti-surface/80 border border-deti-border backdrop-blur-xl shadow-2xl relative overflow-hidden">
+        <div class="absolute -right-12 -top-12 w-40 h-40 bg-deti-neonCyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2 text-xs font-bold text-deti-neonGreen uppercase tracking-wider">
+            <span id="actPackageName">Pacote 1: Autenticação, Sessão e Perfil</span>
+          </div>
+          <span id="actMoSCoW" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            Must Have (M)
+          </span>
+        </div>
+
+        <!-- Título do Momento -->
+        <h2 id="actTitle" class="text-2xl font-extrabold text-white mb-2 leading-tight">
+          O Despertar da Eunice: Acesso Web Instantâneo
+        </h2>
+
+        <!-- Explicação Narrativa -->
+        <p id="actNarrative" class="text-sm text-slate-300 leading-relaxed mb-4 min-h-[50px]">
+          Às 08h15, a Eunice abre o telemóvel para preparar o seu dia no DETI. Sem necessidade de instalar aplicações nativas da loja, acede à interface web responsiva com autenticação institucional protegida.
+        </p>
+
+        <!-- Caixa de Rastreabilidade Técnica -->
+        <div class="p-3.5 rounded-2xl bg-deti-space/70 border border-deti-border space-y-2 font-mono text-xs">
+          <div class="flex items-center justify-between text-slate-400">
+            <span>História de Utilizador:</span>
+            <span id="techUS" class="font-bold text-deti-neonCyan">US-26 (Interface Web Responsiva)</span>
+          </div>
+          <div class="flex items-center justify-between text-slate-400">
+            <span>Caso de Uso Associado:</span>
+            <span id="techUC" class="font-bold text-slate-200">UC-22 (Aceder por Canal Web)</span>
+          </div>
+          <div class="flex items-center justify-between text-slate-400">
+            <span>Requisito Não Funcional:</span>
+            <span id="techNFR" class="font-bold text-deti-neonGreen">NFR-10 (Usabilidade Web Mobile)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Caixa de Citação Direta da Eunice -->
+      <div class="p-4 rounded-2xl bg-deti-card/60 border border-deti-border/70 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-md">
+          EU
+        </div>
+        <div>
+          <div class="text-[11px] font-bold text-slate-400">Eunice • Caloira de LEI (1.º Ano)</div>
+          <div id="euniceQuote" class="text-xs text-slate-200 italic font-sans">
+            "Ainda estou a adaptar-me à universidade. Só quero saber as salas e os prazos sem ter de abrir três portais diferentes."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LADO DIREITO: SIMULADOR DE SMARTPHONE COM A INTERFACE REAL DO DETIBUDDY -->
+    <div class="w-1/2 flex items-center justify-center">
+      
+      <!-- Chassi do Smartphone -->
+      <div class="w-[340px] h-[610px] rounded-[48px] p-3.5 bg-gradient-to-b from-slate-700 via-slate-900 to-black border-4 border-slate-700/80 shadow-[0_0_50px_rgba(56,225,219,0.25)] relative flex flex-col">
+        
+        <!-- Ecrã do Telemóvel -->
+        <div class="w-full h-full rounded-[38px] bg-deti-space border border-slate-800 flex flex-col overflow-hidden relative">
+          
+          <!-- Barra de Estado do Telemóvel com Ilha Dinâmica -->
+          <div class="h-9 w-full bg-deti-deep px-5 flex items-center justify-between shrink-0 z-30 select-none">
+            <span id="phoneClock" class="text-[11px] font-semibold text-slate-300">08:15</span>
+            <div class="dynamic-island flex items-center justify-center">
+              <span class="w-2.5 h-2.5 rounded-full bg-deti-space"></span>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-400 text-[10px]">
+              <span>5G</span>
+              <span>100%</span>
+            </div>
+          </div>
+
+          <!-- Cabeçalho da Aplicação Web DetiBuddy -->
+          <div class="h-12 border-b border-deti-border px-4 flex items-center justify-between bg-deti-deep/90 shrink-0 z-20">
+            <div class="flex items-center gap-2">
+              <svg class="w-6 h-4 glow-eyes" viewBox="0 0 160 100" fill="none">
+                <defs>
+                  <linearGradient id="phoneHeadEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#38e1db"/>
+                    <stop offset="100%" stop-color="#7aff7a"/>
+                  </linearGradient>
+                </defs>
+                <rect x="4" y="4" width="152" height="92" rx="46" fill="#000" stroke="#38e1db" stroke-width="4.5"/>
+                <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#phoneHeadEyeGrad)"/>
+                <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#phoneHeadEyeGrad)"/>
+              </svg>
+              <span class="font-bold text-xs tracking-wide bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen bg-clip-text text-transparent">
+                DetiBuddy
+              </span>
+            </div>
+
+            <!-- Crachá de Conexão Segura UA -->
+            <div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-deti-surface border border-deti-border text-[9px] text-emerald-400 font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>Skynet On-Prem</span>
+            </div>
+          </div>
+
+          <!-- Área de Notificação Push Proativa (Ato 4) -->
+          <div id="pushNotificationCard" class="absolute top-10 left-3 right-3 z-40 transform -translate-y-24 opacity-0 transition-all duration-500 ease-out p-3 rounded-2xl bg-deti-card/95 border border-deti-neonCyan text-xs shadow-2xl flex items-start gap-2.5 backdrop-blur-md">
+            <div class="w-7 h-7 rounded-full bg-deti-neonCyan/20 text-deti-neonCyan flex items-center justify-center shrink-0">
+              🔔
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-white text-[11px]">Alerta de Senhas SAS</span>
+                <span class="text-[9px] text-slate-400">Agora</span>
+              </div>
+              <p class="text-[11px] text-slate-200 mt-0.5">
+                Senha <strong>A-42</strong>: Faltam <strong>3 senhas</strong> para a tua vez na secretaria do DETI!
+              </p>
+            </div>
+          </div>
+
+          <!-- Feed de Conversa do Smartphone -->
+          <div id="phoneChatFeed" class="flex-1 overflow-y-auto p-3.5 space-y-3 font-sans text-xs">
+            <!-- Mensagem de Saudação Inicial -->
+            <div class="flex gap-2.5 items-start">
+              <div class="w-6 h-6 rounded-full bg-black border border-deti-neonCyan/60 flex items-center justify-center shrink-0 p-0.5 shadow-sm">
+                <span class="text-[9px]">🤖</span>
+              </div>
+              <div class="flex-1 space-y-1">
+                <div class="text-[10px] font-bold text-deti-neonCyan">DetiBuddy</div>
+                <div class="p-2.5 rounded-2xl bg-deti-surface border border-deti-border text-slate-100 leading-relaxed shadow-sm">
+                  Olá Eunice! Como posso ajudar o teu dia no DETI hoje?
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Barra Inferior do Input do Smartphone -->
+          <div class="p-2.5 border-t border-deti-border bg-deti-deep shrink-0">
+            <div class="relative flex items-center rounded-full bg-deti-surface border border-deti-border px-3 py-1.5">
+              <input id="phoneInputSimulation" type="text" placeholder="Escreve uma mensagem..." readonly
+                     class="w-full bg-transparent text-[11px] text-slate-100 focus:outline-none placeholder:text-slate-500 font-sans" />
+              <button class="w-6 h-6 rounded-full bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen text-black font-bold text-[10px] flex items-center justify-center shrink-0 ml-1.5">
+                ➔
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       BARRA DE CONTROLO DE VÍDEO (REPRODUÇÃO, 6 ATOS, AUDIO E EXPORTAÇÃO MP4)
+       ========================================================================= -->
+  <footer class="relative z-20 bg-deti-deep/90 border-t border-deti-border px-6 py-3 flex flex-col gap-2 backdrop-blur-md">
+    
+    <!-- Barra de Progresso com os 6 Marcadores dos Pacotes -->
+    <div class="relative w-full h-3 bg-deti-surface rounded-full overflow-hidden border border-deti-border cursor-pointer" id="timelineBar">
+      <div id="progressFill" class="timeline-indicator h-full bg-gradient-to-r from-deti-neonCyan via-deti-neonGreen to-emerald-400 w-0"></div>
+      
+      <!-- Marcadores de 15s cada (6 atos) -->
+      <div class="absolute inset-0 flex justify-between pointer-events-none px-1">
+        <div class="w-[1px] h-full bg-slate-600" style="left: 16.66%;"></div>
+        <div class="w-[1px] h-full bg-slate-600" style="left: 33.33%;"></div>
+        <div class="w-[1px] h-full bg-slate-600" style="left: 50.00%;"></div>
+        <div class="w-[1px] h-full bg-slate-600" style="left: 66.66%;"></div>
+        <div class="w-[1px] h-full bg-slate-600" style="left: 83.33%;"></div>
+      </div>
+    </div>
+
+    <!-- Controlos de Reprodução e Salto Direto de Atos -->
+    <div class="flex items-center justify-between pt-1">
+      
+      <!-- Botão Play / Pause e Reiniciar -->
+      <div class="flex items-center gap-2">
+        <button id="btnPlayPause" class="px-5 py-2 rounded-xl bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen text-deti-space font-bold text-xs flex items-center gap-2 hover:opacity-90 transition-all shadow-md">
+          <span id="playIcon">▶ Reproduzir Pitch (90s)</span>
+        </button>
+
+        <button id="btnRestart" class="p-2 rounded-xl bg-deti-surface hover:bg-deti-card border border-deti-border text-slate-300 text-xs transition-colors" title="Reiniciar do início">
+          ↺
+        </button>
+
+        <button id="btnToggleAudio" class="p-2 rounded-xl bg-deti-surface hover:bg-deti-card border border-deti-border text-slate-300 text-xs flex items-center gap-1.5 transition-colors" title="Alternar som">
+          <span id="audioIcon">🔊 Som: Ligado</span>
+        </button>
+      </div>
+
+      <!-- Navegador Rápido dos 6 Pacotes / Atos -->
+      <div class="flex items-center gap-1.5 text-[11px] font-semibold">
+        <button onclick="jumpToAct(0)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          1: Web Mobile
+        </button>
+        <button onclick="jumpToAct(1)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          2: Horário PACO
+        </button>
+        <button onclick="jumpToAct(2)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          3: Ementa SAS
+        </button>
+        <button onclick="jumpToAct(3)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          4: Alerta Senha
+        </button>
+        <button onclick="jumpToAct(4)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          5: RAG Regras
+        </button>
+        <button onclick="jumpToAct(5)" class="act-btn px-2.5 py-1 rounded-lg bg-deti-surface text-slate-300 hover:text-white hover:bg-deti-card border border-deti-border transition-colors">
+          6: Skynet Admin
+        </button>
+      </div>
+
+      <!-- Botão de Ecrã Inteiro e Gravação -->
+      <div class="flex items-center gap-2">
+        <button id="btnFullscreen" class="px-3 py-1.5 rounded-xl bg-deti-surface hover:bg-deti-card border border-deti-border text-slate-300 text-xs transition-colors">
+          ⛶ Ecrã Inteiro
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MOTOR JAVASCRIPT DO VÍDEO (LINHA DO TEMPO, AUDIO WEB API & CHAT STREAMING)
+       ========================================================================= -->
+  <script>
+    // Configuração dos 6 Atos (15 segundos cada = 90 segundos no total)
+    const acts = [
+      {
+        id: 0,
+        startTime: 0,
+        endTime: 15,
+        clock: "08:15",
+        bg: "assets/deti_campus_building.jpg",
+        pkgName: "Pacote 1: Autenticação, Sessão e Perfil",
+        moscow: "Must Have (M)",
+        title: "O Despertar da Eunice: Acesso Web Instantâneo",
+        narrative: "Às 08h15, a Eunice abre o telemóvel para preparar o seu dia. Sem instalar nada das lojas de aplicações, acede diretamente ao DetiBuddy através de uma interface web moderna e responsiva, com sessão institucional segura da UA.",
+        techUS: "US-26 (Interface Web Mobile Responsiva)",
+        techUC: "UC-22 (Aceder por Canal Web)",
+        techNFR: "NFR-10 (Usabilidade Web Universal)",
+        quote: "\"Ainda estou a adaptar-me à universidade. Só quero saber as salas e os prazos sem ter de abrir três portais diferentes.\"",
+        userQuery: "",
+        aiResponse: "Bom dia, Eunice! Tens 2 aulas agendadas para hoje no DETI. Queres consultar a primeira sala?"
+      },
+      {
+        id: 1,
+        startTime: 15,
+        endTime: 30,
+        clock: "08:45",
+        bg: "assets/eunice_student.jpg",
+        pkgName: "Pacote 2: Atividades e Gestão Académica",
+        moscow: "Must Have (M)",
+        title: "A Chegada ao DETI: Horário Sem Fricção no PACO",
+        narrative: "08h45. Ao chegar ao departamento, em vez de navegar nas estruturas lentas do PACO, a Eunice pergunta simplesmente pelo seu horário. O assistente cruza os dados e indica a sala em menos de dois segundos.",
+        techUS: "US-04 (Consulta de Horário Letivo)",
+        techUC: "UC-02 (Consultar Horário)",
+        techNFR: "NFR-04 (Latência P95 < 10s, TTFT < 2s)",
+        quote: "\"No primeiro dia perdi 10 minutos a tentar encontrar a sala de laboratório no telemóvel. Agora pergunto e tenho logo a resposta.\"",
+        userQuery: "Qual é a minha próxima aula e em que sala?",
+        aiResponse: "A tua próxima aula é **Sistemas Operativos** (Laboratório PL), hoje das **09h00 às 11h00**, na **Sala 4.1.18** do DETI com o Prof. João Silva."
+      },
+      {
+        id: 2,
+        startTime: 30,
+        endTime: 45,
+        clock: "12:30",
+        bg: "assets/deti_campus_building.jpg",
+        pkgName: "Pacote 3: Campus, Serviços e Comunidade",
+        moscow: "Must Have (M)",
+        title: "Hora de Almoço: Ementas SAS com Quickload",
+        narrative: "12h30. Hora de almoço no campus de Santiago. O DetiBuddy consulta o conector dos SAS com estratégia de quickload em memória e faculta a ementa discriminada da cantina do Crasto sem tempo de espera.",
+        techUS: "US-06 (Consulta de Ementas das Cantinas)",
+        techUC: "UC-04 (Consultar Ementa)",
+        techNFR: "NFR-12 (Resiliência & Isolamento de Falhas)",
+        quote: "\"Adoro poder comparar rapidamente o que há no Crasto e em Santiago antes de sair do laboratório.\"",
+        userQuery: "O que há hoje para almoço na cantina do Crasto?",
+        aiResponse: "Na **Cantina do Crasto** hoje tens:\n• **Prato Carne:** Frango estufado com legumes e arroz basmati\n• **Prato Peixe:** Filetes de pescada com arroz de tomate\n• **Vegetariano:** Caril de grão com espinafres\nBom almoço no campus!"
+      },
+      {
+        id: 3,
+        startTime: 45,
+        endTime: 60,
+        clock: "14:30",
+        bg: "assets/eunice_student.jpg",
+        pkgName: "Pacote 4: Assistente Pessoal e Produtividade",
+        moscow: "Should Have (S)",
+        title: "A Tarde na Secretaria: Alerta Proativo de Senhas",
+        narrative: "14h30. A Eunice retirou uma senha de atendimento para levantar a sua declaração. Graças ao conector de notificações proativas, recebe um alerta no ecrã quando faltam apenas 3 senhas para ser chamada.",
+        techUS: "US-29 (Alertas de Senhas de Atendimento)",
+        techUC: "UC-08 (Receber Notificação Proativa)",
+        techNFR: "NFR-20 (WebSocket em Tempo Real)",
+        quote: "\"Pude ficar a estudar na biblioteca em vez de estar meia hora de pé à espera que o painel mudasse.\"",
+        userQuery: "Subscreve alerta para a minha senha A-42 da secretaria.",
+        aiResponse: "Alerta registado! Avisar-te-ei proativamente quando faltarem 3 senhas para a tua vez."
+      },
+      {
+        id: 4,
+        startTime: 60,
+        endTime: 75,
+        clock: "16:00",
+        bg: "assets/eunice_student.jpg",
+        pkgName: "Pacote 5: Conhecimento Institucional e RAG",
+        moscow: "Must Have (M)",
+        title: "A Dúvida Regulamentar: RAG Anti-Alucinação",
+        narrative: "16h00. Com sintomas de gripe, a Eunice teme chumbar a Cálculo por faltas. O pipeline de RAG analisa o Regulamento de Avaliação Discente da UA, cita o Artigo 8.º e devolve o cálculo exato com tolerância zero a alucinações.",
+        techUS: "US-22 (Esclarecimento de Regulamentos Pedagógicos)",
+        techUC: "UC-06 (Perguntar Regulamento)",
+        techNFR: "NFR-03 & RN-01 (Grounding Estatístico ≥ 0.70)",
+        quote: "\"Ler 40 páginas de regulamento jurídico dá dor de cabeça. O DetiBuddy diz-me a regra certa e cita a secção exata.\"",
+        userQuery: "A quantas aulas de laboratório posso faltar sem chumbar?",
+        aiResponse: "Segundo o **Artigo 8.º (Assiduidade)** do *Regulamento de Avaliação Discente da UA*, é exigida frequência mínima de **80%** das aulas práticas. Para uma UC com 14 laboratórios, podes dar no máximo **2 faltas injustificadas**."
+      },
+      {
+        id: 5,
+        startTime: 75,
+        endTime: 90,
+        clock: "17:30",
+        bg: "assets/skynet_servers.jpg",
+        pkgName: "Pacote 6: Administração e Extensibilidade",
+        moscow: "Must Have (M)",
+        title: "Soberania e Governança: Skynet & Validade RAG",
+        narrative: "17h30. O sistema valida os metadados de vigência temporal do regulamento (ativo para o ano letivo). Todo o raciocínio e dados da Eunice foram processados on-premise no cluster Skynet do DETI, com zero dados transmitidos para clouds comerciais.",
+        techUS: "US-32 / US-34 (Vigência Temporal & Métricas)",
+        techUC: "UC-09 / UC-21 (Auditoria e Validade RAG)",
+        techNFR: "NFR-01 & RN-04 (Soberania Territorial Skynet)",
+        quote: "\"Saber que os meus dados e conversas nunca saem da Universidade de Aveiro dá-me confiança total.\"",
+        userQuery: "",
+        aiResponse: "✅ **Garantia de Governança:** Informação fundamentada em regulamento vigente (2024/2025). Processado com soberania estrita na infraestrutura Skynet do DETI."
+      }
+    ];
+
+    // Estado da Reprodução
+    let currentTime = 0;
+    let isPlaying = false;
+    let currentActIndex = -1;
+    let audioEnabled = true;
+    let playInterval = null;
+
+    // Elementos DOM
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const playIcon = document.getElementById('playIcon');
+    const btnRestart = document.getElementById('btnRestart');
+    const btnToggleAudio = document.getElementById('btnToggleAudio');
+    const audioIcon = document.getElementById('audioIcon');
+    const progressFill = document.getElementById('progressFill');
+    const timecodeDisplay = document.getElementById('timecodeDisplay');
+    const actLabel = document.getElementById('actLabel');
+    const actPackageName = document.getElementById('actPackageName');
+    const actMoSCoW = document.getElementById('actMoSCoW');
+    const actTitle = document.getElementById('actTitle');
+    const actNarrative = document.getElementById('actNarrative');
+    const techUS = document.getElementById('techUS');
+    const techUC = document.getElementById('techUC');
+    const techNFR = document.getElementById('techNFR');
+    const euniceQuote = document.getElementById('euniceQuote');
+    const phoneClock = document.getElementById('phoneClock');
+    const phoneChatFeed = document.getElementById('phoneChatFeed');
+    const phoneInputSimulation = document.getElementById('phoneInputSimulation');
+    const pushNotificationCard = document.getElementById('pushNotificationCard');
+    const bgContainer = document.getElementById('bgContainer');
+    const timelineBar = document.getElementById('timelineBar');
+
+    // Inicialização do Sintetizador de Áudio da Web (Web Audio API)
+    let audioCtx = null;
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Efeitos Sonoros Sintetizados Nativos
+    function playSfx(type) {
+      if (!audioEnabled || !audioCtx) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+
+        if (type === 'message') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587.33, now); // D5
+          osc.frequency.exponentialRampToValueAtTime(880, now + 0.1); // A5
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+          osc.start(now);
+          osc.stop(now + 0.15);
+        } else if (type === 'alert') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.12); // E5
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'rag') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now); // A4
+          osc.frequency.setValueAtTime(554.37, now + 0.08); // C#5
+          osc.frequency.setValueAtTime(659.25, now + 0.16); // E5
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+          osc.start(now);
+          osc.stop(now + 0.4);
+        }
+      } catch (e) {
+        console.warn("Audio SFX error:", e);
+      }
+    }
+
+    // Locução com Síntese de Voz Nativa em Português
+    function speakNarrative(text) {
+      if (!audioEnabled || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel(); // Para falas anteriores
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'pt-PT';
+      utterance.rate = 1.05;
+      utterance.pitch = 1.0;
+      
+      // Procura voz portuguesa de preferência
+      const voices = window.speechSynthesis.getVoices();
+      const ptVoice = voices.find(v => v.lang.includes('pt-PT') || v.lang.includes('pt_PT') || v.lang.includes('pt'));
+      if (ptVoice) utterance.voice = ptVoice;
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Atualização de Renderização por Ato
+    function renderAct(actIndex) {
+      const act = acts[actIndex];
+      if (!act) return;
+
+      currentActIndex = actIndex;
+
+      // Atualiza Metadados de Arquitetura
+      actLabel.textContent = `Ato ${act.id + 1} de 6: ${act.title.split(':')[0]}`;
+      actPackageName.textContent = act.pkgName;
+      actMoSCoW.textContent = act.moscow;
+      actTitle.textContent = act.title;
+      actNarrative.textContent = act.narrative;
+      techUS.textContent = act.techUS;
+      techUC.textContent = act.techUC;
+      techNFR.textContent = act.techNFR;
+      euniceQuote.textContent = act.quote;
+      phoneClock.textContent = act.clock;
+
+      // Atualiza Imagem de Fundo Suavemente
+      bgContainer.style.backgroundImage = `url('${act.bg}')`;
+
+      // Atualiza Notificação Push (Apenas no Ato 4)
+      if (act.id === 3) {
+        pushNotificationCard.classList.remove('-translate-y-24', 'opacity-0');
+        playSfx('alert');
+      } else {
+        pushNotificationCard.classList.add('-translate-y-24', 'opacity-0');
+      }
+
+      // Atualiza o Chat do Smartphone
+      renderPhoneConversation(act);
+
+      // Reproduz Efeito de Som e Narração
+      if (act.id === 4) {
+        playSfx('rag');
+      } else if (act.id !== 3) {
+        playSfx('message');
+      }
+
+      speakNarrative(act.narrative);
+
+      // Destaca o botão do Ato no rodapé
+      document.querySelectorAll('.act-btn').forEach((btn, idx) => {
+        if (idx === actIndex) {
+          btn.classList.add('bg-deti-neonCyan/20', 'border-deti-neonCyan', 'text-deti-neonCyan');
+        } else {
+          btn.classList.remove('bg-deti-neonCyan/20', 'border-deti-neonCyan', 'text-deti-neonCyan');
+        }
+      });
+    }
+
+    function renderPhoneConversation(act) {
+      phoneChatFeed.innerHTML = '';
+
+      if (act.userQuery) {
+        // Mensagem da Eunice
+        const userMsg = document.createElement('div');
+        userMsg.className = 'flex gap-2 items-start justify-end fade-enter';
+        userMsg.innerHTML = `
+          <div class="flex-1 space-y-0.5 flex flex-col items-end">
+            <span class="text-[9px] text-slate-500">Eunice</span>
+            <div class="p-2.5 rounded-2xl bg-deti-neonCyan/20 border border-deti-neonCyan/40 text-slate-100 text-[11px] shadow-sm max-w-[240px]">
+              ${act.userQuery}
+            </div>
+          </div>
+          <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 text-white font-bold text-[9px] flex items-center justify-center shrink-0">
+            EU
+          </div>
+        `;
+        phoneChatFeed.appendChild(userMsg);
+        setTimeout(() => userMsg.classList.add('fade-enter-active'), 50);
+      }
+
+      // Resposta do DetiBuddy
+      setTimeout(() => {
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'flex gap-2 items-start fade-enter';
+        aiMsg.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-black border border-deti-neonCyan/70 flex items-center justify-center shrink-0 p-0.5">
+            <span class="text-[9px]">🤖</span>
+          </div>
+          <div class="flex-1 space-y-0.5">
+            <div class="flex items-center gap-1.5 text-[9px]">
+              <span class="font-bold text-deti-neonCyan">DetiBuddy</span>
+              <span class="text-slate-500">agora</span>
+            </div>
+            <div class="p-2.5 rounded-2xl bg-deti-surface border border-deti-border text-slate-100 text-[11px] leading-relaxed shadow-sm">
+              ${act.aiResponse.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white font-semibold">$1</strong>').replace(/\n/g, '<br/>')}
+            </div>
+          </div>
+        `;
+        phoneChatFeed.appendChild(aiMsg);
+        setTimeout(() => {
+          aiMsg.classList.add('fade-enter-active');
+          phoneChatFeed.scrollTop = phoneChatFeed.scrollHeight;
+        }, 50);
+      }, act.userQuery ? 400 : 0);
+
+      phoneInputSimulation.value = act.userQuery ? act.userQuery : "Escreve uma mensagem...";
+    }
+
+    // Tick da Linha do Tempo (atualizado 10 vezes por segundo)
+    function tick() {
+      if (!isPlaying) return;
+
+      currentTime += 0.1;
+
+      if (currentTime >= 90) {
+        currentTime = 90;
+        pauseVideo();
+        showPitchEnd();
+        return;
+      }
+
+      updateUI();
+    }
+
+    function updateUI() {
+      // Atualiza Timecode
+      const mins = Math.floor(currentTime / 60);
+      const secs = Math.floor(currentTime % 60);
+      timecodeDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+      // Atualiza Barra de Progresso
+      const pct = (currentTime / 90) * 100;
+      progressFill.style.width = `${pct}%`;
+
+      // Determina o Ato Atual
+      const currentAct = acts.find(a => currentTime >= a.startTime && currentTime < a.endTime) || acts[acts.length - 1];
+      if (currentAct && currentAct.id !== currentActIndex) {
+        renderAct(currentAct.id);
+      }
+    }
+
+    function playVideo() {
+      initAudio();
+      isPlaying = true;
+      playIcon.textContent = '⏸ Pausar Pitch';
+      btnPlayPause.classList.replace('from-deti-neonCyan', 'from-amber-400');
+      btnPlayPause.classList.replace('to-deti-neonGreen', 'to-amber-500');
+
+      if (playInterval) clearInterval(playInterval);
+      playInterval = setInterval(tick, 100);
+
+      if (currentActIndex === -1) {
+        renderAct(0);
+      }
+    }
+
+    function pauseVideo() {
+      isPlaying = false;
+      playIcon.textContent = '▶ Continuar Pitch';
+      btnPlayPause.classList.replace('from-amber-400', 'from-deti-neonCyan');
+      btnPlayPause.classList.replace('to-amber-500', 'to-deti-neonGreen');
+      if (playInterval) clearInterval(playInterval);
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    btnPlayPause.addEventListener('click', () => {
+      if (isPlaying) {
+        pauseVideo();
+      } else {
+        if (currentTime >= 90) currentTime = 0;
+        playVideo();
+      }
+    });
+
+    btnRestart.addEventListener('click', () => {
+      pauseVideo();
+      currentTime = 0;
+      updateUI();
+      renderAct(0);
+    });
+
+    btnToggleAudio.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      audioIcon.textContent = audioEnabled ? '🔊 Som: Ligado' : '🔇 Som: Mudo';
+      if (!audioEnabled && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    });
+
+    window.jumpToAct = function(index) {
+      initAudio();
+      currentTime = acts[index].startTime;
+      updateUI();
+      renderAct(index);
+    };
+
+    // Cliques na barra de tempo
+    timelineBar.addEventListener('click', (e) => {
+      const rect = timelineBar.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = clickX / rect.width;
+      currentTime = pct * 90;
+      updateUI();
+    });
+
+    // Modo Ecrã Inteiro
+    document.getElementById('btnFullscreen').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    function showPitchEnd() {
+      actTitle.textContent = "Conclusão do Pitch: 6 Pacotes, 1 Solução Integrada";
+      actNarrative.textContent = "Em 90 segundos, a Eunice navegou pelos 6 pacotes funcionais do DetiBuddy: da web móvel (PKG-1) ao horário PACO (PKG-2), refeições SAS (PKG-3), alertas proativos (PKG-4), grounding regulamentar RAG (PKG-5) e governança soberana Skynet (PKG-6).";
+    }
+
+    // Inicialização ao carregar
+    window.addEventListener('load', () => {
+      renderAct(0);
+    });
+  </script>
+</body>
+</html>
