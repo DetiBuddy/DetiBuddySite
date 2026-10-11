@@ -4,30 +4,101 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 78 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4717 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Ata 2 - substituir pelo PDF final) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Ata de Reuniao 2) Tj ET
+BT /F1 9 Tf 48 744 Td (Ata de Reuniao - DetiBuddy) Tj ET
+BT /F1 9 Tf 48 732 Td (Reuniao n.o: 2Data: 28/09/2026Hora: [a preencher]Modalidade: [X] Presencial [ ] Online [ ] HibridaLocal / Link: [a preencher]Secretario\(a\) da ata: [a preencher]Moderador\(a\): [a preencher]) Tj ET
+BT /F2 11 Tf 48 711 Td (1. Presencas) Tj ET
+BT /F2 8 Tf 56 691 Td (Nome | Funcao / Papel | Presenca | Observacoes) Tj ET
+BT /F1 8 Tf 56 680 Td (Arthur Haerdy | Team Manager - Backend - AI Integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 669 Td (Samuel Ramos | Architect - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 658 Td (Lisle Faria | DevOps Master - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 647 Td (Geovana Mayer | Tester - Backend - API integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 636 Td (Francisco Amaro | Product Owner - General Implementation and integration | [X] Presencial [ ] Online [ ]) Tj ET
+BT /F1 8 Tf 56 625 Td (Ausente |) Tj ET
+BT /F1 9 Tf 48 610 Td (Ausencias justificadas: [a confirmar]Convidados externos: [a confirmar]) Tj ET
+BT /F2 11 Tf 48 590 Td (2. Ordem de Trabalhos \(Agenda\)) Tj ET
+BT /F1 9 Tf 48 574 Td (Revisao dos slides da primeira fase do projeto) Tj ET
+BT /F1 9 Tf 48 562 Td (Distribuicao dos slides e das intervencoes) Tj ET
+BT /F1 9 Tf 48 550 Td (Ensaio conjunto da apresentacao) Tj ET
+BT /F1 9 Tf 48 538 Td (Identificacao de ajustes a realizar) Tj ET
+BT /F2 11 Tf 48 518 Td (3. Aprovacao da Ata Anterior) Tj ET
+BT /F1 9 Tf 48 502 Td (Aprovacao da ata anterior: [a confirmar; nao registada na informacao disponibilizada]) Tj ET
+BT /F2 11 Tf 48 482 Td (4. Ponto de Situacao) Tj ET
+BT /F1 9 Tf 48 466 Td (Sprint / Fase atual: Preparacao da apresentacao da primeira faseObjetivo do sprint: Distribuir) Tj ET
+BT /F1 9 Tf 48 454 Td (os slides pelos membros do grupo e ensaiar a apresentacao.) Tj ET
+BT /F2 8 Tf 56 438 Td (Tarefa / User Story | Responsavel | Estado | Notas) Tj ET
+BT /F1 8 Tf 56 427 Td (Distribuicao dos slides | Equipa | Concluida | Divisao realizada na reuniao.) Tj ET
+BT /F1 8 Tf 56 416 Td (Ensaio da apresentacao | Equipa | Concluida | Apresentacao treinada em conjunto.) Tj ET
+BT /F1 9 Tf 48 401 Td (Bloqueios / impedimentos:) Tj ET
+BT /F1 9 Tf 48 389 Td (Nao foram indicados bloqueios na informacao disponibilizada.) Tj ET
+BT /F1 9 Tf 48 377 Td (Riscos identificados:) Tj ET
+BT /F1 9 Tf 48 365 Td (Riscos nao registados na informacao disponibilizada.) Tj ET
+BT /F2 11 Tf 48 345 Td (5. Discussao e Decisoes) Tj ET
+BT /F2 10 Tf 58 329 Td (5.1 Distribuicao dos slides) Tj ET
+BT /F1 9 Tf 48 315 Td (Resumo da discussao: O grupo reuniu presencialmente para organizar a apresentacao da primeira) Tj ET
+BT /F1 9 Tf 48 303 Td (fase do projeto e dividir os slides pelos elementos da equipa.Decisao: Distribuir as) Tj ET
+BT /F1 9 Tf 48 291 Td (intervencoes de acordo com a divisao realizada durante a reuniao.Justificacao tecnica: A) Tj ET
+BT /F1 9 Tf 48 279 Td (divisao permite preparar as intervencoes e assegurar uma sequencia coerente na apresentacao.) Tj ET
+BT /F2 10 Tf 58 267 Td (5.2 Ensaio da apresentacao) Tj ET
+BT /F1 9 Tf 48 253 Td (Resumo da discussao: O grupo treinou a apresentacao, percorrendo os slides e articulando as) Tj ET
+BT /F1 9 Tf 48 241 Td (intervencoes dos varios elementos.Decisao: Utilizar o ensaio para preparar a apresentacao e) Tj ET
+BT /F1 9 Tf 48 229 Td (identificar os ajustes necessarios aos slides e as intervencoes.Justificacao tecnica: A) Tj ET
+BT /F1 9 Tf 48 217 Td (preparacao conjunta facilita a clareza da exposicao e a ligacao entre os diferentes topicos.) Tj ET
+BT /F2 11 Tf 48 197 Td (6. Acoes a Realizar \(Action Items\)) Tj ET
+BT /F2 8 Tf 56 177 Td (N.o | Acao | Responsavel | Prazo | Prioridade | Estado) Tj ET
+BT /F1 8 Tf 56 166 Td (1 | Preparar individualmente os slides atribuidos | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 155 Td (2 | Rever os slides e as intervencoes com base no ensaio | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 144 Td (3 | Consolidar a versao da apresentacao da primeira fase | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 9 Tf 48 129 Td (Acoes pendentes da reuniao anterior:) Tj ET
+BT /F2 8 Tf 56 113 Td (Acao | Responsavel | Estado atual) Tj ET
+BT /F1 8 Tf 56 102 Td (Nao especificadas na informacao disponibilizada | - | -) Tj ET
+BT /F2 11 Tf 48 79 Td (7. Assuntos Gerais) Tj ET
+BT /F1 9 Tf 48 63 Td (A reuniao foi dedicada a preparacao da apresentacao da primeira fase do DetiBuddy.) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 2 - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 659 >>
+stream
+BT /F2 11 Tf 48 770 Td (8. Proxima Reuniao) Tj ET
+BT /F1 9 Tf 48 754 Td (Data: [a confirmar]Hora: [a confirmar]Modalidade: [ ] Presencial [ ] Online [ ] Hibrida [a confirmar]Local / Link: [a confirmar]Pontos a preparar: Materiais relativos as acoes a realizar.) Tj ET
+BT /F2 11 Tf 48 733 Td (9. Anexos e Referencias) Tj ET
+BT /F1 9 Tf 48 717 Td (Slides da apresentacao da primeira fase do projeto) Tj ET
+BT /F1 9 Tf 48 705 Td (Outras referencias: nao indicadas.) Tj ET
+BT /F1 9 Tf 48 693 Td (Ata redigida por: Francisco Amaro em 28/09/2026Validada por: [a preencher] em [a preencher]) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 2 - Pagina 2) Tj ET
 endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000005177 00000 n 
+0000005313 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 9 /Root 1 0 R >>
 startxref
-445
+6023
 %%EOF

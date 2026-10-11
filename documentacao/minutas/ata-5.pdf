@@ -4,30 +4,107 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 78 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4844 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Ata 5 - substituir pelo PDF final) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Ata de Reuniao 5) Tj ET
+BT /F1 9 Tf 48 744 Td (Ata de Reuniao - DetiBuddy) Tj ET
+BT /F1 9 Tf 48 732 Td (Reuniao n.o: 5Data: 08/10/2026Hora: [a preencher]Modalidade: [ ] Presencial [X] Online [ ] HibridaLocal / Link: [a preencher]Secretario\(a\) da ata: [a preencher]Moderador\(a\): [a preencher]) Tj ET
+BT /F2 11 Tf 48 711 Td (1. Presencas) Tj ET
+BT /F2 8 Tf 56 691 Td (Nome | Funcao / Papel | Presenca | Observacoes) Tj ET
+BT /F1 8 Tf 56 680 Td (Arthur Haerdy | Team Manager - Backend - AI Integration | [ ] Presencial [X] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 669 Td (Samuel Ramos | Architect - Frontend - UI/UX | [ ] Presencial [X] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 658 Td (Lisle Faria | DevOps Master - Frontend - UI/UX | [ ] Presencial [X] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 647 Td (Geovana Mayer | Tester - Backend - API integration | [ ] Presencial [X] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 636 Td (Francisco Amaro | Product Owner - General Implementation and integration | [ ] Presencial [X] Online [ ]) Tj ET
+BT /F1 8 Tf 56 625 Td (Ausente |) Tj ET
+BT /F1 9 Tf 48 610 Td (Ausencias justificadas: [a confirmar]Convidados externos: [a confirmar]) Tj ET
+BT /F2 11 Tf 48 590 Td (2. Ordem de Trabalhos \(Agenda\)) Tj ET
+BT /F1 9 Tf 48 574 Td (Revisao global da documentacao existente) Tj ET
+BT /F1 9 Tf 48 562 Td (Reformulacao de User Stories e Use Cases) Tj ET
+BT /F1 9 Tf 48 550 Td (Verificacao do alinhamento dos requisitos e restantes documentos) Tj ET
+BT /F1 9 Tf 48 538 Td (Identificacao das alteracoes necessarias) Tj ET
+BT /F2 11 Tf 48 518 Td (3. Aprovacao da Ata Anterior) Tj ET
+BT /F1 9 Tf 48 502 Td (Aprovacao da ata anterior: [a confirmar; nao registada na informacao disponibilizada]) Tj ET
+BT /F2 11 Tf 48 482 Td (4. Ponto de Situacao) Tj ET
+BT /F1 9 Tf 48 466 Td (Sprint / Fase atual: Revisao e alinhamento da documentacaoObjetivo do sprint: Rever a) Tj ET
+BT /F1 9 Tf 48 454 Td (documentacao existente e identificar alteracoes necessarias para a alinhar com a visao do) Tj ET
+BT /F1 9 Tf 48 442 Td (grupo.) Tj ET
+BT /F2 8 Tf 56 426 Td (Tarefa / User Story | Responsavel | Estado | Notas) Tj ET
+BT /F1 8 Tf 56 415 Td (User Stories e Use Cases | Equipa | Revistos parcialmente | Algumas formulacoes foram reformuladas.) Tj ET
+BT /F1 8 Tf 56 404 Td (Restante documentacao | Equipa | Revisao realizada | Identificadas necessidades de alteracao.) Tj ET
+BT /F1 9 Tf 48 389 Td (Bloqueios / impedimentos:) Tj ET
+BT /F1 9 Tf 48 377 Td (Nao foram indicados bloqueios na informacao disponibilizada.) Tj ET
+BT /F1 9 Tf 48 365 Td (Riscos identificados:) Tj ET
+BT /F1 9 Tf 48 353 Td (Riscos nao registados na informacao disponibilizada.) Tj ET
+BT /F2 11 Tf 48 333 Td (5. Discussao e Decisoes) Tj ET
+BT /F2 10 Tf 58 317 Td (5.1 User Stories e Use Cases) Tj ET
+BT /F1 9 Tf 48 303 Td (Resumo da discussao: O grupo reviu as User Stories e os Use Cases, identificando formulacoes) Tj ET
+BT /F1 9 Tf 48 291 Td (que nao correspondiam a visao pretendida para o DetiBuddy. Foram reformuladas algumas historias) Tj ET
+BT /F1 9 Tf 48 279 Td (e casos de uso.Decisao: Ajustar as descricoes para refletirem a visao do grupo e manter) Tj ET
+BT /F1 9 Tf 48 267 Td (coerencia entre as historias e os casos de uso.Justificacao tecnica: A documentacao deve) Tj ET
+BT /F1 9 Tf 48 255 Td (representar as funcionalidades pretendidas e as interacoes esperadas com o sistema.) Tj ET
+BT /F2 10 Tf 58 243 Td (5.2 Revisao da restante documentacao) Tj ET
+BT /F1 9 Tf 48 229 Td (Resumo da discussao: Foi realizada uma revisao de toda a documentacao existente para verificar) Tj ET
+BT /F1 9 Tf 48 217 Td (as partes que necessitavam de alteracao e identificar desalinhamentos com a visao do) Tj ET
+BT /F1 9 Tf 48 205 Td (grupo.Decisao: Identificar e rever os pontos que precisavam de mudanca, articulando as) Tj ET
+BT /F1 9 Tf 48 193 Td (alteracoes entre os documentos.Justificacao tecnica: A consistencia entre os documentos reduz) Tj ET
+BT /F1 9 Tf 48 181 Td (ambiguidades e evita interpretacoes divergentes durante o desenvolvimento.) Tj ET
+BT /F2 11 Tf 48 161 Td (6. Acoes a Realizar \(Action Items\)) Tj ET
+BT /F2 8 Tf 56 141 Td (N.o | Acao | Responsavel | Prazo | Prioridade | Estado) Tj ET
+BT /F1 8 Tf 56 130 Td (1 | Consolidar as reformulacoes das User Stories e dos Use Cases | Equipa | A definir | A definir | [ ]) Tj ET
+BT /F1 8 Tf 56 119 Td (Aberta) Tj ET
+BT /F1 8 Tf 56 108 Td (2 | Atualizar os restantes pontos identificados na revisao | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 97 Td (3 | Verificar a coerencia entre os documentos apos as alteracoes | Equipa | A definir | A definir | [ ]) Tj ET
+BT /F1 8 Tf 56 86 Td (Aberta) Tj ET
+BT /F1 9 Tf 48 71 Td (Acoes pendentes da reuniao anterior:) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 5 - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 1058 >>
+stream
+BT /F2 8 Tf 56 770 Td (Acao | Responsavel | Estado atual) Tj ET
+BT /F1 8 Tf 56 759 Td (Nao especificadas na informacao disponibilizada | - | -) Tj ET
+BT /F2 11 Tf 48 736 Td (7. Assuntos Gerais) Tj ET
+BT /F1 9 Tf 48 720 Td (Esta reuniao foi realizada integralmente a distancia e e distinta da reuniao n.o 4, realizada) Tj ET
+BT /F1 9 Tf 48 708 Td (no mesmo dia.) Tj ET
+BT /F2 11 Tf 48 688 Td (8. Proxima Reuniao) Tj ET
+BT /F1 9 Tf 48 672 Td (Data: [a confirmar]Hora: [a confirmar]Modalidade: [ ] Presencial [ ] Online [ ] Hibrida [a confirmar]Local / Link: [a confirmar]Pontos a preparar: Documentacao revista e alteracoes identificadas.) Tj ET
+BT /F2 11 Tf 48 651 Td (9. Anexos e Referencias) Tj ET
+BT /F1 9 Tf 48 635 Td (Documentacao de requisitos, User Stories e Use Cases do DetiBuddy) Tj ET
+BT /F1 9 Tf 48 623 Td (Restantes documentos existentes do projeto) Tj ET
+BT /F1 9 Tf 48 611 Td (Ata redigida por: Francisco Amaro em 08/10/2026Validada por: [a preencher] em [a preencher]) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 5 - Pagina 2) Tj ET
 endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000005304 00000 n 
+0000005440 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 9 /Root 1 0 R >>
 startxref
-445
+6550
 %%EOF

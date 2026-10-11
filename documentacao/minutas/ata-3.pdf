@@ -4,30 +4,128 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 78 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 5183 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Ata 3 - substituir pelo PDF final) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Ata de Reuniao 3) Tj ET
+BT /F1 9 Tf 48 744 Td (Ata de Reuniao - DetiBuddy) Tj ET
+BT /F1 9 Tf 48 732 Td (Reuniao n.o: 3Data: 01/10/2026Hora: [a preencher]Modalidade: [X] Presencial [ ] Online [ ] HibridaLocal / Link: [a preencher]Secretario\(a\) da ata: [a preencher]Moderador\(a\): [a preencher]) Tj ET
+BT /F2 11 Tf 48 711 Td (1. Presencas) Tj ET
+BT /F2 8 Tf 56 691 Td (Nome | Funcao / Papel | Presenca | Observacoes) Tj ET
+BT /F1 8 Tf 56 680 Td (Arthur Haerdy | Team Manager - Backend - AI Integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 669 Td (Samuel Ramos | Architect - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 658 Td (Lisle Faria | DevOps Master - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 647 Td (Geovana Mayer | Tester - Backend - API integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 636 Td (Francisco Amaro | Product Owner - General Implementation and integration | [X] Presencial [ ] Online [ ]) Tj ET
+BT /F1 8 Tf 56 625 Td (Ausente |) Tj ET
+BT /F1 8 Tf 56 614 Td (Mario Antunes | Professor orientador | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 9 Tf 48 599 Td (Ausencias justificadas: [a confirmar]Convidados externos: [a confirmar]) Tj ET
+BT /F2 11 Tf 48 579 Td (2. Ordem de Trabalhos \(Agenda\)) Tj ET
+BT /F1 9 Tf 48 563 Td (Organizacao do repositorio e praticas de qualidade) Tj ET
+BT /F1 9 Tf 48 551 Td (Arquitetura do agente e integracao atraves de MCP) Tj ET
+BT /F1 9 Tf 48 539 Td (Interfaces e funcionalidades propostas para o MVP) Tj ET
+BT /F1 9 Tf 48 527 Td (Planeamento das fases de implementacao) Tj ET
+BT /F2 11 Tf 48 507 Td (3. Aprovacao da Ata Anterior) Tj ET
+BT /F1 9 Tf 48 491 Td (Aprovacao da ata anterior: [a confirmar; nao registada na informacao disponibilizada]) Tj ET
+BT /F2 11 Tf 48 471 Td (4. Ponto de Situacao) Tj ET
+BT /F1 9 Tf 48 455 Td (Sprint / Fase atual: Especificacao e planeamento tecnicoObjetivo do sprint: Analisar as) Tj ET
+BT /F1 9 Tf 48 443 Td (orientacoes tecnicas e organizar o desenvolvimento do DetiBuddy.) Tj ET
+BT /F2 8 Tf 56 427 Td (Tarefa / User Story | Responsavel | Estado | Notas) Tj ET
+BT /F1 8 Tf 56 416 Td (Orientacoes tecnicas | Equipa | Registadas | Sintetizadas nas notas da reuniao.) Tj ET
+BT /F1 8 Tf 56 405 Td (Plano de implementacao | Equipa | Em analise | Fases sugeridas; distribuicao e prazos por definir.) Tj ET
+BT /F1 9 Tf 48 390 Td (Bloqueios / impedimentos:) Tj ET
+BT /F1 9 Tf 48 378 Td (Nao foram indicados bloqueios na informacao disponibilizada.) Tj ET
+BT /F1 9 Tf 48 366 Td (Riscos identificados:) Tj ET
+BT /F1 9 Tf 48 354 Td (Acesso e disponibilidade dos servicos externos a confirmar na analise de viabilidade das) Tj ET
+BT /F1 9 Tf 48 342 Td (integracoes.) Tj ET
+BT /F2 11 Tf 48 322 Td (5. Discussao e Decisoes) Tj ET
+BT /F2 10 Tf 58 306 Td (5.1 Engenharia de software e qualidade) Tj ET
+BT /F1 9 Tf 48 292 Td (Resumo da discussao: Foram registadas orientacoes para a configuracao do repositorio com) Tj ET
+BT /F1 9 Tf 48 280 Td (.gitignore, pyproject.toml, LICENSE, CITATION.cff e referencias bibliograficas. Foram abordados) Tj ET
+BT /F1 9 Tf 48 268 Td (pre-commit, Ruff, Basedpyright e Vulture, bem como testes unitarios e de integracao com medicao) Tj ET
+BT /F1 9 Tf 48 256 Td (de cobertura. Os apontamentos incluem GitHub Actions e publicacao no PyPI com Twine.Decisao:) Tj ET
+BT /F1 9 Tf 48 244 Td (Utilizar estas orientacoes como referencia para o planeamento da infraestrutura e dos) Tj ET
+BT /F1 9 Tf 48 232 Td (mecanismos de qualidade.Justificacao tecnica: As verificacoes automaticas e os testes) Tj ET
+BT /F1 9 Tf 48 220 Td (contribuem para a consistencia do codigo e para a detecao de erros.) Tj ET
+BT /F2 10 Tf 58 208 Td (5.2 Agente e integracoes) Tj ET
+BT /F1 9 Tf 48 194 Td (Resumo da discussao: Foi abordada a utilizacao de MCP para separar o agente das ferramentas e) Tj ET
+BT /F1 9 Tf 48 182 Td (dos servicos externos, com modelos adequados a chamadas a funcoes, como Gemma ou Qwen, e) Tj ET
+BT /F1 9 Tf 48 170 Td (ligacao ao Skynet ou a instancias locais com API compativel com a OpenAI. Foi tambem discutida) Tj ET
+BT /F1 9 Tf 48 158 Td (a recolha de metricas de acerto, latencia e erro.Decisao: Considerar uma arquitetura modular) Tj ET
+BT /F1 9 Tf 48 146 Td (baseada em MCP e avaliar a fiabilidade das chamadas a ferramentas.Justificacao tecnica: A) Tj ET
+BT /F1 9 Tf 48 134 Td (separacao entre o agente e as integracoes facilita a extensibilidade e a avaliacao do sistema.) Tj ET
+BT /F2 10 Tf 58 122 Td (5.3 Interfaces e casos de uso propostos) Tj ET
+BT /F1 9 Tf 48 108 Td (Resumo da discussao: Os apontamentos incluem um backend assincrono em FastAPI, bots de Discord) Tj ET
+BT /F1 9 Tf 48 96 Td (ou Slack, integracao com Microsoft 365/Outlook e consulta de atividade no GitHub para) Tj ET
+BT /F1 9 Tf 48 84 Td (lembretes. Foram ainda abordadas a extracao de ementas e ocupacao de parques com Playwright e a) Tj ET
+BT /F1 9 Tf 48 72 Td (combinacao de horario, localizacao, meteorologia e rotas.Decisao: Registar estas) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 3 - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 3026 >>
+stream
+BT /F1 9 Tf 48 770 Td (funcionalidades como propostas a analisar e detalhar na documentacao, sem considerar a lista) Tj ET
+BT /F1 9 Tf 48 758 Td (uma aprovacao definitiva de todo o ambito do MVP.Justificacao tecnica: A viabilidade depende do) Tj ET
+BT /F1 9 Tf 48 746 Td (acesso aos servicos, da disponibilidade dos dados e da priorizacao das funcionalidades.) Tj ET
+BT /F2 10 Tf 58 734 Td (5.4 Fases de implementacao) Tj ET
+BT /F1 9 Tf 48 720 Td (Resumo da discussao: Foi sugerida uma sequencia de trabalho: infraestrutura e qualidade; gestao) Tj ET
+BT /F1 9 Tf 48 708 Td (do navegador e extracao de dados; servidores MCP e orquestracao do agente; interfaces e) Tj ET
+BT /F1 9 Tf 48 696 Td (alertas.Decisao: Usar a sequencia sugerida como referencia para organizar o) Tj ET
+BT /F1 9 Tf 48 684 Td (desenvolvimento.Justificacao tecnica: A implementacao faseada permite preparar a infraestrutura) Tj ET
+BT /F1 9 Tf 48 672 Td (antes de integrar o agente e os canais de interacao.) Tj ET
+BT /F2 11 Tf 48 652 Td (6. Acoes a Realizar \(Action Items\)) Tj ET
+BT /F2 8 Tf 56 632 Td (N.o | Acao | Responsavel | Prazo | Prioridade | Estado) Tj ET
+BT /F1 8 Tf 56 621 Td (1 | Consolidar as orientacoes tecnicas na documentacao do projeto | Equipa | A definir | A definir | [ ]) Tj ET
+BT /F1 8 Tf 56 610 Td (Aberta) Tj ET
+BT /F1 8 Tf 56 599 Td (2 | Analisar a viabilidade e a prioridade dos casos de uso propostos | Equipa | A definir | A definir | [ ]) Tj ET
+BT /F1 8 Tf 56 588 Td (Aberta) Tj ET
+BT /F1 8 Tf 56 577 Td (3 | Planear a configuracao do repositorio e das verificacoes de qualidade | Equipa | A definir | A) Tj ET
+BT /F1 8 Tf 56 566 Td (definir | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 555 Td (4 | Detalhar as fases de implementacao e respetivas tarefas | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 9 Tf 48 540 Td (Acoes pendentes da reuniao anterior:) Tj ET
+BT /F2 8 Tf 56 524 Td (Acao | Responsavel | Estado atual) Tj ET
+BT /F1 8 Tf 56 513 Td (Nao especificadas na informacao disponibilizada | - | -) Tj ET
+BT /F2 11 Tf 48 490 Td (7. Assuntos Gerais) Tj ET
+BT /F1 9 Tf 48 474 Td (As tecnologias e funcionalidades referidas nos apontamentos constituem orientacoes de trabalho.) Tj ET
+BT /F1 9 Tf 48 462 Td (A arquitetura e o ambito deverao acompanhar a evolucao do projeto.) Tj ET
+BT /F2 11 Tf 48 442 Td (8. Proxima Reuniao) Tj ET
+BT /F1 9 Tf 48 426 Td (Data: [a confirmar]Hora: [a confirmar]Modalidade: [ ] Presencial [ ] Online [ ] Hibrida [a confirmar]Local / Link: [a confirmar]Pontos a preparar: Materiais relativos as acoes a realizar.) Tj ET
+BT /F2 11 Tf 48 405 Td (9. Anexos e Referencias) Tj ET
+BT /F1 9 Tf 48 389 Td (Especificacao e Planeamento do Projeto: DetiBuddy -) Tj ET
+BT /F1 9 Tf 48 377 Td (especifica_o_do_projeto_e_notas_de_reuni_o.md) Tj ET
+BT /F1 9 Tf 48 365 Td (Outras referencias: nao indicadas.) Tj ET
+BT /F1 9 Tf 48 353 Td (Ata redigida por: Francisco Amaro em 01/10/2026Validada por: [a preencher] em [a preencher]) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 3 - Pagina 2) Tj ET
 endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000005643 00000 n 
+0000005779 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 9 /Root 1 0 R >>
 startxref
-445
+8857
 %%EOF

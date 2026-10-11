@@ -4,30 +4,106 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
-endobj
-4 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
 5 0 obj
-<< /Length 78 >>
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 4773 >>
 stream
-BT /F1 18 Tf 72 720 Td (PLACEHOLDER - Ata 1 - substituir pelo PDF final) Tj ET
+BT /F2 15 Tf 48 770 Td (DetiBuddy - Ata de Reuniao 1) Tj ET
+BT /F1 9 Tf 48 744 Td (Ata de Reuniao - DetiBuddy) Tj ET
+BT /F1 9 Tf 48 732 Td (Reuniao n.o: 1Data: 17/09/2026Hora: [a preencher]Modalidade: [X] Presencial [ ] Online [ ] HibridaLocal / Link: [a preencher]Secretario\(a\) da ata: [a preencher]Moderador\(a\): [a preencher]) Tj ET
+BT /F2 11 Tf 48 711 Td (1. Presencas) Tj ET
+BT /F2 8 Tf 56 691 Td (Nome | Funcao / Papel | Presenca | Observacoes) Tj ET
+BT /F1 8 Tf 56 680 Td (Arthur Haerdy | Team Manager - Backend - AI Integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 669 Td (Samuel Ramos | Architect - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 658 Td (Lisle Faria | DevOps Master - Frontend - UI/UX | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 647 Td (Geovana Mayer | Tester - Backend - API integration | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 8 Tf 56 636 Td (Francisco Amaro | Product Owner - General Implementation and integration | [X] Presencial [ ] Online [ ]) Tj ET
+BT /F1 8 Tf 56 625 Td (Ausente |) Tj ET
+BT /F1 8 Tf 56 614 Td (Mario Antunes | Professor orientador | [X] Presencial [ ] Online [ ] Ausente |) Tj ET
+BT /F1 9 Tf 48 599 Td (Ausencias justificadas: [a confirmar]Convidados externos: [a confirmar]) Tj ET
+BT /F2 11 Tf 48 579 Td (2. Ordem de Trabalhos \(Agenda\)) Tj ET
+BT /F1 9 Tf 48 563 Td (Apresentacao da proposta do professor orientador) Tj ET
+BT /F1 9 Tf 48 551 Td (Esclarecimento dos objetivos e do ambito do projeto) Tj ET
+BT /F1 9 Tf 48 539 Td (Discussao do diagrama conceptual apresentado pelo orientador) Tj ET
+BT /F1 9 Tf 48 527 Td (Aceitacao da proposta e definicao dos proximos passos) Tj ET
+BT /F2 11 Tf 48 507 Td (3. Aprovacao da Ata Anterior) Tj ET
+BT /F1 9 Tf 48 491 Td (Nao aplicavel - primeira reuniao.) Tj ET
+BT /F2 11 Tf 48 471 Td (4. Ponto de Situacao) Tj ET
+BT /F1 9 Tf 48 455 Td (Sprint / Fase atual: Definicao inicial do projetoObjetivo do sprint: Compreender a proposta do) Tj ET
+BT /F1 9 Tf 48 443 Td (orientador e definir a base conceptual do DetiBuddy.) Tj ET
+BT /F2 8 Tf 56 427 Td (Tarefa / User Story | Responsavel | Estado | Notas) Tj ET
+BT /F1 8 Tf 56 416 Td (Proposta do projeto | Equipa | Concluida | Proposta discutida e aceite.) Tj ET
+BT /F1 8 Tf 56 405 Td (Arquitetura inicial | Equipa | Por fazer | A desenvolver a partir do diagrama do orientador.) Tj ET
+BT /F1 9 Tf 48 390 Td (Bloqueios / impedimentos:) Tj ET
+BT /F1 9 Tf 48 378 Td (Nao foram indicados bloqueios na informacao disponibilizada.) Tj ET
+BT /F1 9 Tf 48 366 Td (Riscos identificados:) Tj ET
+BT /F1 9 Tf 48 354 Td (Riscos nao registados na informacao disponibilizada.) Tj ET
+BT /F2 11 Tf 48 334 Td (5. Discussao e Decisoes) Tj ET
+BT /F2 10 Tf 58 318 Td (5.1 Apresentacao e aceitacao da proposta) Tj ET
+BT /F1 9 Tf 48 304 Td (Resumo da discussao: O grupo reuniu pela primeira vez com o professor orientador Mario Antunes) Tj ET
+BT /F1 9 Tf 48 292 Td (para discutir o trabalho. O orientador explicou o projeto com maior detalhe e esclareceu os) Tj ET
+BT /F1 9 Tf 48 280 Td (seus objetivos.Decisao: O grupo aceitou a proposta apresentada pelo orientador.Justificacao) Tj ET
+BT /F1 9 Tf 48 268 Td (tecnica: A explicacao permitiu ao grupo compreender a finalidade do projeto e estabelecer uma) Tj ET
+BT /F1 9 Tf 48 256 Td (base comum para o trabalho.) Tj ET
+BT /F2 10 Tf 58 244 Td (5.2 Diagrama conceptual e arquitetura inicial) Tj ET
+BT /F1 9 Tf 48 230 Td (Resumo da discussao: Durante a explicacao, o orientador desenhou um pequeno diagrama para) Tj ET
+BT /F1 9 Tf 48 218 Td (ilustrar a organizacao e o funcionamento do projeto.Decisao: Utilizar o diagrama como) Tj ET
+BT /F1 9 Tf 48 206 Td (referencia para elaborar a arquitetura inicial do DetiBuddy.Justificacao tecnica: O esquema) Tj ET
+BT /F1 9 Tf 48 194 Td (ajudou a compreender as relacoes entre os componentes, servindo de base ao desenho posterior da) Tj ET
+BT /F1 9 Tf 48 182 Td (arquitetura.) Tj ET
+BT /F2 11 Tf 48 162 Td (6. Acoes a Realizar \(Action Items\)) Tj ET
+BT /F2 8 Tf 56 142 Td (N.o | Acao | Responsavel | Prazo | Prioridade | Estado) Tj ET
+BT /F1 8 Tf 56 131 Td (1 | Registar os objetivos e o ambito da proposta aceite | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 8 Tf 56 120 Td (2 | Elaborar a arquitetura inicial com base no diagrama do orientador | Equipa | A definir | A definir |) Tj ET
+BT /F1 8 Tf 56 109 Td ([ ] Aberta) Tj ET
+BT /F1 8 Tf 56 98 Td (3 | Preparar os materiais da primeira fase do projeto | Equipa | A definir | A definir | [ ] Aberta) Tj ET
+BT /F1 9 Tf 48 83 Td (Acoes pendentes da reuniao anterior:) Tj ET
+BT /F2 8 Tf 56 67 Td (Acao | Responsavel | Estado atual) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 1 - Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 960 >>
+stream
+BT /F1 8 Tf 56 770 Td (Nao aplicavel | - | -) Tj ET
+BT /F2 11 Tf 48 747 Td (7. Assuntos Gerais) Tj ET
+BT /F1 9 Tf 48 731 Td (O diagrama apresentado constitui uma referencia inicial e podera ser ajustado ao longo do) Tj ET
+BT /F1 9 Tf 48 719 Td (desenvolvimento.) Tj ET
+BT /F2 11 Tf 48 699 Td (8. Proxima Reuniao) Tj ET
+BT /F1 9 Tf 48 683 Td (Data: [a confirmar]Hora: [a confirmar]Modalidade: [ ] Presencial [ ] Online [ ] Hibrida [a confirmar]Local / Link: [a confirmar]Pontos a preparar: Materiais relativos as acoes a realizar.) Tj ET
+BT /F2 11 Tf 48 662 Td (9. Anexos e Referencias) Tj ET
+BT /F1 9 Tf 48 646 Td (Proposta inicial do projeto - Formulario_Projetos.pdf) Tj ET
+BT /F1 9 Tf 48 634 Td (Diagrama conceptual desenhado pelo orientador durante a reuniao) Tj ET
+BT /F1 9 Tf 48 622 Td (Ata redigida por: Francisco Amaro em 17/09/2026Validada por: [a preencher] em [a preencher]) Tj ET
+BT /F1 8 Tf 48 30 Td (DetiBuddy - Ata de Reuniao 1 - Pagina 2) Tj ET
 endstream
 endobj
 xref
-0 6
+0 9
 0000000000 65535 f 
 0000000015 00000 n 
 0000000064 00000 n 
-0000000121 00000 n 
-0000000247 00000 n 
-0000000317 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000005233 00000 n 
+0000005369 00000 n 
 trailer
-<< /Size 6 /Root 1 0 R >>
+<< /Size 9 /Root 1 0 R >>
 startxref
-445
+6380
 %%EOF

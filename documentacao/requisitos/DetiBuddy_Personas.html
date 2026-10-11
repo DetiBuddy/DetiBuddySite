@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Personas — DetiBuddy</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--fg:#19211f;--mut:#65736f;--line:#d5dfdb;--ac:#187d75;--ph:#e3efeb}
+@media(prefers-color-scheme:dark){:root{--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mut)}
+.w{max-width:960px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.nav{margin:20px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.back{display:inline-flex;align-items:center;color:var(--fg);text-decoration:none;font-weight:500}
+.back:hover{color:var(--ac)}
+article{padding-bottom:40px}
+h1{font:400 clamp(32px,5vw,50px)/1.08 "Instrument Serif",Georgia,serif;margin:28px 0 16px}
+h2{font:400 clamp(24px,3.8vw,34px)/1.15 "Instrument Serif",Georgia,serif;margin:36px 0 14px;border-top:1px solid var(--line);padding-top:24px}
+h3{font-size:19px;font-weight:600;margin:24px 0 8px}
+p,li{font-size:15px;line-height:1.65;color:inherit}
+li{margin-bottom:6px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+blockquote{margin:16px 0;padding:12px 20px;border-left:3px solid var(--ac);background:var(--ph);color:var(--fg);border-radius:0 6px 6px 0}
+code{background:var(--ph);padding:2px 6px;border-radius:4px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+pre{background:rgba(0,0,0,.04);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+th{background:var(--ph);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top mono"><span>DETI / Universidade de Aveiro</span><span>UC 43675 · PEI 2026/2027</span></div>
+<div class="nav"><a class="back" href="../requisitos.html">← Voltar</a><span class="mono">Documento DetiBuddy</span></div>
+<article>
+<h1>DetiBuddy — Personas</h1>
+<blockquote><b>Fase de Elaboração — Projeto em Engenharia Informática (PEI 2026/2027)</b></blockquote>
+<blockquote><b>Versão:</b> 2.0 (Fase de Elaboração — Outubro de 2026)</blockquote>
+<blockquote><b>Autores:</b> Arthur Haerdy, Francisco Amaro, Geovana Mayer, Lisle Faria, Samuel Ramos</blockquote>
+<blockquote><b>Orientador:</b> Prof. Mário Antunes</blockquote>
+<hr>
+<h2>Introdução</h2>
+<p>Para fundamentar as decisões de desenho funcional, arquitetural e de experiência de utilização (<em>UX</em>) do <b>DetiBuddy</b>, foram estabelecidas <b>quatro personas arquetípicas</b>. Estas personas personificam os diferentes perfis identificados durante a fase de levantamento de requisitos (<em>Requirements Gathering</em>):</p>
+<ol>
+<li><b>Eunice:</b> A aluna que acaba de ingressar no ensino superior e necessita de orientação e desmistificação das regras e plataformas.</li>
+<li><b>Paulo:</b> O estudante sénior e experiente que procura eficiência, automatização e redução de tarefas redundantes.</li>
+<li><b>Liam:</b> O estudante internacional em mobilidade que enfrenta a barreira linguística e a adaptação a um sistema académico novo (justifica o requisito bilingue <b>FR-09</b> e informação de Erasmus <b>US-19</b>).</li>
+<li><b>Eng. Rui:</b> O administrador do sistema que zela pela integridade da base de conhecimento, estabilidade dos conectores e desempenho do modelo na Skynet (justifica a consola administrativa e <b>FR-48 a FR-51</b>).</li>
+</ol>
+<hr>
+<h2>Persona 1 — Eunice (Caloira / 1.º Ano)</h2>
+<h3>Perfil</h3>
+<ul>
+<li><b>Nome:</b> Eunice</li>
+<li><b>Idade:</b> 18 anos</li>
+<li><b>Curso:</b> Licenciatura em Engenharia Informática (LEI)</li>
+<li><b>Ano:</b> 1.º ano</li>
+<li><b>Experiência com a UA:</b> Muito reduzida (recém-chegada ao campus)</li>
+<li><b>Perfil Tecnológico:</b> Médio / Alto</li>
+</ul>
+<h3>Sobre</h3>
+<p>A Eunice acabou de entrar na Universidade de Aveiro e ainda se encontra na fase de adaptação à vida universitária e ao DETI. Não conhece a fundo o ecossistema institucional nem sabe onde procurar determinada informação. Plataformas como PACO, e-learning Moodle e o portal dos SAS são novas e geram-lhe sobrecarga de informação.</p>
+<h3>Objetivos e Necessidades</h3>
+<ul>
+<li>Saber rapidamente onde e quando tem aulas de laboratório e teóricas.</li>
+<li>Consultar datas de testes, entregas de relatórios e paragens letivas.</li>
+<li>Consultar a ementa diária das cantinas do campus.</li>
+<li>Compreender as regras pedagógicas de faltas, regimes de avaliação e épocas de exames sem ler dezenas de páginas de regulamentos jurídicos.</li>
+<li>Encontrar o número de gabinete e o email de docentes do departamento.</li>
+<li>Dispor de um ponto de contacto unificado que responda em linguagem natural.</li>
+</ul>
+<h3>Frustrações</h3>
+<ul>
+<li>Não saber a qual das várias plataformas da UA recorrer para cada tipo de assunto.</li>
+<li>Navegar por estruturas de menus confusas em diferentes sites.</li>
+<li>Receio de falhar entregas ou ultrapassar o limite de faltas por desatenção.</li>
+<li>Desconhecer a quem se dirigir presencialmente quando uma plataforma falha.</li>
+</ul>
+<h3>Como usaria o DetiBuddy</h3>
+<p>A Eunice vê o DetiBuddy como um &quot;amigo veterano&quot; digital. Faz perguntas espontâneas para se situar no dia a dia do DETI:</p>
+<ul>
+<li><em>&quot;Que aulas tenho amanhã de manhã e em que salas?&quot;</em></li>
+<li><em>&quot;A quantas aulas laboratoriais de Cálculo posso faltar sem chumbar por faltas?&quot;</em></li>
+<li><em>&quot;Onde fica o gabinete do professor de Programação?&quot;</em></li>
+<li><em>&quot;O que há hoje para almoçar na cantina do Crasto?&quot;</em></li>
+</ul>
+<h3>Frase Representativa</h3>
+<blockquote><em>&quot;Ainda não sei onde encontrar metade das coisas na universidade. Queria simplesmente perguntar e receber uma resposta direta e confiável.&quot;</em></blockquote>
+<hr>
+<h2>Persona 2 — Paulo (Finalista / 3.º Ano)</h2>
+<h3>Perfil</h3>
+<ul>
+<li><b>Nome:</b> Paulo</li>
+<li><b>Idade:</b> 22 anos</li>
+<li><b>Curso:</b> Licenciatura em Engenharia Informática (LEI)</li>
+<li><b>Ano:</b> 3.º ano (Finalista)</li>
+<li><b>Experiência com a UA:</b> Elevada (pleno domínio do campus)</li>
+<li><b>Perfil Tecnológico:</b> Alto</li>
+</ul>
+<h3>Sobre</h3>
+<p>O Paulo está no último ano da licenciatura e domina os sistemas da Universidade de Aveiro. Sabe exatamente onde a informação reside no PACO, no Moodle e nas restantes plataformas. O seu problema crítico é o <b>tempo desperdiçado</b> em navegações diárias repetitivas e a dispersão entre múltiplos projetos, aulas e compromissos extracurriculares.</p>
+<h3>Objetivos e Necessidades</h3>
+<ul>
+<li>Consultar de forma instantânea datas de testes e entregas de projetos.</li>
+<li>Consultar o seu horário diário sem passar pelo login e menus do PACO.</li>
+<li>Ser notificado proativamente quando a sua senha de atendimento nos serviços estiver próxima de ser chamada.</li>
+<li>Saber a lotação dos parques de estacionamento antes de chegar ao campus de carro.</li>
+<li>Aceder aos avisos urgentes recebidos no email institucional sem ter de abrir a caixa de correio completa.</li>
+<li>Marcar reuniões com os colegas de grupo de projeto com criação automática de convites e eventos no calendário.</li>
+</ul>
+<h3>Frustrações</h3>
+<ul>
+<li>Ter informação fragmentada entre três ou quatro plataformas distintas.</li>
+<li>Perder minutos preciosos em tarefas rotineiras de verificação.</li>
+<li>Esperar em filas de atendimento ou perder a vez por falta de visibilidade da senha.</li>
+<li>Falta de rigor ou fontes em respostas automáticas.</li>
+</ul>
+<h3>Como usaria o DetiBuddy</h3>
+<p>Para o Paulo, o DetiBuddy é uma camada de conveniência, produtividade e automação:</p>
+<ul>
+<li><em>&quot;Que entregas e prazos tenho para esta semana?&quot;</em></li>
+<li><em>&quot;Há lugares vagos no parque do DETI neste momento?&quot;</em></li>
+<li><em>&quot;Avisa-me quando faltarem 3 senhas para a minha vez na secretaria.&quot;</em></li>
+<li><em>&quot;Marca uma reunião com o grupo de PEI na próxima quinta às 15h.&quot;</em></li>
+</ul>
+<h3>Frase Representativa</h3>
+<blockquote><em>&quot;Eu sei perfeitamente onde está a informação. Só não quero perder cinco minutos em três plataformas diferentes só para confirmar uma sala ou um prazo.&quot;</em></blockquote>
+<hr>
+<h2>Persona 3 — Liam (Estudante Internacional / Erasmus)</h2>
+<h3>Perfil</h3>
+<ul>
+<li><b>Nome:</b> Liam</li>
+<li><b>Idade:</b> 21 anos</li>
+<li><b>Nacionalidade:</b> Irlandês / Alemão (em mobilidade Erasmus+)</li>
+<li><b>Curso:</b> BSc in Computer Science / Aluno de Mobilidade no DETI</li>
+<li><b>Experiência com a UA:</b> Nula (primeiras semanas no país e na instituição)</li>
+<li><b>Perfil Tecnológico:</b> Alto</li>
+<li><b>Domínio de Português:</b> Elementar / Em aprendizagem (A1/A2)</li>
+</ul>
+<h3>Sobre</h3>
+<p>O Liam chegou à Universidade de Aveiro para realizar um semestre de intercâmbio no DETI. Embora a comunidade académica fale inglês com facilidade, a grande maioria dos sistemas de informação da UA (portais do PACO, ementas dos SAS e avisos gerais) e todos os regulamentos normativos institucionais estão redigidos exclusivamente em português jurídico.</p>
+<h3>Objetivos e Necessidades</h3>
+<ul>
+<li>Interagir com o assistente em <b>Inglês</b> e obter respostas contextualmente traduzidas e fiáveis.</li>
+<li>Compreender como funciona o sistema de avaliação do DETI (provas de época normal, recurso e pesos de notas de laboratório vs. exames), que difere substancialmente da sua universidade de origem.</li>
+<li>Localizar serviços de apoio no campus (secretaria internacional, gabinete de relações internacionais, posto médico e lavandarias).</li>
+<li>Ter acesso a orientações sobre eventos, integração e vida comunitária de Erasmus.</li>
+</ul>
+<h3>Frustrações</h3>
+<ul>
+<li>Páginas do PACO e comunicados oficiais no e-learning sem tradução disponível para inglês.</li>
+<li>Dificuldade em descodificar acrónimos institucionais portugueses (ex.: UC, T, TP, PL, SAS, STIC, época de recurso).</li>
+<li>Receio de cometer infrações regulamentares por incompreensão de avisos pedagógicos.</li>
+</ul>
+<h3>Como usaria o DetiBuddy</h3>
+<p>O Liam utiliza o DetiBuddy como um assistente bilingue indispensável para traduzir a complexidade da UA:</p>
+<ul>
+<li><em>&quot;Where is my Operating Systems lab this afternoon and who is the professor?&quot;</em></li>
+<li><em>&quot;How does the &#x27;recurso&#x27; exam period work for Erasmus students if I fail the continuous evaluation?&quot;</em></li>
+<li><em>&quot;What is today&#x27;s menu at the university canteen translated into English?&quot;</em></li>
+<li><em>&quot;Where do I go to sign my Erasmus Learning Agreement on campus?&quot;</em></li>
+</ul>
+<h3>Frase Representativa</h3>
+<blockquote><em>&quot;I don&#x27;t speak fluent Portuguese yet, and trying to decipher university regulations while navigating untranslated portals is daunting. I need an assistant that understands English and knows DETI inside out.&quot;</em></blockquote>
+<hr>
+<h2>Persona 4 — Eng. Rui (Administrador do Sistema / Gestor Técnico)</h2>
+<h3>Perfil</h3>
+<ul>
+<li><b>Nome:</b> Rui</li>
+<li><b>Idade:</b> 28 anos</li>
+<li><b>Função:</b> Engenheiro Informático / Assistente Técnico de Infraestruturas e Sistemas no DETI</li>
+<li><b>Experiência com a UA:</b> 6 anos (antigo aluno e atual técnico/investigador)</li>
+<li><b>Perfil Tecnológico:</b> Especialista (DevOps, Python, LLMs e Engenharia de Dados)</li>
+</ul>
+<h3>Sobre</h3>
+<p>O Eng. Rui é o elemento responsável pela manutenção operacional do DetiBuddy, assegurando que o sistema responde de acordo com as diretrizes do departamento e em conformidade estrita com o RGPD. Gere a base de dados vetorial de regulamentos e a ponte de conectores entre a API FastAPI e a infraestrutura física da Skynet.</p>
+<h3>Objetivos e Necessidades</h3>
+<ul>
+<li>Ingerir e atualizar regulamentos pedagógicos em PDF na base RAG de forma simples através de uma interface web ou API, sem ter de recompilar o código do agente.</li>
+<li>Garantir que as respostas da IA estão devidamente ancoradas (<em>grounded</em>) nas versões mais recentes dos despachos reitorais e regulamentos do DETI.</li>
+<li>Monitorizar a saúde e a latência das chamadas à Skynet e conectores (PACO, Moodle, SAS), detetando anomalias ou alterações de formato nos serviços integrados.</li>
+<li>Registar novos conectores modulares através de manifestos padronizados (MCP).</li>
+<li>Assegurar que nenhum registo de conversas ou dado sensível de estudantes é exposto em ficheiros de log ou fora da rede institucional.</li>
+</ul>
+<h3>Frustrações</h3>
+<ul>
+<li>Ter de intervir manualmente no código para corrigir desvios na base vetorial causados por alterações de formatação de PDFs.</li>
+<li>Ausência de métricas detalhadas quando uma integração falha (ex.: conector do PACO indisponível).</li>
+<li>Risco de modelos desatualizados induzirem alunos em erro com versões revogadas de regulamentos.</li>
+</ul>
+<h3>Como usaria o DetiBuddy</h3>
+<p>O Rui utiliza o painel administrativo e a API de gestão do assistente:</p>
+<ul>
+<li>Carrega o novo <em>Regulamento de Avaliação Discente 2026/2027</em> e dispara o pipeline automático de <em>chunking</em>, extração e reindexação vetorial.</li>
+<li>Valida a matriz de métricas semanais: volume de pedidos, taxa de sucesso de <em>tool calling</em>, latência média de inferência na Skynet e distribuição de avaliações dos utilizadores.</li>
+<li>Desativa temporariamente um conector em manutenção com um simples clique na consola, ativando uma mensagem informativa graciosa para os alunos.</li>
+</ul>
+<h3>Frase Representativa</h3>
+<blockquote><em>&quot;A minha prioridade é manter o conhecimento rigoroso e o sistema estável. Preciso de conseguir atualizar a base de regulamentos em dois minutos e ter métricas claras sobre a fiabilidade de cada conector.&quot;</em></blockquote>
+</article>
+<footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>
+</div>
+</body>
+</html>

@@ -62,26 +62,43 @@ footer.mono a:focus-visible{outline:2px solid #8bf0d2;outline-offset:3px}
   <h1>Deti<em>Buddy</em></h1>
   <div>
     <p>Um assistente com IA que acompanha os alunos do DETI no dia a dia, esclarece dúvidas, ajuda a organizar a agenda e nas pequenas decisões do quotidiano.</p>
-    <p class="mono" style="margin-top:14px">Estado: fase de Inception</p>
+    <p class="mono" style="margin-top:14px">Estado: fase de Elaboração</p>
   </div>
 </header>
 
 <section>
   <h2><span class="mono">01</span>Documentação</h2>
   <div>
-    <a class="row" href="./documentacao/minutas.html"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente</small></span><span class="ph">Abrir</span></a>
-    <a class="row" href="./documentacao/arquitetura.html"><span class="mono">02</span><span><b>Arquitetura</b><small>Diagramas em draw.io e decisões técnicas</small></span><span class="ph">Abrir</span></a>
-    <a class="row" href="./documentacao/apresentacoes.html"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception (8 min) e seguintes</small></span><span class="ph">Abrir</span></a>
-    <a class="row" href="./documentacao/requisitos.html"><span class="mono">04</span><span><b>Requisitos</b><small>User stories e use cases</small></span><span class="ph">Abrir</span></a>
-    <a class="row" href="./documentacao/calendario.html"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/minutas.html"><span class="mono">01</span><span><b>Minutas</b><small>Atas das reuniões de equipa e com o docente (Atas 1 a 5)</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/arquitetura.html"><span class="mono">02</span><span><b>Arquitetura</b><small>Topologia v2, modelo de domínio UML e ficheiros draw.io</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/apresentacoes.html"><span class="mono">03</span><span><b>Apresentações</b><small>Slides da Inception e relatórios</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/requisitos.html"><span class="mono">04</span><span><b>Requisitos</b><small>22 Use cases nos 6 pacotes, histórias, personas e matriz de requisitos v2</small></span><span class="ph">Abrir</span></a>
+    <a class="row" href="./documentacao/calendario.html"><span class="mono">05</span><span><b>Calendário e plano de comunicação</b><small>Abordagem ágil e planeamento de marcos</small></span><span class="ph">Abrir</span></a>
   </div>
 </section>
 
 <section>
   <h2><span class="mono">02</span>Arquitetura</h2>
   <div>
-    <div class="box"><span class="mono">[INSERIR DIAGRAMA DE ARQUITETURA — exportar do draw.io]</span></div>
-    <p style="margin:16px 0 0;color:var(--mut);max-width:60ch">O agente de IA vem do servidor skynet e fica alojado no servidor do DETI. O acesso ao PACO, e-learning, MySAS e email passa pelos STIC, por APIs e/ou Selenium. <span class="ph">[INSERIR DECISÃO FINAL]</span></p>
+    <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,0.04)">
+      <a href="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" target="_blank" title="Clique para abrir o diagrama de arquitetura em tamanho original">
+        <img src="./documentacao/arquitetura/detibuddy_arquitetura_v2.drawio.png" alt="Diagrama de Arquitetura v2 do DetiBuddy" style="display:block;width:100%;height:auto;max-height:540px;object-fit:contain;background:#fff;padding:8px">
+      </a>
+    </div>
+    <p style="margin:0 0 10px;font-weight:500">Arquitetura v2 (Fase de Elaboração) — Visão Geral do Sistema:</p>
+    <p style="margin:0 0 12px;color:var(--mut);font-size:14.5px;line-height:1.6">A solução adota uma topologia modular e desacoplada assente em microsserviços e no padrão <em>Model Context Protocol (MCP)</em>:</p>
+    <ul style="margin:0 0 16px;padding-left:20px;color:var(--mut);font-size:14px;line-height:1.6">
+      <li><b>Edge &amp; Frontend:</b> Proxy reverso <code>Traefik</code> e cliente web <code>React PWA</code> instalável (responsivo móvel, com suporte a modos claro/escuro).</li>
+      <li><b>Backend API:</b> Python com <code>FastAPI</code> assíncrono, gerindo autenticação, sessões e streaming em tempo real via SSE (<em>Server-Sent Events</em>).</li>
+      <li><b>Identidade &amp; SSO:</b> Contentor <code>Keycloak</code> a operar como IdP simulado OIDC para emissão e validação estrita de tokens JWT institucionais.</li>
+      <li><b>Persistência &amp; RAG Híbrido:</b> <code>PostgreSQL</code> com extensão <code>pgvector</code> (combinação de similaridade vetorial com pesquisa léxica BM25) e <code>Redis</code> com worker assíncrono <code>ARQ</code> para cache e filas de tarefas.</li>
+      <li><b>Conectores MCP Desacoplados:</b> Servidores dedicados por domínio (PACO, Moodle, SAS, M365, IPMA, Parques, Bibliotecas), comutáveis entre mock e real.</li>
+      <li><b>Soberania e Privacidade:</b> Inferência de LLM executada no cluster <code>Skynet</code> do DETI, garantindo conformidade com o RGPD e total confinamento institucional dos dados.</li>
+    </ul>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <a class="mono" href="./documentacao/arquitetura.html" style="color:var(--ac);text-decoration:none;font-weight:500">Ver documentação completa de arquitetura →</a>
+      <a class="mono" href="./documentacao/arquitetura/DetiBuddy_Modelo_Dominio.html" target="_blank" style="color:var(--ac);text-decoration:none;font-weight:500">Abrir Modelo de Domínio interativo →</a>
+    </div>
   </div>
 </section>
 

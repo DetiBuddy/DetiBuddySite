@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Levantamento de Requisitos — DetiBuddy</title>
+<link rel="icon" type="image/png" href="../../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f4;--fg:#19211f;--mut:#65736f;--line:#d5dfdb;--ac:#187d75;--ph:#e3efeb}
+@media(prefers-color-scheme:dark){:root{--bg:#141a18;--fg:#e8f0ed;--mut:#a1b0ab;--line:#34413d;--ac:#65c9be;--ph:#202c28}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;letter-spacing:.02em;color:var(--mut)}
+.w{max-width:960px;margin:0 auto;padding:0 24px}
+.top{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.nav{margin:20px 0 32px;padding-bottom:14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.back{display:inline-flex;align-items:center;color:var(--fg);text-decoration:none;font-weight:500}
+.back:hover{color:var(--ac)}
+article{padding-bottom:40px}
+h1{font:400 clamp(32px,5vw,50px)/1.08 "Instrument Serif",Georgia,serif;margin:28px 0 16px}
+h2{font:400 clamp(24px,3.8vw,34px)/1.15 "Instrument Serif",Georgia,serif;margin:36px 0 14px;border-top:1px solid var(--line);padding-top:24px}
+h3{font-size:19px;font-weight:600;margin:24px 0 8px}
+p,li{font-size:15px;line-height:1.65;color:inherit}
+li{margin-bottom:6px}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+blockquote{margin:16px 0;padding:12px 20px;border-left:3px solid var(--ac);background:var(--ph);color:var(--fg);border-radius:0 6px 6px 0}
+code{background:var(--ph);padding:2px 6px;border-radius:4px;font-family:"IBM Plex Mono",monospace;font-size:13px}
+pre{background:rgba(0,0,0,.04);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--line);font-size:13px;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:20px 0;border:1px solid var(--line);border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+th{background:var(--ph);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="top mono"><span>DETI / Universidade de Aveiro</span><span>UC 43675 · PEI 2026/2027</span></div>
+<div class="nav"><a class="back" href="../requisitos.html">← Voltar</a><span class="mono">Documento DetiBuddy</span></div>
+<article>
+<h1>DetiBuddy — Levantamento de Requisitos (Requirements Gathering)</h1>
+<blockquote><b>Fase de Elaboração — Projeto em Engenharia Informática (PEI 2026/2027)</b></blockquote>
+<blockquote><b>Autores:</b> Arthur Haerdy, Francisco Amaro, Geovana Mayer, Lisle Faria, Samuel Ramos</blockquote>
+<blockquote><b>Orientador:</b> Prof. Mário Antunes</blockquote>
+<hr>
+<h2>1. Introdução e Objetivos da Recolha</h2>
+<p>O levantamento de requisitos (<em>Requirements Gathering</em>) para o <b>DetiBuddy</b> teve como objetivo central compreender as dificuldades diárias dos estudantes do Departamento de Eletrónica, Telecomunicações e Informática (DETI) da Universidade de Aveiro (UA), mapear a fragmentação dos canais de informação e definir as necessidades funcionais e de privacidade essenciais para um assistente conversacional inteligente e contextualizado.</p>
+<p>A recolha procurou responder a três questões fulcrais:</p>
+<ol>
+<li><b>Onde e quando sentem os estudantes maior fricção</b> no acesso a informação académica e serviços do campus?</li>
+<li><b>Que tarefas diárias justificam automação</b> ou agregação num ponto único de contacto?</li>
+<li><b>Quais são os limites de aceitação e privacidade</b> da comunidade académica face à partilha de credenciais e conversas com modelos de inteligência artificial?</li>
+</ol>
+<hr>
+<h2>2. Metodologia e Fontes de Informação</h2>
+<p>Para assegurar uma visão holística e representativa dos diferentes intervenientes (<em>stakeholders</em>), foram combinadas técnicas qualitativas e quantitativas de elicitação:</p>
+<pre><code class="language-mermaid">
+flowchart TD
+    subgraph Fontes de Recolha
+        A[Brainstorming Interno da Equipa]
+        B[Reuniões com Coordenação e STIC]
+        C[Entrevistas Semi-Estruturadas a Estudantes]
+        D[Observação Direta de Utilizadores]
+        E[Análise Documental e Regulamentar]
+    end
+
+    subgraph Síntese e Modelação
+        F[Identificação de Pain Points &amp; Necessidades]
+        G[Criação de Personas: Eunice, Paulo, Liam e Rui]
+        H[Definição de Épicos e User Stories]
+        I[Requisitos Funcionais e Não Funcionais]
+    end
+
+    A --&gt; F
+    B --&gt; F
+    C --&gt; F
+    D --&gt; F
+    E --&gt; F
+    F --&gt; G
+    G --&gt; H
+    H --&gt; I
+</code></pre>
+<h3>2.1 Brainstorming Interno da Equipa</h3>
+<ul>
+<li><b>Participantes:</b> Membros da equipa de desenvolvimento (Arthur Haerdy, Francisco Amaro, Geovana Mayer, Lisle Faria, Samuel Ramos).</li>
+<li><b>Dinâmica:</b> Sessões de mapeamento de ideias e identificação de problemas comuns vivenciados no DETI (ex.: esquecimento de prazos de avaliação publicados apenas em ficheiros dispersos, incerteza sobre lugares de estacionamento e navegação pelos regulamentos de faltas e avaliação).</li>
+<li><b>Resultado:</b> Mapeamento inicial dos 10 Épicos (E1 a E10).</li>
+</ul>
+<h3>2.2 Reuniões com Stakeholders Institucionais</h3>
+<ul>
+<li><b>Orientador de projeto (Prof. Mário Antunes):</b></li>
+<li>Alinhamento do âmbito técnico e arquitetural da solução.</li>
+<li>Estabelecimento do compromisso inegociável de <b>soberania de dados</b>: o processamento de conversas e dados pessoais não pode ser delegado em modelos de cloud pública que quebrem as políticas da universidade ou o RGPD, devendo ser executado na infraestrutura local da UA (<b>Skynet</b> e servidores do DETI).</li>
+<li><b>Contactos com os Serviços de Tecnologias da Informação e Comunicação (STIC):</b></li>
+<li>Levantamento das formas de integração e autenticação da UA (Single Sign-On / OAuth2 / IdP UA).</li>
+<li>Análise das restrições de segurança associadas a APIs institucionais do PACO e e-learning, estruturando uma abordagem por níveis de contingência: incorporar o serviço diretamente se as APIs forem autorizadas pelos STIC (<b>Plano A</b>); utilizar mocks prontos das APIs do e-learning e PACO desenvolvidos pela equipa para desenvolvimento e testes contínuos (<b>Plano B</b>); e recorrer a automação via web scraping com Playwright apenas como <b>Plano C</b> (e não Plano B).</li>
+</ul>
+<h3>2.3 Entrevistas Semi-Estruturadas a Estudantes</h3>
+<p>Foram conduzidas entrevistas rápidas e direcionadas a estudantes do DETI com diferentes níveis de vivência académica:</p>
+<ul>
+<li><b>Grupo A — Caloiros / 1.º Ano (representados pela Persona Eunice):</b></li>
+<li><em>Padrão identificado:</em> Desorientação com a multiplicidade de plataformas (PACO, Moodle, SAS, Webmail); dificuldade em encontrar gabinetes de docentes; desconhecimento das regras de avaliação (ex.: épocas de exame, estatutos, limites de faltas); necessidade de saber onde almoçar e horários de serviços de apoio.</li>
+<li><b>Grupo B — Estudantes dos restantes anos / não do 1.º ano (representados pela Persona Paulo):</b></li>
+<li><em>Padrão identificado:</em> Conhecem as plataformas, mas estão saturados do tempo perdido em consultas repetitivas e manuais; necessitam de alertas rápidos de datas de entrega, estado de senhas de atendimento, vagas nos parques de estacionamento e sumarização de emails institucionais.</li>
+</ul>
+<h3>2.4 Observação e Testes com os Elementos da Equipa</h3>
+<ul>
+<li>Testes práticos e observação do percurso habitual dos elementos da equipa para responder a perguntas frequentes do dia a dia:</li>
+<li><em>Exemplo 1:</em> Para saber se tem aula de laboratório e em que sala, o aluno precisa de abrir o browser, navegar até ao PACO, fazer login com credenciais/2FA, clicar no horário semanal e navegar até ao dia pretendido. Tempo médio observado: <b>45 a 90 segundos</b>.</li>
+<li><em>Exemplo 2:</em> Para saber a ementa do dia, o aluno abre o portal dos SAS ou app externa, navega pelo calendário e seleciona a cantina.</li>
+<li><em>Exemplo 3:</em> Para confirmar uma data de teste, o aluno tem de entrar no e-learning da UC respetiva, procurar no fórum de avisos ou no plano da disciplina, constatando frequentemente que a data estava apenas mencionada num diapositivo PowerPoint.</li>
+<li><em>Conclusão:</em> A dispersão em 4 ou 5 plataformas distintas gera dispersão e perda de tempo desnecessária.</li>
+</ul>
+<h3>2.5 Análise Documental e Regulamentar</h3>
+<ul>
+<li>Levantamento dos documentos normativos oficiais da Universidade de Aveiro e do DETI:</li>
+<li>Regulamento de Avaliação Discente da Universidade de Aveiro.</li>
+<li>Regulamento de Inscrição, Matrícula e Frequência.</li>
+<li>Calendário Escolar Oficial da UA 2026/2027.</li>
+<li>Guias de apoio e manuais dos utilizadores do PACO.</li>
+<li><em>Conclusão:</em> O conhecimento oficial é denso, extenso e estático (PDFs), tornando-o o candidato perfeito para uma arquitetura baseada em <b>RAG (<em>Retrieval-Augmented Generation</em>)</b>.</li>
+</ul>
+<hr>
+<h2>3. Síntese dos Principais <em>Pain Points</em> e Necessidades</h2>
+<div class="table-wrap"><table><thead>
+<tr><th>Problema Identificado</th><th>Causa Raiz</th><th>Necessidade Correspondente</th></tr></thead><tbody>
+<tr><td><b>Dispersão de informação</b></td><td>Cada serviço pertence a uma entidade diferente (STIC, SAS, Reitoria, DETI).</td><td>Assistente centralizado que atua como <em>interface única</em> em linguagem natural.</td></tr>
+<tr><td><b>Prazos e testes esquecidos</b></td><td>Datas comunicadas em canais variados (anúncios Moodle, slides, emails).</td><td>Consulta rápida de avaliações agregadas por UC e lembretes proativos.</td></tr>
+<tr><td><b>Perda de tempo e deslocações</b></td><td>Falta de visibilidade em tempo real sobre ocupação de parques e senhas.</td><td>Alertas de proximidade de atendimento e ocupação de parques de estacionamento.</td></tr>
+<tr><td><b>Complexidade regulamentar</b></td><td>Regulamentos extensos em PDF que os alunos evitam ler.</td><td>Mecanismo RAG com citação rigorosa do documento e secção (anti-alucinação).</td></tr>
+<tr><td><b>Barreira de privacidade</b></td><td>Desconfiança no envio de conversas ou dados académicos para LLMs cloud (OpenAI, Google).</td><td>Garantia de execução estritamente <em>on-premise</em> na infraestrutura da UA.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>4. Matriz de Rastreabilidade (Fontes → Personas → Épicos)</h2>
+<p>A tabela seguinte ilustra como cada fonte de levantamento originou os artefactos formais da Fase de Elaboração:</p>
+<div class="table-wrap"><table><thead>
+<tr><th>Fonte de Recolha</th><th>Persona Impactada</th><th>Épicos Resultantes</th><th>Histórias de Utilizador / Requisitos</th></tr></thead><tbody>
+<tr><td><b>Entrevistas 1.º Ano (Caloiros)</b></td><td>Eunice</td><td><b>E2</b> (Serviços UA)&lt;br&gt;<b>E4</b> (Orientação Campus)&lt;br&gt;<b>E6</b> (Conhecimento DETI)</td><td>US-04, US-06, US-13, US-14, US-22 a US-25&lt;br&gt;FR-13, FR-16, FR-26 a FR-29, FR-35 a FR-40</td></tr>
+<tr><td><b>Entrevistas a Estudantes dos restantes anos (não do 1.º ano)</b></td><td>Paulo</td><td><b>E2</b> (Serviços UA)&lt;br&gt;<b>E3</b> (Assistente Pessoal)&lt;br&gt;<b>E8</b> (Notificações Proativas)</td><td>US-05, US-07, US-08, US-10 a US-12, US-29 a US-31&lt;br&gt;FR-14, FR-17, FR-18, FR-20 a FR-25, FR-44 a FR-47</td></tr>
+<tr><td><b>Entrevistas a Alunos Internacionais</b></td><td>Liam</td><td><b>E3</b> (Apoio Bilingue)&lt;br&gt;<b>E5</b> (Erasmus / Integração)&lt;br&gt;<b>E6</b> (Regulamentos em EN)</td><td>US-19, US-22, US-25&lt;br&gt;FR-09 (Suporte Inglês), FR-32, FR-35 a FR-38</td></tr>
+<tr><td><b>Observação e Testes com os Elementos</b></td><td>Eunice, Paulo e Liam</td><td><b>E7</b> (Canais de Acesso)&lt;br&gt;<b>E10</b> (Avaliação Contínua)</td><td>US-26 (Interface Web), US-35 (Feedback 👍/👎)&lt;br&gt;FR-41, FR-52, NFR-04, NFR-10</td></tr>
+<tr><td><b>Análise Documental e Regulamentar</b></td><td>Administrador (Rui) / Alunos</td><td><b>E6</b> (RAG e Regulamentos)&lt;br&gt;<b>E9</b> (Administração e Extensibilidade)</td><td>US-22, US-25, US-32 a US-34&lt;br&gt;FR-35 a FR-38, FR-48 a FR-51, NFR-11, NFR-16 (Facilidade de Manutenção e Atualização)</td></tr>
+</tbody></table></div>
+<hr>
+<h2>5. Decisões de Refinamento de Âmbito na Fase de Elaboração</h2>
+<p>Com base nos dados recolhidos e na avaliação técnica de viabilidade:</p>
+<ol>
+<li><b>Remoção de Pagamento de Propinas e Saldo do cartão SAS do MVP:</b></li>
+</ol>
+<p>Identificou-se que lidar com transações financeiras e dados bancários exigiria certificações de segurança adicionais e aprovação institucional complexa dos STIC/SAS, constituindo um risco desproporcionado para o cronograma do projeto. Foram marcados como fora de âmbito da Elaboração.</p>
+<ol>
+<li><b>Priorização da Interface Web (Desktop e Mobile) em detrimento de Discord:</b></li>
+</ol>
+<p>As entrevistas e testes indicaram que a barreira à entrada é mínima se o assistente estiver acessível via web browser responsivo (desktop e website mobile). A integração no Discord e a aplicação Android nativa foram classificadas como <em>Could have</em> (C).</p>
+<ol>
+<li><b>Mecanismo Anti-Alucinação Mandatório:</b></li>
+</ol>
+<p>Os estudantes manifestaram que uma resposta errada sobre faltas ou datas de exame seria gravíssima. Por conseguinte, foi definido que o sistema deve responder expressamente <em>&quot;Não encontrei informação nos documentos oficiais&quot;</em> e indicar o contacto do serviço ou docente caso o contexto recuperado não contenha a resposta com elevado grau de confiança.</p>
+</article>
+<footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>
+</div>
+</body>
+</html>
