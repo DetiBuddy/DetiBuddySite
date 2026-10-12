@@ -1,37 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1350" viewBox="0 0 1800 1350" role="img" aria-label="Diagrama de Modelo de Dominio DetiBuddy">
+<svg xmlns="http://www.w3.org/2000/svg" width="1780" height="1470" viewBox="0 0 1780 1470" role="img" aria-label="Diagrama de Modelo de Domínio DetiBuddy">
   <defs>
     <style>
       .title-brand { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 700; fill: #1e5792; letter-spacing: 2px; }
       .title-main { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 32px; font-weight: 700; fill: #14243b; }
       .title-sub { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 400; fill: #52647a; }
-      
-      .cluster-title { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; }
-      .class-title { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; }
+
+      .cluster-title { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700; }
+      .class-title { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 700; }
+      .class-stereo { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 11px; font-style: italic; }
       .class-attr { font-family: 'Segoe UI', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 11px; fill: #2c3e50; }
       .rel-label { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; fill: #475569; }
       .rel-card { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #1e293b; }
-      
+
       .c-blue { fill: #1e5792; }
       .c-purple { fill: #6c35a8; }
       .c-teal { fill: #087d78; }
       .c-amber { fill: #b35c00; }
       .c-rose { fill: #c0264b; }
     </style>
-    
+
     <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e5792" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6c35a8" />
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#087d78" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b35c00" />
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#c0264b" />
     </marker>
     <marker id="inherit" viewBox="0 0 12 12" refX="12" refY="6" markerWidth="9" markerHeight="9" orient="auto">
       <polygon points="0,0 12,6 0,12" fill="white" stroke="#1e5792" stroke-width="1.5" />
     </marker>
-    <marker id="comp" viewBox="0 0 14 14" refX="14" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+    <marker id="comp-blue" viewBox="0 0 14 14" refX="14" refY="7" markerWidth="10" markerHeight="10" orient="auto">
+      <polygon points="0,7 7,0 14,7 7,14" fill="#1e5792" stroke="#1e5792" stroke-width="1" />
+    </marker>
+    <marker id="comp-purple" viewBox="0 0 14 14" refX="14" refY="7" markerWidth="10" markerHeight="10" orient="auto">
       <polygon points="0,7 7,0 14,7 7,14" fill="#6c35a8" stroke="#6c35a8" stroke-width="1" />
     </marker>
   </defs>
 
   <!-- Fundo -->
   <rect width="100%" height="100%" fill="#ffffff" />
-  
+
   <!-- Header -->
   <text x="50" y="45" class="title-brand">DETIBUDDY · ENGENHARIA DE SOFTWARE (FASE DE ELABORAÇÃO)</text>
   <text x="50" y="85" class="title-main">Modelo de Domínio Conceptual (UML Domain Model)</text>
@@ -40,425 +59,520 @@
   <!-- ========================================== -->
   <!-- CLUSTER 1: IDENTIDADE E CONVERSAÇÃO (AZUL) -->
   <!-- ========================================== -->
-  <rect x="40" y="150" width="640" height="740" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="40" y="150" width="640" height="874" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4" />
   <rect x="55" y="165" width="280" height="28" rx="6" fill="#e0f2fe" />
   <text x="65" y="184" class="cluster-title c-blue">Cluster 1: Identidade e Conversação</text>
 
-  <!-- Classe: Utilizador -->
+  <!-- Classe: <<abstract>> Utilizador -->
   <g id="class-utilizador">
-    <rect x="65" y="210" width="250" height="140" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="65" y="210" width="250" height="28" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="190" y="229" class="class-title c-blue" text-anchor="middle">Utilizador</text>
-    <line x1="65" y1="238" x2="315" y2="238" stroke="#1e5792" stroke-width="1" />
-    <text x="75" y="258" class="class-attr">+ String nmec</text>
-    <text x="75" y="276" class="class-attr">+ String nome</text>
-    <text x="75" y="294" class="class-attr">+ String emailInstitucional</text>
-    <text x="75" y="312" class="class-attr">+ TipoPerfil perfil</text>
-    <text x="75" y="330" class="class-attr">+ DateTime dataRegisto</text>
+    <rect x="170" y="204" width="160" height="140" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="170" y="204" width="160" height="40" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="250" y="219" class="class-stereo c-blue" text-anchor="middle">&lt;&lt;abstract&gt;&gt;</text>
+    <text x="250" y="235" class="class-title c-blue" text-anchor="middle">Utilizador</text>
+    <line x1="170" y1="244" x2="330" y2="244" stroke="#1e5792" stroke-width="1" />
+    <text x="178" y="262" class="class-attr">+ UUID id</text>
+    <text x="178" y="278" class="class-attr">+ string sub_oidc</text>
+    <text x="178" y="294" class="class-attr">+ string email_ua</text>
+    <text x="178" y="310" class="class-attr">+ string nome</text>
+    <text x="178" y="326" class="class-attr">+ datetime criado_em</text>
   </g>
 
-  <!-- Classe: Estudante (herda Utilizador) -->
+  <!-- Classe: Administrador -->
+  <g id="class-administrador">
+    <rect x="70" y="419" width="160" height="75" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="70" y="419" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="150" y="439" class="class-title c-blue" text-anchor="middle">Administrador</text>
+    <line x1="70" y1="449" x2="230" y2="449" stroke="#1e5792" stroke-width="1" />
+    <text x="78" y="470" class="class-attr" fill="#64748b">/* Gestão do Sistema */</text>
+  </g>
+
+  <!-- Classe: Estudante -->
   <g id="class-estudante">
-    <rect x="55" y="400" width="160" height="95" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="55" y="400" width="160" height="25" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="135" y="417" class="class-title c-blue" text-anchor="middle">Estudante</text>
-    <line x1="55" y1="425" x2="215" y2="425" stroke="#1e5792" stroke-width="1" />
-    <text x="65" y="445" class="class-attr">+ String curso</text>
-    <text x="65" y="463" class="class-attr">+ Int anoCurricular</text>
-    <text x="65" y="481" class="class-attr">+ String estatutoEspecial</text>
+    <rect x="260" y="419" width="160" height="120" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="260" y="419" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="340" y="439" class="class-title c-blue" text-anchor="middle">Estudante</text>
+    <line x1="260" y1="449" x2="420" y2="449" stroke="#1e5792" stroke-width="1" />
+    <text x="268" y="467" class="class-attr">+ string nmec</text>
+    <text x="268" y="483" class="class-attr">+ string curso</text>
+    <text x="268" y="499" class="class-attr">+ string idioma // pt|en</text>
+    <text x="268" y="515" class="class-attr">+ bool historico_ativo</text>
   </g>
 
-  <!-- Classe: Docente (herda Utilizador) -->
-  <g id="class-docente">
-    <rect x="235" y="400" width="170" height="95" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="235" y="400" width="170" height="25" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="320" y="417" class="class-title c-blue" text-anchor="middle">Docente</text>
-    <line x1="235" y1="425" x2="405" y2="425" stroke="#1e5792" stroke-width="1" />
-    <text x="245" y="445" class="class-attr">+ String departamento</text>
-    <text x="245" y="463" class="class-attr">+ String gabinete</text>
-    <text x="245" y="481" class="class-attr">+ String horarioAtendimento</text>
-  </g>
+  <!-- Herança Utilizador &lt; -  Administrador, Estudante -->
+  <polyline points="150,419 150,375 210,375 210,344" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
+  <polyline points="340,419 340,375 290,375 290,344" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
 
-  <!-- Setas de Heranca -->
-  <polyline points="135,400 135,370 170,370 170,350" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
-  <polyline points="320,400 320,370 210,370 210,350" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
-
-  <!-- Classe: Sessao -->
+  <!-- Classe: Sessão -->
   <g id="class-sessao">
-    <rect x="430" y="210" width="225" height="130" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="430" y="210" width="225" height="28" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="542" y="229" class="class-title c-blue" text-anchor="middle">Sessao</text>
-    <line x1="430" y1="238" x2="655" y2="238" stroke="#1e5792" stroke-width="1" />
-    <text x="440" y="258" class="class-attr">+ UUID idSessao</text>
-    <text x="440" y="276" class="class-attr">+ Canal canalOrigem</text>
-    <text x="440" y="294" class="class-attr">+ DateTime dataInicio</text>
-    <text x="440" y="312" class="class-attr">+ DateTime expiraEm</text>
-    <text x="440" y="330" class="class-attr">+ Boolean ativa</text>
+    <rect x="480" y="204" width="160" height="140" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="480" y="204" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="560" y="224" class="class-title c-blue" text-anchor="middle">Sessão</text>
+    <line x1="480" y1="234" x2="640" y2="234" stroke="#1e5792" stroke-width="1" />
+    <text x="488" y="254" class="class-attr">+ UUID idSessao</text>
+    <text x="488" y="270" class="class-attr">+ Canal canalOrigem</text>
+    <text x="488" y="286" class="class-attr">+ DateTime dataInicio</text>
+    <text x="488" y="302" class="class-attr">+ DateTime expiraEm</text>
+    <text x="488" y="318" class="class-attr">+ Boolean ativa</text>
   </g>
 
-  <!-- Relacao Utilizador -> Sessao -->
-  <line x1="315" y1="260" x2="430" y2="260" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="325" y="252" class="rel-card">1</text>
-  <text x="355" y="252" class="rel-label">estabelece</text>
-  <text x="410" y="252" class="rel-card">0..*</text>
+  <!-- Relacao Utilizador -> Sessão -->
+  <line x1="330" y1="274" x2="480" y2="274" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="338" y="266" class="rel-card">1</text>
+  <text x="405" y="266" class="rel-label" text-anchor="middle">Estabelece</text>
+  <text x="455" y="266" class="rel-card">0..*</text>
 
   <!-- Classe: Conversa -->
   <g id="class-conversa">
-    <rect x="430" y="390" width="225" height="95" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="430" y="390" width="225" height="25" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="542" y="407" class="class-title c-blue" text-anchor="middle">Conversa</text>
-    <line x1="430" y1="415" x2="655" y2="415" stroke="#1e5792" stroke-width="1" />
-    <text x="440" y="435" class="class-attr">+ UUID idConversa</text>
-    <text x="440" y="453" class="class-attr">+ String tituloResumo</text>
-    <text x="440" y="471" class="class-attr">+ DateTime criadaEm</text>
+    <rect x="480" y="424" width="160" height="110" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="480" y="424" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="560" y="444" class="class-title c-blue" text-anchor="middle">Conversa</text>
+    <line x1="480" y1="454" x2="640" y2="454" stroke="#1e5792" stroke-width="1" />
+    <text x="488" y="474" class="class-attr">+ UUID idConversa</text>
+    <text x="488" y="490" class="class-attr">+ String tituloResumo</text>
+    <text x="488" y="506" class="class-attr">+ DateTime criadaEm</text>
   </g>
 
-  <!-- Relacao Sessao -> Conversa -->
-  <line x1="542" y1="340" x2="542" y2="390" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="548" y="355" class="rel-card">1</text>
-  <text x="550" y="370" class="rel-label">agrega</text>
-  <text x="548" y="385" class="rel-card">1..*</text>
+  <!-- Relacao Sessão -> Conversa -->
+  <line x1="560" y1="344" x2="560" y2="424" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="568" y="360" class="rel-card">1</text>
+  <text x="568" y="386" class="rel-label">Agrega</text>
+  <text x="568" y="412" class="rel-card">0..*</text>
 
-  <!-- Classe: Mensagem -->
+  <!-- Classe: <<abstract>> Mensagem -->
   <g id="class-mensagem">
-    <rect x="430" y="535" width="225" height="135" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="430" y="535" width="225" height="26" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="542" y="552" class="class-title c-blue" text-anchor="middle">Mensagem</text>
-    <line x1="430" y1="561" x2="655" y2="561" stroke="#1e5792" stroke-width="1" />
-    <text x="440" y="581" class="class-attr">+ UUID idMensagem</text>
-    <text x="440" y="599" class="class-attr">+ PapelAutor autor</text>
-    <text x="440" y="617" class="class-attr">+ String textoConteudo</text>
-    <text x="440" y="635" class="class-attr">+ DateTime timestamp</text>
-    <text x="440" y="653" class="class-attr">+ Int tokensProcessados</text>
+    <rect x="480" y="669" width="160" height="140" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="480" y="669" width="160" height="40" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="560" y="684" class="class-stereo c-blue" text-anchor="middle">&lt;&lt;abstract&gt;&gt;</text>
+    <text x="560" y="700" class="class-title c-blue" text-anchor="middle">Mensagem</text>
+    <line x1="480" y1="709" x2="640" y2="709" stroke="#1e5792" stroke-width="1" />
+    <text x="488" y="729" class="class-attr">+ UUID id</text>
+    <text x="488" y="745" class="class-attr">+ string conteudo</text>
+    <text x="488" y="761" class="class-attr">+ datetime criada_em</text>
+    <text x="488" y="777" class="class-attr">+ int latencia_ms</text>
   </g>
 
-  <!-- Relacao Conversa -> Mensagem -->
-  <line x1="542" y1="485" x2="542" y2="535" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="548" y="500" class="rel-card">1</text>
-  <text x="550" y="515" class="rel-label">contém</text>
-  <text x="548" y="528" class="rel-card">1..*</text>
+  <!-- Relacao Conversa *-> Mensagem -->
+  <line x1="560" y1="534" x2="560" y2="669" stroke="#1e5792" stroke-width="1.5" marker-start="url(#comp-blue)" marker-end="url(#arrow-blue)" />
+  <text x="568" y="555" class="rel-card">1</text>
+  <text x="568" y="605" class="rel-label">Contém</text>
+  <text x="568" y="655" class="rel-card">1..*</text>
+
+  <!-- Classe: MensagemUtilizador -->
+  <g id="class-mensagemutilizador">
+    <rect x="219" y="654" width="160" height="80" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="219" y="654" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="299" y="674" class="class-title c-blue" text-anchor="middle">MensagemUtilizador</text>
+    <line x1="219" y1="684" x2="379" y2="684" stroke="#1e5792" stroke-width="1" />
+    <text x="227" y="704" class="class-attr">+ int tokens_in</text>
+  </g>
+
+  <!-- Classe: MensagemChatbot -->
+  <g id="class-mensagemchatbot">
+    <rect x="219" y="756" width="160" height="103" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="219" y="756" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="299" y="776" class="class-title c-blue" text-anchor="middle">MensagemChatbot</text>
+    <line x1="219" y1="786" x2="379" y2="786" stroke="#1e5792" stroke-width="1" />
+    <text x="227" y="806" class="class-attr">+ int tokens_out</text>
+    <text x="227" y="824" class="class-attr">+ EstadoResposta estado</text>
+  </g>
+
+  <!-- Heranca Mensagem &lt; -  MensagemUtilizador, MensagemChatbot -->
+  <line x1="379" y1="694" x2="480" y2="694" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
+  <polyline points="379,780 430,780 430,735 480,735" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
+
+  <!-- Classe: <<enum>> EstadoResposta -->
+  <g id="class-estadoresposta">
+    <rect x="219" y="884" width="160" height="130" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="219" y="884" width="160" height="38" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="299" y="898" class="class-stereo c-blue" text-anchor="middle">&lt;&lt;enum&gt;&gt;</text>
+    <text x="299" y="913" class="class-title c-blue" text-anchor="middle">EstadoResposta</text>
+    <line x1="219" y1="922" x2="379" y2="922" stroke="#1e5792" stroke-width="1" />
+    <text x="227" y="938" class="class-attr">ANALISANDO_PERGUNTA</text>
+    <text x="227" y="954" class="class-attr">PENSANDO_RESPOSTA</text>
+    <text x="227" y="970" class="class-attr">CONCLUIDO</text>
+    <text x="227" y="986" class="class-attr">ERRO</text>
+    <text x="227" y="1002" class="class-attr">ABORTADO</text>
+  </g>
+
+  <!-- Ligacao Enum EstadoResposta -> MensagemChatbot -->
+  <line x1="299" y1="884" x2="299" y2="859" stroke="#1e5792" stroke-width="1.5" stroke-dasharray="3,3" />
 
   <!-- Classe: Feedback -->
   <g id="class-feedback">
-    <rect x="430" y="720" width="225" height="110" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
-    <rect x="430" y="720" width="225" height="25" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
-    <text x="542" y="737" class="class-title c-blue" text-anchor="middle">Feedback</text>
-    <line x1="430" y1="745" x2="655" y2="745" stroke="#1e5792" stroke-width="1" />
-    <text x="440" y="765" class="class-attr">+ UUID idFeedback</text>
-    <text x="440" y="783" class="class-attr">+ Classificacao rating</text>
-    <text x="440" y="801" class="class-attr">+ String comentario</text>
-    <text x="440" y="819" class="class-attr">+ DateTime registadoEm</text>
+    <rect x="480" y="889" width="160" height="120" rx="6" fill="#ffffff" stroke="#1e5792" stroke-width="1.5" />
+    <rect x="480" y="889" width="160" height="30" rx="6" fill="#f0f7ff" stroke="#1e5792" stroke-width="1.5" />
+    <text x="560" y="909" class="class-title c-blue" text-anchor="middle">Feedback</text>
+    <line x1="480" y1="919" x2="640" y2="919" stroke="#1e5792" stroke-width="1" />
+    <text x="488" y="939" class="class-attr">+ UUID idFeedback</text>
+    <text x="488" y="957" class="class-attr">+ Classificacao rating</text>
+    <text x="488" y="975" class="class-attr">+ String comentario</text>
+    <text x="488" y="993" class="class-attr">+ DateTime registadoEm</text>
   </g>
 
-  <!-- Relacao Mensagem -> Feedback -->
-  <line x1="542" y1="670" x2="542" y2="720" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="548" y="685" class="rel-card">1</text>
-  <text x="550" y="700" class="rel-label">recebe</text>
-  <text x="548" y="713" class="rel-card">0..1</text>
+  <!-- Relacao MensagemChatbot -> Feedback -->
+  <polyline points="379,833 410,833 410,949 480,949" fill="none" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="415" y="830" class="rel-card">1</text>
+  <text x="425" y="940" class="rel-label">Recebe</text>
+  <text x="455" y="940" class="rel-card">0..1</text>
+
+  <!-- Relacao Estudante -> MensagemUtilizador (dashed) -->
+  <path d="M 340 539 L 299 654" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="345" y="555" class="rel-card">1</text>
+  <text x="325" y="595" class="rel-label">Possui</text>
+  <text x="310" y="645" class="rel-card">1..*</text>
 
   <!-- ============================================== -->
   <!-- CLUSTER 2: CONHECIMENTO & RAG (ROXO)           -->
   <!-- ============================================== -->
-  <rect x="710" y="150" width="310" height="740" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" stroke-dasharray="6,4" />
-  <rect x="725" y="165" width="270" height="28" rx="6" fill="#f3e8ff" />
-  <text x="735" y="184" class="cluster-title c-purple">Cluster 2: Conhecimento &amp; RAG</text>
+  <rect x="700" y="150" width="310" height="874" rx="12" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="715" y="165" width="280" height="28" rx="6" fill="#f3e8ff" />
+  <text x="725" y="184" class="cluster-title c-purple">Cluster 2: Conhecimento &amp; RAG</text>
 
   <!-- Classe: DocumentoNormativo -->
   <g id="class-documentonormativo">
-    <rect x="735" y="210" width="260" height="165" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
-    <rect x="735" y="210" width="260" height="28" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
-    <text x="865" y="229" class="class-title c-purple" text-anchor="middle">DocumentoNormativo</text>
-    <line x1="735" y1="238" x2="995" y2="238" stroke="#6c35a8" stroke-width="1" />
-    <text x="745" y="258" class="class-attr">+ UUID idDocumento</text>
-    <text x="745" y="276" class="class-attr">+ String titulo</text>
-    <text x="745" y="294" class="class-attr">+ TipoDocumento categoria</text>
-    <text x="745" y="312" class="class-attr">+ String orgaoEmissor</text>
-    <text x="745" y="330" class="class-attr">+ Date dataAprovacao</text>
-    <text x="745" y="348" class="class-attr">+ Date dataValidade</text>
-    <text x="745" y="366" class="class-attr">+ EstadoDoc estado</text>
+    <rect x="775" y="214" width="160" height="170" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
+    <rect x="775" y="214" width="160" height="30" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
+    <text x="855" y="234" class="class-title c-purple" text-anchor="middle">DocumentoNormativo</text>
+    <line x1="775" y1="244" x2="935" y2="244" stroke="#6c35a8" stroke-width="1" />
+    <text x="783" y="264" class="class-attr">+ UUID idDocumento</text>
+    <text x="783" y="280" class="class-attr">+ String titulo</text>
+    <text x="783" y="296" class="class-attr">+ TipoDoc categoria</text>
+    <text x="783" y="312" class="class-attr">+ String orgaoEmissor</text>
+    <text x="783" y="328" class="class-attr">+ Date dataAprovacao</text>
+    <text x="783" y="344" class="class-attr">+ Date dataValidade</text>
+    <text x="783" y="360" class="class-attr">+ EstadoDoc estado</text>
   </g>
 
   <!-- Classe: ChunkDocumento -->
   <g id="class-chunkdocumento">
-    <rect x="735" y="445" width="260" height="150" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
-    <rect x="735" y="445" width="260" height="26" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
-    <text x="865" y="462" class="class-title c-purple" text-anchor="middle">ChunkDocumento</text>
-    <line x1="735" y1="471" x2="995" y2="471" stroke="#6c35a8" stroke-width="1" />
-    <text x="745" y="491" class="class-attr">+ UUID idChunk</text>
-    <text x="745" y="509" class="class-attr">+ Int sequencia</text>
-    <text x="745" y="527" class="class-attr">+ String textoExcerto</text>
-    <text x="745" y="545" class="class-attr">+ Vector1536 embedding</text>
-    <text x="745" y="563" class="class-attr">+ String artigoReferenciado</text>
-    <text x="745" y="581" class="class-attr">+ Int pagina</text>
+    <rect x="775" y="464" width="160" height="150" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
+    <rect x="775" y="464" width="160" height="30" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
+    <text x="855" y="484" class="class-title c-purple" text-anchor="middle">ChunkDocumento</text>
+    <line x1="775" y1="494" x2="935" y2="494" stroke="#6c35a8" stroke-width="1" />
+    <text x="783" y="514" class="class-attr">+ UUID idChunk</text>
+    <text x="783" y="530" class="class-attr">+ Int sequencia</text>
+    <text x="783" y="546" class="class-attr">+ String textoExcerto</text>
+    <text x="783" y="562" class="class-attr">+ Vector embedding</text>
+    <text x="783" y="578" class="class-attr">+ String artigoRef</text>
+    <text x="783" y="594" class="class-attr">+ Int pagina</text>
   </g>
 
   <!-- Composicao DocumentoNormativo *-> ChunkDocumento -->
-  <line x1="865" y1="375" x2="865" y2="445" stroke="#6c35a8" stroke-width="1.5" marker-start="url(#comp)" />
-  <text x="872" y="395" class="rel-card">1</text>
-  <text x="875" y="415" class="rel-label">particionado</text>
-  <text x="872" y="435" class="rel-card">1..*</text>
+  <line x1="855" y1="384" x2="855" y2="464" stroke="#6c35a8" stroke-width="1.5" marker-start="url(#comp-purple)" marker-end="url(#arrow-purple)" />
+  <text x="863" y="404" class="rel-card">1</text>
+  <text x="863" y="426" class="rel-label">Particionado</text>
+  <text x="863" y="452" class="rel-card">1..*</text>
 
   <!-- Classe: CitacaoFonte -->
   <g id="class-citacaofonte">
-    <rect x="735" y="670" width="260" height="120" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
-    <rect x="735" y="670" width="260" height="26" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
-    <text x="865" y="687" class="class-title c-purple" text-anchor="middle">CitacaoFonte</text>
-    <line x1="735" y1="696" x2="995" y2="696" stroke="#6c35a8" stroke-width="1" />
-    <text x="745" y="716" class="class-attr">+ String artigoFormal</text>
-    <text x="745" y="734" class="class-attr">+ String documentoOrigem</text>
-    <text x="745" y="752" class="class-attr">+ Float scoreSimilaridade</text>
-    <text x="745" y="770" class="class-attr">+ String urlOficial</text>
+    <rect x="775" y="694" width="160" height="125" rx="6" fill="#ffffff" stroke="#6c35a8" stroke-width="1.5" />
+    <rect x="775" y="694" width="160" height="30" rx="6" fill="#fdf4ff" stroke="#6c35a8" stroke-width="1.5" />
+    <text x="855" y="714" class="class-title c-purple" text-anchor="middle">CitacaoFonte</text>
+    <line x1="775" y1="724" x2="935" y2="724" stroke="#6c35a8" stroke-width="1" />
+    <text x="783" y="744" class="class-attr">+ String artigoFormal</text>
+    <text x="783" y="760" class="class-attr">+ String docOrigem</text>
+    <text x="783" y="776" class="class-attr">+ Float scoreSim</text>
+    <text x="783" y="792" class="class-attr">+ String urlOficial</text>
   </g>
 
   <!-- Relacao ChunkDocumento -> CitacaoFonte -->
-  <line x1="865" y1="595" x2="865" y2="670" stroke="#6c35a8" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="872" y="615" class="rel-card">1</text>
-  <text x="875" y="635" class="rel-label">evidência</text>
-  <text x="872" y="660" class="rel-card">0..*</text>
+  <line x1="855" y1="614" x2="855" y2="694" stroke="#6c35a8" stroke-width="1.5" marker-end="url(#arrow-purple)" />
+  <text x="863" y="634" class="rel-card">1</text>
+  <text x="863" y="656" class="rel-label">Evidência</text>
+  <text x="863" y="682" class="rel-card">0..*</text>
 
-  <!-- Relacao Mensagem -> CitacaoFonte -->
-  <line x1="655" y1="615" x2="735" y2="700" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
-  <text x="665" y="630" class="rel-card">1</text>
-  <text x="670" y="665" class="rel-label">cita</text>
-  <text x="715" y="690" class="rel-card">0..*</text>
+  <!-- Relacao MensagemChatbot -> CitacaoFonte (dashed) -->
+  <polyline points="379,823.5 710,823.5 710,756 775,756" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="389" y="815" class="rel-card">1</text>
+  <text x="409" y="815" class="rel-label">Cita</text>
+  <text x="745" y="750" class="rel-card">0..*</text>
+
+  <!-- Relacao Administrador -> DocumentoNormativo (dashed) -->
+  <polyline points="150,494 150,603.5 730,603.5 730,293.5 775,293.5" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="155" y="510" class="rel-card">1</text>
+  <text x="165" y="540" class="rel-label">Carrega</text>
+  <text x="745" y="285" class="rel-card">0..*</text>
 
   <!-- ============================================== -->
   <!-- CLUSTER 3: ACADÉMICO (PACO & MOODLE) (TEAL)    -->
   <!-- ============================================== -->
-  <rect x="1050" y="150" width="350" height="740" rx="12" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1.5" stroke-dasharray="6,4" />
-  <rect x="1065" y="165" width="280" height="28" rx="6" fill="#ccfbf1" />
-  <text x="1075" y="184" class="cluster-title c-teal">Cluster 3: Académico (PACO &amp; Moodle)</text>
+  <rect x="1031" y="150" width="350" height="1274" rx="12" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="1046" y="165" width="310" height="28" rx="6" fill="#ccfbf1" />
+  <text x="1056" y="184" class="cluster-title c-teal">Cluster 3: Académico (PACO &amp; Moodle)</text>
 
   <!-- Classe: UnidadeCurricular -->
   <g id="class-unidadecurricular">
-    <rect x="1080" y="210" width="280" height="150" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
-    <rect x="1080" y="210" width="280" height="28" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
-    <text x="1220" y="229" class="class-title c-teal" text-anchor="middle">UnidadeCurricular</text>
-    <line x1="1080" y1="238" x2="1360" y2="238" stroke="#087d78" stroke-width="1" />
-    <text x="1090" y="258" class="class-attr">+ String codigoUC</text>
-    <text x="1090" y="276" class="class-attr">+ String designacao</text>
-    <text x="1090" y="294" class="class-attr">+ String sigla</text>
-    <text x="1090" y="312" class="class-attr">+ String anoLetivo</text>
-    <text x="1090" y="330" class="class-attr">+ Int semestre</text>
-    <text x="1090" y="348" class="class-attr">+ Float ects</text>
+    <rect x="1126" y="214" width="160" height="150" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
+    <rect x="1126" y="214" width="160" height="30" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
+    <text x="1206" y="234" class="class-title c-teal" text-anchor="middle">UnidadeCurricular</text>
+    <line x1="1126" y1="244" x2="1286" y2="244" stroke="#087d78" stroke-width="1" />
+    <text x="1134" y="264" class="class-attr">+ String codigoUC</text>
+    <text x="1134" y="280" class="class-attr">+ String designacao</text>
+    <text x="1134" y="296" class="class-attr">+ String sigla</text>
+    <text x="1134" y="312" class="class-attr">+ String anoLetivo</text>
+    <text x="1134" y="328" class="class-attr">+ Int semestre</text>
+    <text x="1134" y="344" class="class-attr">+ Float ects</text>
   </g>
 
-  <!-- Classe: Inscricao -->
+  <!-- Classe: Inscrição -->
   <g id="class-inscricao">
-    <rect x="1080" y="420" width="230" height="95" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
-    <rect x="1080" y="420" width="230" height="25" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
-    <text x="1195" y="437" class="class-title c-teal" text-anchor="middle">Inscricao</text>
-    <line x1="1080" y1="445" x2="1310" y2="445" stroke="#087d78" stroke-width="1" />
-    <text x="1090" y="465" class="class-attr">+ String anoMatricula</text>
-    <text x="1090" y="483" class="class-attr">+ EstadoInscricao estado</text>
-    <text x="1090" y="501" class="class-attr">+ String turmaPratica</text>
+    <rect x="1126" y="444" width="160" height="110" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
+    <rect x="1126" y="444" width="160" height="30" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
+    <text x="1206" y="464" class="class-title c-teal" text-anchor="middle">Inscrição</text>
+    <line x1="1126" y1="474" x2="1286" y2="474" stroke="#087d78" stroke-width="1" />
+    <text x="1134" y="494" class="class-attr">+ String anoMatricula</text>
+    <text x="1134" y="510" class="class-attr">+ EstadoInscricao estado</text>
+    <text x="1134" y="526" class="class-attr">+ String turmaPratica</text>
   </g>
 
-  <!-- Relacao Inscricao -> UnidadeCurricular -->
-  <line x1="1195" y1="420" x2="1195" y2="360" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="1205" y="405" class="rel-card">0..*</text>
-  <text x="1205" y="390" class="rel-label">refere</text>
-  <text x="1205" y="375" class="rel-card">1</text>
+  <!-- Relacao UnidadeCurricular -> Inscrição -->
+  <line x1="1206" y1="364" x2="1206" y2="444" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow-teal)" />
+  <text x="1214" y="384" class="rel-card">1</text>
+  <text x="1214" y="406" class="rel-label">Refere</text>
+  <text x="1214" y="432" class="rel-card">0..*</text>
 
-  <!-- Relacao Estudante -> Inscricao (atravessa clusters) -->
-  <path d="M 215 450 Q 640 460 1080 460" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
-  <text x="225" y="445" class="rel-card">1</text>
-  <text x="640" y="445" class="rel-label">possui</text>
-  <text x="1060" y="450" class="rel-card">1..*</text>
+  <!-- Relacao Estudante -> Inscrição (dashed) -->
+  <polyline points="340,539 340,584 1090,584 1090,499 1126,499" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="345" y="555" class="rel-card">1</text>
+  <text x="1070" y="490" class="rel-card">1..*</text>
 
   <!-- Classe: AulaHorario -->
   <g id="class-aulahorario">
-    <rect x="1080" y="555" width="240" height="150" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
-    <rect x="1080" y="555" width="240" height="26" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
-    <text x="1200" y="572" class="class-title c-teal" text-anchor="middle">AulaHorario</text>
-    <line x1="1080" y1="581" x2="1320" y2="581" stroke="#087d78" stroke-width="1" />
-    <text x="1090" y="601" class="class-attr">+ DiaSemana diaSemana</text>
-    <text x="1090" y="619" class="class-attr">+ Time horaInicio</text>
-    <text x="1090" y="637" class="class-attr">+ Time horaFim</text>
-    <text x="1090" y="655" class="class-attr">+ TipoAula tipologia</text>
-    <text x="1090" y="673" class="class-attr">+ String sala</text>
-    <text x="1090" y="691" class="class-attr">+ String edificio</text>
+    <rect x="1126" y="599" width="160" height="150" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
+    <rect x="1126" y="599" width="160" height="30" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
+    <text x="1206" y="619" class="class-title c-teal" text-anchor="middle">AulaHorario</text>
+    <line x1="1126" y1="629" x2="1286" y2="629" stroke="#087d78" stroke-width="1" />
+    <text x="1134" y="649" class="class-attr">+ DiaSemana diaSemana</text>
+    <text x="1134" y="665" class="class-attr">+ Time horaInicio</text>
+    <text x="1134" y="681" class="class-attr">+ Time horaFim</text>
+    <text x="1134" y="697" class="class-attr">+ TipoAula tipologia</text>
+    <text x="1134" y="713" class="class-attr">+ String sala</text>
+    <text x="1134" y="729" class="class-attr">+ String edificio</text>
   </g>
 
   <!-- Relacao UnidadeCurricular -> AulaHorario -->
-  <path d="M 1360 285 Q 1390 285 1390 590 L 1320 590" fill="none" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="1365" y="275" class="rel-card">1</text>
-  <text x="1395" y="440" class="rel-label">tem</text>
-  <text x="1330" y="580" class="rel-card">1..*</text>
+  <polyline points="1286,314 1320,314 1320,674 1286,674" fill="none" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow-teal)" />
+  <text x="1294" y="305" class="rel-card">1</text>
+  <text x="1328" y="480" class="rel-label">Tem</text>
+  <text x="1294" y="665" class="rel-card">1..*</text>
 
   <!-- Classe: Avaliacao -->
   <g id="class-avaliacao">
-    <rect x="1080" y="735" width="250" height="135" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
-    <rect x="1080" y="735" width="250" height="26" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
-    <text x="1205" y="752" class="class-title c-teal" text-anchor="middle">Avaliacao</text>
-    <line x1="1080" y1="761" x2="1330" y2="761" stroke="#087d78" stroke-width="1" />
-    <text x="1090" y="781" class="class-attr">+ UUID idAvaliacao</text>
-    <text x="1090" y="799" class="class-attr">+ TipoAvaliacao tipo</text>
-    <text x="1090" y="817" class="class-attr">+ DateTime dataHora</text>
-    <text x="1090" y="835" class="class-attr">+ String sala</text>
-    <text x="1090" y="853" class="class-attr">+ Float pesoPercentual</text>
+    <rect x="1126" y="794" width="160" height="140" rx="6" fill="#ffffff" stroke="#087d78" stroke-width="1.5" />
+    <rect x="1126" y="794" width="160" height="30" rx="6" fill="#f0fdfa" stroke="#087d78" stroke-width="1.5" />
+    <text x="1206" y="814" class="class-title c-teal" text-anchor="middle">Avaliacao</text>
+    <line x1="1126" y1="824" x2="1286" y2="824" stroke="#087d78" stroke-width="1" />
+    <text x="1134" y="844" class="class-attr">+ UUID idAvaliacao</text>
+    <text x="1134" y="860" class="class-attr">+ TipoAvaliacao tipo</text>
+    <text x="1134" y="876" class="class-attr">+ DateTime dataHora</text>
+    <text x="1134" y="892" class="class-attr">+ String sala</text>
+    <text x="1134" y="908" class="class-attr">+ Float pesoPercentual</text>
   </g>
 
   <!-- Relacao UnidadeCurricular -> Avaliacao -->
-  <path d="M 1360 330 Q 1420 330 1420 780 L 1330 780" fill="none" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="1365" y="320" class="rel-card">1</text>
-  <text x="1425" y="560" class="rel-label">agenda</text>
-  <text x="1340" y="770" class="rel-card">0..*</text>
+  <polyline points="1286,251 1350,251 1350,866 1286,866" fill="none" stroke="#087d78" stroke-width="1.5" marker-end="url(#arrow-teal)" />
+  <text x="1294" y="243" class="rel-card">1</text>
+  <text x="1294" y="858" class="rel-card">0..*</text>
 
   <!-- ============================================== -->
-  <!-- CLUSTER 4: SERVIÇOS & LOGÍSTICA (ÂMBAR)       -->
+  <!-- CLUSTER 4: SERVIÇOS DE CAMPUS & LOGÍSTICA      -->
   <!-- ============================================== -->
-  <rect x="1430" y="150" width="330" height="1160" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="6,4" />
-  <rect x="1445" y="165" width="290" height="28" rx="6" fill="#fef3c7" />
-  <text x="1455" y="184" class="cluster-title c-amber">Cluster 4: Serviços de Campus &amp; Logística</text>
+  <rect x="1401" y="150" width="330" height="1274" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="1416" y="165" width="300" height="28" rx="6" fill="#fef3c7" />
+  <text x="1426" y="184" class="cluster-title c-amber">Cluster 4: Serviços de Campus &amp; Logística</text>
 
   <!-- Classe: Cantina -->
   <g id="class-cantina">
-    <rect x="1460" y="210" width="250" height="85" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="210" width="250" height="25" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1585" y="227" class="class-title c-amber" text-anchor="middle">Cantina</text>
-    <line x1="1460" y1="235" x2="1710" y2="235" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="255" class="class-attr">+ String nomeCantina</text>
-    <text x="1470" y="273" class="class-attr">+ String localizacaoCampus</text>
+    <rect x="1486" y="214" width="160" height="100" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="214" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="234" class="class-title c-amber" text-anchor="middle">Cantina</text>
+    <line x1="1486" y1="244" x2="1646" y2="244" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="264" class="class-attr">+ String nomeCantina</text>
+    <text x="1494" y="284" class="class-attr">+ String localCampus</text>
   </g>
 
   <!-- Classe: EmentaDiaria -->
   <g id="class-ementadiaria">
-    <rect x="1460" y="335" width="260" height="170" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="335" width="260" height="26" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1590" y="352" class="class-title c-amber" text-anchor="middle">EmentaDiaria</text>
-    <line x1="1460" y1="361" x2="1720" y2="361" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="381" class="class-attr">+ Date dataRefeicao</text>
-    <text x="1470" y="399" class="class-attr">+ TipoRefeicao refeicao</text>
-    <text x="1470" y="417" class="class-attr">+ String pratoCarne</text>
-    <text x="1470" y="435" class="class-attr">+ String pratoPeixe</text>
-    <text x="1470" y="453" class="class-attr">+ String opcaoVegetariana</text>
-    <text x="1470" y="471" class="class-attr">+ String opcaoDieta</text>
-    <text x="1470" y="489" class="class-attr">+ String sopa</text>
+    <rect x="1486" y="394" width="160" height="169" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="394" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="414" class="class-title c-amber" text-anchor="middle">EmentaDiaria</text>
+    <line x1="1486" y1="424" x2="1646" y2="424" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="444" class="class-attr">+ Date dataRefeicao</text>
+    <text x="1494" y="460" class="class-attr">+ TipoRefeicao refeicao</text>
+    <text x="1494" y="476" class="class-attr">+ String pratoCarne</text>
+    <text x="1494" y="492" class="class-attr">+ String pratoPeixe</text>
+    <text x="1494" y="508" class="class-attr">+ String opVegetariana</text>
+    <text x="1494" y="524" class="class-attr">+ String opcaoDieta</text>
+    <text x="1494" y="540" class="class-attr">+ String sopa</text>
   </g>
 
   <!-- Relacao Cantina -> EmentaDiaria -->
-  <line x1="1585" y1="295" x2="1585" y2="335" stroke="#b35c00" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="1595" y="308" class="rel-card">1</text>
-  <text x="1595" y="328" class="rel-card">0..*</text>
+  <line x1="1566" y1="314" x2="1566" y2="394" stroke="#b35c00" stroke-width="1.5" marker-end="url(#arrow-amber)" />
+  <text x="1574" y="334" class="rel-card">1</text>
+  <text x="1574" y="356" class="rel-label">Serve</text>
+  <text x="1574" y="382" class="rel-card">0..*</text>
 
   <!-- Classe: ParqueEstacionamento -->
   <g id="class-parqueestacionamento">
-    <rect x="1460" y="540" width="260" height="150" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="540" width="260" height="26" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1590" y="557" class="class-title c-amber" text-anchor="middle">ParqueEstacionamento</text>
-    <line x1="1460" y1="566" x2="1720" y2="566" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="586" class="class-attr">+ String nomeParque</text>
-    <text x="1470" y="604" class="class-attr">+ Int lotacaoMaxima</text>
-    <text x="1470" y="622" class="class-attr">+ Int lugaresOcupados</text>
-    <text x="1470" y="640" class="class-attr">+ Float taxaOcupacao</text>
-    <text x="1470" y="658" class="class-attr">+ DateTime dataTelemetria</text>
+    <rect x="1486" y="599" width="160" height="140" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="599" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="619" class="class-title c-amber" text-anchor="middle">ParqueEstacionamento</text>
+    <line x1="1486" y1="629" x2="1646" y2="629" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="649" class="class-attr">+ String nomeParque</text>
+    <text x="1494" y="665" class="class-attr">+ Int lotacaoMaxima</text>
+    <text x="1494" y="681" class="class-attr">+ Int lugaresOcupados</text>
+    <text x="1494" y="697" class="class-attr">+ Float taxaOcupacao</text>
+    <text x="1494" y="713" class="class-attr">+ DateTime dataTelemetria</text>
   </g>
 
   <!-- Classe: ServicoAtendimento -->
   <g id="class-servicoatendimento">
-    <rect x="1460" y="725" width="250" height="85" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="725" width="250" height="25" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1585" y="742" class="class-title c-amber" text-anchor="middle">ServicoAtendimento</text>
-    <line x1="1460" y1="750" x2="1710" y2="750" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="770" class="class-attr">+ String nomeServico</text>
-    <text x="1470" y="788" class="class-attr">+ String localizacaoBalcao</text>
+    <rect x="1486" y="752" width="160" height="100" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="752" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="772" class="class-title c-amber" text-anchor="middle">ServicoAtendimento</text>
+    <line x1="1486" y1="782" x2="1646" y2="782" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="802" class="class-attr">+ String nomeServico</text>
+    <text x="1494" y="822" class="class-attr">+ String localBalcao</text>
   </g>
 
   <!-- Classe: SenhaAtendimento -->
   <g id="class-senhainatendimento">
-    <rect x="1460" y="850" width="260" height="130" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="850" width="260" height="26" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1590" y="867" class="class-title c-amber" text-anchor="middle">SenhaAtendimento</text>
-    <line x1="1460" y1="876" x2="1720" y2="876" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="896" class="class-attr">+ String letraNumero</text>
-    <text x="1470" y="914" class="class-attr">+ EstadoSenha estado</text>
-    <text x="1470" y="932" class="class-attr">+ DateTime dataEmissao</text>
-    <text x="1470" y="950" class="class-attr">+ Int tempoEsperaEstimadoMin</text>
+    <rect x="1486" y="914" width="160" height="120" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="914" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="934" class="class-title c-amber" text-anchor="middle">SenhaAtendimento</text>
+    <line x1="1486" y1="944" x2="1646" y2="944" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="964" class="class-attr">+ String letraNumero</text>
+    <text x="1494" y="980" class="class-attr">+ EstadoSenha estado</text>
+    <text x="1494" y="996" class="class-attr">+ DateTime dataEmissao</text>
+    <text x="1494" y="1012" class="class-attr">+ Int tempoEsperaMin</text>
   </g>
 
   <!-- Relacao ServicoAtendimento -> SenhaAtendimento -->
-  <line x1="1585" y1="810" x2="1585" y2="850" stroke="#b35c00" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="1595" y="823" class="rel-card">1</text>
-  <text x="1595" y="842" class="rel-card">0..*</text>
+  <line x1="1566" y1="852" x2="1566" y2="914" stroke="#b35c00" stroke-width="1.5" marker-end="url(#arrow-amber)" />
+  <text x="1574" y="868" class="rel-card">1</text>
+  <text x="1574" y="883" class="rel-label">Gera</text>
+  <text x="1574" y="902" class="rel-card">0..*</text>
 
   <!-- Classe: PrevisaoMeteorologica -->
   <g id="class-previsaometeorologica">
-    <rect x="1460" y="1015" width="260" height="140" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
-    <rect x="1460" y="1015" width="260" height="26" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
-    <text x="1590" y="1032" class="class-title c-amber" text-anchor="middle">PrevisaoMeteorologica</text>
-    <line x1="1460" y1="1041" x2="1720" y2="1041" stroke="#b35c00" stroke-width="1" />
-    <text x="1470" y="1061" class="class-attr">+ DateTime dataHora</text>
-    <text x="1470" y="1079" class="class-attr">+ Float temperaturaMin</text>
-    <text x="1470" y="1097" class="class-attr">+ Float temperaturaMax</text>
-    <text x="1470" y="1115" class="class-attr">+ Int probabilidadeChuva</text>
-    <text x="1470" y="1133" class="class-attr">+ String condicaoCeu</text>
+    <rect x="1486" y="1064" width="160" height="140" rx="6" fill="#ffffff" stroke="#b35c00" stroke-width="1.5" />
+    <rect x="1486" y="1064" width="160" height="30" rx="6" fill="#fffbeb" stroke="#b35c00" stroke-width="1.5" />
+    <text x="1566" y="1084" class="class-title c-amber" text-anchor="middle">PrevisaoMeteorologica</text>
+    <line x1="1486" y1="1094" x2="1646" y2="1094" stroke="#b35c00" stroke-width="1" />
+    <text x="1494" y="1114" class="class-attr">+ DateTime dataHora</text>
+    <text x="1494" y="1130" class="class-attr">+ Float temperaturaMin</text>
+    <text x="1494" y="1146" class="class-attr">+ Float temperaturaMax</text>
+    <text x="1494" y="1162" class="class-attr">+ Int probChuva</text>
+    <text x="1494" y="1178" class="class-attr">+ String condicaoCeu</text>
   </g>
 
   <!-- ============================================== -->
   <!-- CLUSTER 5: ALERTAS E PROATIVIDADE (ROSE)       -->
   <!-- ============================================== -->
-  <rect x="40" y="930" width="980" height="380" rx="12" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5" stroke-dasharray="6,4" />
-  <rect x="55" y="945" width="290" height="28" rx="6" fill="#ffe4e6" />
-  <text x="65" y="964" class="cluster-title c-rose">Cluster 5: Alertas e Proatividade (ARQ Worker)</text>
+  <rect x="40" y="1044" width="970" height="380" rx="12" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="55" y="1059" width="310" height="28" rx="6" fill="#ffe4e6" />
+  <text x="65" y="1078" class="cluster-title c-rose">Cluster 5: Alertas e Proatividade (ARQ Worker)</text>
 
   <!-- Classe: SubscricaoAlerta -->
   <g id="class-subscricaoalerta">
-    <rect x="70" y="1000" width="260" height="145" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
-    <rect x="70" y="1000" width="260" height="28" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
-    <text x="200" y="1019" class="class-title c-rose" text-anchor="middle">SubscricaoAlerta</text>
-    <line x1="70" y1="1028" x2="330" y2="1028" stroke="#c0264b" stroke-width="1" />
-    <text x="80" y="1048" class="class-attr">+ UUID idSubscricao</text>
-    <text x="80" y="1066" class="class-attr">+ TipoAlerta tipo</text>
-    <text x="80" y="1084" class="class-attr">+ CanalEntrega canal</text>
-    <text x="80" y="1102" class="class-attr">+ Boolean ativo</text>
-    <text x="80" y="1120" class="class-attr">+ DateTime criadaEm</text>
+    <rect x="100" y="1164" width="160" height="140" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
+    <rect x="100" y="1164" width="160" height="30" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
+    <text x="180" y="1184" class="class-title c-rose" text-anchor="middle">SubscricaoAlerta</text>
+    <line x1="100" y1="1194" x2="260" y2="1194" stroke="#c0264b" stroke-width="1" />
+    <text x="108" y="1214" class="class-attr">+ UUID idSubscricao</text>
+    <text x="108" y="1230" class="class-attr">+ TipoAlerta tipo</text>
+    <text x="108" y="1246" class="class-attr">+ CanalEntrega canal</text>
+    <text x="108" y="1262" class="class-attr">+ Boolean ativo</text>
+    <text x="108" y="1278" class="class-attr">+ DateTime criadaEm</text>
   </g>
 
   <!-- Classe: Notificacao -->
   <g id="class-notificacao">
-    <rect x="430" y="1000" width="240" height="135" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
-    <rect x="430" y="1000" width="240" height="28" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
-    <text x="550" y="1019" class="class-title c-rose" text-anchor="middle">Notificacao</text>
-    <line x1="430" y1="1028" x2="670" y2="1028" stroke="#c0264b" stroke-width="1" />
-    <text x="440" y="1048" class="class-attr">+ UUID idNotificacao</text>
-    <text x="440" y="1066" class="class-attr">+ String titulo</text>
-    <text x="440" y="1084" class="class-attr">+ String conteudo</text>
-    <text x="440" y="1102" class="class-attr">+ DateTime dataEnvio</text>
-    <text x="440" y="1120" class="class-attr">+ EstadoEntrega estado</text>
+    <rect x="340" y="1164" width="160" height="140" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
+    <rect x="340" y="1164" width="160" height="30" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
+    <text x="420" y="1184" class="class-title c-rose" text-anchor="middle">Notificacao</text>
+    <line x1="340" y1="1194" x2="500" y2="1194" stroke="#c0264b" stroke-width="1" />
+    <text x="348" y="1214" class="class-attr">+ UUID idNotificacao</text>
+    <text x="348" y="1230" class="class-attr">+ String titulo</text>
+    <text x="348" y="1246" class="class-attr">+ String conteudo</text>
+    <text x="348" y="1262" class="class-attr">+ DateTime dataEnvio</text>
+    <text x="348" y="1278" class="class-attr">+ EstadoEntrega estado</text>
   </g>
 
   <!-- Relacao SubscricaoAlerta -> Notificacao -->
-  <line x1="330" y1="1060" x2="430" y2="1060" stroke="#c0264b" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="340" y="1052" class="rel-card">1</text>
-  <text x="360" y="1052" class="rel-label">despoleta</text>
-  <text x="410" y="1052" class="rel-card">0..*</text>
+  <line x1="260" y1="1234" x2="340" y2="1234" stroke="#c0264b" stroke-width="1.5" marker-end="url(#arrow-rose)" />
+  <text x="270" y="1224" class="rel-card">1</text>
+  <text x="295" y="1224" class="rel-label">Gera</text>
+  <text x="325" y="1224" class="rel-card">1</text>
 
-  <!-- Relacao Utilizador -> SubscricaoAlerta -->
-  <path d="M 120 350 L 120 1000" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
-  <text x="125" y="375" class="rel-card">1</text>
-  <text x="125" y="680" class="rel-label">subscreve</text>
-  <text x="125" y="990" class="rel-card">0..*</text>
+  <!-- Classe: EventoCalendario -->
+  <g id="class-eventocalendario">
+    <rect x="550" y="1139" width="160" height="190" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
+    <rect x="550" y="1139" width="160" height="30" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
+    <text x="630" y="1159" class="class-title c-rose" text-anchor="middle">EventoCalendario</text>
+    <line x1="550" y1="1169" x2="710" y2="1169" stroke="#c0264b" stroke-width="1" />
+    <text x="558" y="1189" class="class-attr">+ UUID id</text>
+    <text x="558" y="1207" class="class-attr">+ TipoEvento tipo</text>
+    <text x="558" y="1225" class="class-attr">+ date inicio</text>
+    <text x="558" y="1243" class="class-attr">+ date fim</text>
+    <text x="558" y="1261" class="class-attr">+ string descricao</text>
+  </g>
 
-  <!-- Ligacoes de monitorizacao de alerta -->
-  <!-- Alerta -> SenhaAtendimento -->
-  <path d="M 330 1100 Q 900 1250 1460 910" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)" />
-  <text x="850" y="1210" class="rel-label">vigia senha / fila</text>
+  <!-- Relacao EventoCalendario -> SubscricaoAlerta -->
+  <polyline points="630,1329 630,1354 180,1354 180,1304" fill="none" stroke="#c0264b" stroke-width="1.5" marker-end="url(#arrow-rose)" />
+  <text x="610" y="1344" class="rel-card">1</text>
+  <text x="405" y="1344" class="rel-label">Gera</text>
+  <text x="190" y="1335" class="rel-card">1</text>
 
-  <!-- Alerta -> Avaliacao -->
-  <path d="M 330 1040 Q 750 920 1080 820" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)" />
-  <text x="680" y="960" class="rel-label">alerta teste / entrega</text>
+  <!-- Classe: <<enumeration>> TipoEvento -->
+  <g id="class-tipoevento">
+    <rect x="760" y="1164" width="160" height="140" rx="6" fill="#ffffff" stroke="#c0264b" stroke-width="1.5" />
+    <rect x="760" y="1164" width="160" height="38" rx="6" fill="#fff1f2" stroke="#c0264b" stroke-width="1.5" />
+    <text x="840" y="1178" class="class-stereo c-rose" text-anchor="middle">&lt;&lt;enumeration&gt;&gt;</text>
+    <text x="840" y="1193" class="class-title c-rose" text-anchor="middle">TipoEvento</text>
+    <line x1="760" y1="1202" x2="920" y2="1202" stroke="#c0264b" stroke-width="1" />
+    <text x="768" y="1220" class="class-attr">PERIODO_LETIVO</text>
+    <text x="768" y="1236" class="class-attr">PALESTRA</text>
+    <text x="768" y="1252" class="class-attr">FERIADO</text>
+    <text x="768" y="1268" class="class-attr">EXAME</text>
+    <text x="768" y="1284" class="class-attr">OUTRO</text>
+  </g>
 
-  <!-- Legenda inferior -->
-  <rect x="710" y="1000" width="290" height="135" rx="6" fill="#ffffff" stroke="#cbd5e1" />
-  <text x="725" y="1025" style="font-family: sans-serif; font-size: 13px; font-weight: 700; fill: #1e293b;">Notação e Legenda UML</text>
-  <line x1="725" y1="1045" x2="765" y2="1045" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
-  <text x="775" y="1049" style="font-family: sans-serif; font-size: 11px; fill: #475569;">Generalização / Herança</text>
-  <line x1="725" y1="1070" x2="765" y2="1070" stroke="#6c35a8" stroke-width="1.5" marker-start="url(#comp)" />
-  <text x="775" y="1074" style="font-family: sans-serif; font-size: 11px; fill: #475569;">Composição (vida ligada)</text>
-  <line x1="725" y1="1095" x2="765" y2="1095" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow)" />
-  <text x="775" y="1099" style="font-family: sans-serif; font-size: 11px; fill: #475569;">Associação Direcionada</text>
-  <line x1="725" y1="1120" x2="765" y2="1120" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow)" />
-  <text x="775" y="1124" style="font-family: sans-serif; font-size: 11px; fill: #475569;">Dependência / Rastreio</text>
+  <!-- Ligacao TipoEvento -> EventoCalendario -->
+  <line x1="760" y1="1234" x2="710" y2="1234" stroke="#c0264b" stroke-width="1.5" stroke-dasharray="3,3" />
+
+  <!-- Ligacoes Alertas Cruzadas (Cluster 5 -&gt; 3 &amp; 4) -->
+  <!-- SubscricaoAlerta -> Avaliacao -->
+  <polyline points="140,1164 140,1104 1140,1104 1140,934" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="540" y="1096" class="rel-label">alerta teste / entrega</text>
+
+  <!-- SubscricaoAlerta -> SenhaAtendimento -->
+  <polyline points="220,1164 220,1124 1440,1124 1440,974 1486,974" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="540" y="1120" class="rel-label">vigia senha / fila</text>
+
+  <!-- EventoCalendario -> Avaliacao -->
+  <polyline points="630,1139 630,1074 1220,1074 1220,934" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="890" y="1066" class="rel-label">agenda</text>
+
+  <!-- ============================================== -->
+  <!-- LEGENDA E NOTAÇÃO UML                         -->
+  <!-- ============================================== -->
+  <rect x="1046" y="1000" width="320" height="175" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+  <text x="1065" y="1025" style="font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 700; fill: #1e293b;">Notação e Legenda UML</text>
+  
+  <line x1="1065" y1="1045" x2="1105" y2="1045" stroke="#1e5792" stroke-width="1.5" marker-end="url(#inherit)" />
+  <text x="1115" y="1049" style="font-family: system-ui, sans-serif; font-size: 11px; fill: #475569;">Generalização / Herança (&lt;|--)</text>
+
+  <line x1="1065" y1="1070" x2="1105" y2="1070" stroke="#6c35a8" stroke-width="1.5" marker-start="url(#comp-purple)" />
+  <text x="1115" y="1074" style="font-family: system-ui, sans-serif; font-size: 11px; fill: #475569;">Composição (*--, ciclo de vida)</text>
+
+  <line x1="1065" y1="1095" x2="1105" y2="1095" stroke="#1e5792" stroke-width="1.5" marker-end="url(#arrow-blue)" />
+  <text x="1115" y="1099" style="font-family: system-ui, sans-serif; font-size: 11px; fill: #475569;">Associação Direcionada (-->)</text>
+
+  <line x1="1065" y1="1120" x2="1105" y2="1120" stroke="#64748b" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrow)" />
+  <text x="1115" y="1124" style="font-family: system-ui, sans-serif; font-size: 11px; fill: #475569;">Dependência / Rastreio (..>)</text>
+
+  <line x1="1065" y1="1145" x2="1105" y2="1145" stroke="#64748b" stroke-width="1.2" stroke-dasharray="3,3" />
+  <text x="1115" y="1149" style="font-family: system-ui, sans-serif; font-size: 11px; fill: #475569;">Enumeração / Tipagem (..)</text>
 
 </svg>
