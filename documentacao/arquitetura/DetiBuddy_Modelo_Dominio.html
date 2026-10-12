@@ -34,6 +34,7 @@
     .cb-3 { background: #ccfbf1; color: #0f766e; }
     .cb-4 { background: #fef3c7; color: #b45309; }
     .cb-5 { background: #ffe4e6; color: #be123c; }
+    .cb-6 { background: #e0e7ff; color: #4338ca; }
     #search { padding: 11px 14px; border: 1px solid #bac8d7; border-radius: 8px; width: min(100%, 460px); font-size: 14px; }
     #status { font-size: 13px; margin-left: 8px; color: #52647a; font-weight: 600; }
     .download-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
@@ -53,7 +54,7 @@
   <header>
     <div class="badge">DETIBUDDY / ARQUITETURA DE SISTEMAS</div>
     <h1>Modelo de Domínio Conceptual (UML Domain Model)</h1>
-    <p>Especificação formal de 19 classes conceptuais de negócio estruturadas em 5 clusters funcionais (Fase de Elaboração — Milestone 2)</p>
+    <p>Especificação formal de 24 classes conceptuais de negócio estruturadas em 6 clusters funcionais (Fase de Elaboração — Milestone 2)</p>
   </header>
 
   <main>
@@ -863,6 +864,41 @@
               <td>PERIODO_LETIVO, PALESTRA, FERIADO, EXAME, OUTRO</td>
               <td>Tipologia de eventos calendarizados na universidade</td>
               <td>Enum TypeScript / PostgreSQL ENUM</td>
+            </tr>
+            <tr data-search="agenteskill idskill nome slug categoria nivelacessominimo requerconfirmacao ativa versao skill catalogo">
+              <td><b>AgenteSkill</b></td>
+              <td><span class="cluster-badge cb-6">Cluster 6: Skills do Agente</span></td>
+              <td>idSkill (UUID), nome (String), slug (String), categoria (String), nivelAcessoMinimo (NivelAcesso), requerConfirmacao (Boolean), ativa (Boolean), versao (String)</td>
+              <td>1 *-- 1..* ParametroSkill (Especifica); 1 → 0..* ExecucaoSkill (Instancia)</td>
+              <td>PostgreSQL (Tabela <code>agent_skills</code> / Skill Registry)</td>
+            </tr>
+            <tr data-search="parametroskill nome tipodado obrigatorio descricao promptelicitacao parametro">
+              <td><b>ParametroSkill</b></td>
+              <td><span class="cluster-badge cb-6">Cluster 6: Skills do Agente</span></td>
+              <td>nome (String), tipo (TipoDado), obrigatorio (Boolean), descricao (String), promptElicitacao (String)</td>
+              <td>Especifica 1 AgenteSkill; Validado em ExecucaoSkill</td>
+              <td>PostgreSQL (Tabela <code>skill_parameters</code>)</td>
+            </tr>
+            <tr data-search="execucaoskill idexecucao timestampinicio timestampfim duracaoms estado parametrosrecebidos confiancaclassificacao execucao telemetria">
+              <td><b>ExecucaoSkill</b></td>
+              <td><span class="cluster-badge cb-6">Cluster 6: Skills do Agente</span></td>
+              <td>idExecucao (UUID), timestampInicio (DateTime), timestampFim (DateTime), duracaoMs (Int), estado (EstadoExecucao), parametrosRecebidos (JSON), confiancaClassificacao (Float)</td>
+              <td>Originada por 1 MensagemChatbot; Instancia 1 AgenteSkill; 1 *-- 0..* InvocacaoFerramenta; 1 → 0..1 ConfirmacaoAcao</td>
+              <td>PostgreSQL (Tabela <code>skill_executions</code>)</td>
+            </tr>
+            <tr data-search="invocacaoferramenta idinvocacao servidormcp nomeferramenta argumentosentrada resultadopayload duracaoms sucesso mcp tool">
+              <td><b>InvocacaoFerramenta</b></td>
+              <td><span class="cluster-badge cb-6">Cluster 6: Skills do Agente</span></td>
+              <td>idInvocacao (UUID), servidorMcp (String), nomeFerramenta (String), argumentosEntrada (JSON), resultadoPayload (JSON), duracaoMs (Int), sucesso (Boolean)</td>
+              <td>Executada por 1 ExecucaoSkill; Comunica via protocolo MCP JSON-RPC</td>
+              <td>PostgreSQL (Tabela <code>tool_invocations</code>)</td>
+            </tr>
+            <tr data-search="confirmacaoacao idconfirmacao descricaoacao payloadpretendido estado respondidoem hitl human in the loop aprovacao">
+              <td><b>ConfirmacaoAcao</b></td>
+              <td><span class="cluster-badge cb-6">Cluster 6: Skills do Agente</span></td>
+              <td>idConfirmacao (UUID), descricaoAcao (String), payloadPretendido (JSON), estado (EstadoConfirmacao), respondidoEm (DateTime)</td>
+              <td>Requerida por 1 ExecucaoSkill (Human-in-the-Loop); Aprovada por Estudante</td>
+              <td>PostgreSQL (Tabela <code>action_confirmations</code>)</td>
             </tr>
           </tbody>
         </table>

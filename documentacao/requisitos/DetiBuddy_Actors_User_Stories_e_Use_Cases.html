@@ -207,9 +207,21 @@ graph TD
 <tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
 <tr><td>US-35</td><td>Como <b>estudante</b>, quero poder classificar cada resposta com 👍/👎 e submeter um comentário opcional, para ajudar a equipa a aperfeiçoar o assistente.</td><td>S</td></tr>
 </tbody></table></div>
+<h3>E11 — Habilidades e Inteligência do Agente (Skills &amp; Roteamento)</h3>
+<div class="table-wrap"><table><thead>
+<tr><th>ID</th><th>História</th><th>Prio</th></tr></thead><tbody>
+<tr><td>US-36</td><td>Como <b>estudante</b>, quero que o assistente reconheça de forma inteligente o objetivo da minha questão e ative a habilidade (<em>skill</em>) especializada correta, para obter uma resposta precisa sem sobrecarga de processamento ou erros de interpretação.</td><td>M</td></tr>
+<tr><td>US-37</td><td>Como <b>estudante</b>, quero acompanhar o progresso das ações do assistente em tempo real e validar previamente ações sensíveis via cartões interativos (<em>Human-in-the-Loop</em>), para compreender o raciocínio do agente e interagir com segurança.</td><td>S</td></tr>
+<tr><td>US-38</td><td>Como <b>administrador</b>, quero consultar e gerir o catálogo de skills do agente com controlo de permissões e telemetria, para calibrar e estender as capacidades operacionais do DetiBuddy de forma modular.</td><td>M</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Critérios US-36:</b> O assistente classifica o pedido na respetiva Skill (ex.: <code>AcademicScheduleSkill</code>, <code>RegulatoryConsultationSkill</code>) e injeta no LLM apenas as ferramentas estritamente associadas a essa habilidade (<em>Just-in-Time Tool Injection</em>).</li>
+<li><b>Critérios US-37:</b> A interface web apresenta indicadores visuais de progresso de execução e, perante ações com efeito externo (marcação de reuniões ou envio de emails), suspende o fluxo e renderiza um cartão estruturado com botões de aprovação/rejeição.</li>
+<li><b>Critérios US-38:</b> A consola de administração disponibiliza o estado das skills registadas, ferramentas associadas, tempos médios de resposta e taxas de sucesso.</li>
+</ul>
 <hr>
 <h2>4. Use Cases (Casos de Uso) Organizados por Pacotes</h2>
-<p>Os 22 Casos de Uso do sistema encontram-se estruturados em <b>6 Pacotes Lógicos (<em>Packages</em>)</b>, de acordo com as boas práticas de Engenharia de Software e modelação ágil:</p>
+<p>Os 25 Casos de Uso do sistema encontram-se estruturados em <b>7 Pacotes Lógicos (<em>Packages</em>)</b>, de acordo com as boas práticas de Engenharia de Software e modelação ágil:</p>
 <pre><code class="language-mermaid">
 graph TD
     subgraph PKG-1 [Pacote 1: Autenticação, Sessão e Perfil]
@@ -251,8 +263,14 @@ graph TD
         UC10(UC-10: Registar novo conector)
         UC21(UC-21: Consultar métricas)
     end
+
+    subgraph PKG-7 [Pacote 7: Orquestração e Habilidades do Agente]
+        UC23(UC-23: Despachar e executar Skill)
+        UC24(UC-24: Validar ação Human-in-the-Loop)
+        UC25(UC-25: Gerir catálogo de Skills)
+    end
 </code></pre>
-<blockquote><b>Artefactos Visuais de Modelação (UML):</b> A modelação visual completa de Casos de Uso segundo o padrão <em>Agile Modeling</em> encontra-se disponível na pasta <code>docs/diagrams/use_case/</code>: consulte o [Diagrama Geral Completo com 22 Casos de Uso](../diagrams/use_case/DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](../diagrams/use_case/DetiBuddy_Use_Cases_Simplificado.png).</blockquote>
+<blockquote><b>Artefactos Visuais de Modelação (UML):</b> A modelação visual de Casos de Uso segundo o padrão <em>Agile Modeling</em> encontra-se disponível na pasta <code>docs/diagrams/use_case/</code>: consulte o [Diagrama Geral com Casos de Uso](../diagrams/use_case/DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](../diagrams/use_case/DetiBuddy_Use_Cases_Simplificado.png).</blockquote>
 <blockquote><b>Nota de Rastreabilidade:</b> A história <b>US-02</b> (<em>Privacidade e confinamento on-premise</em>) representa um requisito transversal de qualidade e governança. Encontra-se coberta diretamente pelos requisitos <b>NFR-01</b>, <b>NFR-02</b> e <b>FR-07</b>, não necessitando de um caso de uso operacional isolado.</blockquote>
 <h3>Índice Resumo de Casos de Uso por Pacotes</h3>
 <div class="table-wrap"><table><thead>
@@ -279,6 +297,9 @@ graph TD
 <tr><td><b>Pacote 6: Administração e Extensibilidade</b></td><td><b>UC-09</b></td><td>Atualizar base de conhecimento</td><td>Administrador</td><td>US-32</td></tr>
 <tr><td></td><td><b>UC-10</b></td><td>Registar novo conector de serviço</td><td>Administrador</td><td>US-33</td></tr>
 <tr><td></td><td><b>UC-21</b></td><td>Consultar métricas de utilização e diagnóstico</td><td>Administrador</td><td>US-34</td></tr>
+<tr><td><b>Pacote 7: Orquestração e Habilidades (Skills)</b></td><td><b>UC-23</b></td><td>Despachar e executar Skill especializada</td><td>Estudante / Visitante</td><td>US-36, US-37</td></tr>
+<tr><td></td><td><b>UC-24</b></td><td>Validar ação Human-in-the-Loop</td><td>Estudante</td><td>US-10, US-37</td></tr>
+<tr><td></td><td><b>UC-25</b></td><td>Gerir catálogo e permissões de Skills</td><td>Administrador</td><td>US-33, US-38</td></tr>
 </tbody></table></div>
 <hr>
 <h3>Pacote 1 — Autenticação, Sessão e Gestão de Perfil</h3>
@@ -658,6 +679,59 @@ graph TD
 <li><b>Fluxos Alternativos:</b></li>
 <li><b>2a. Ausência de dados no intervalo:</b> O painel indica a inexistência de pedidos registados no período selecionado.</li>
 </ul>
+<hr>
+<h3>Pacote 7 — Orquestração e Habilidades do Agente (Skills Framework)</h3>
+<p>#### UC-23 — Despachar e executar Skill especializada</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante / Visitante · <b>Atores Secundários:</b> Orquestrador do Agente (FastAPI), Skill Registry, Servidores MCP, Skynet LLM</li>
+<li><b>Pré-condições:</b> Mensagem conversacional submetida pelo utilizador; pelo menos uma Skill ativa no catálogo correspondente à intenção.</li>
+<li><b>Garantias de Sucesso:</b> O assistente identifica a intenção semântica, restringe o conjunto de ferramentas às declaradas na Skill selecionada (<em>Just-in-Time Tool Injection</em>), executa as chamadas MCP necessárias e formula a resposta final fundamentada.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O utilizador submete uma questão (ex.: <em>&quot;Qual a sala da minha próxima aula prática?&quot;</em>).</li>
+<li>O classificador semântico identifica a habilidade correspondente (<code>AcademicScheduleSkill</code>).</li>
+<li>O orquestrador injeta no prompt do LLM unicamente as ferramentas MCP do PACO e as diretivas da skill.</li>
+<li>O agente invoca a ferramenta MCP com os parâmetros extraídos do contexto de sessão (NMEC, data atual).</li>
+<li>A resposta estruturada é transmitida via stream SSE com citações e dados auditados.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>2a. Pergunta ambígua ou parâmetros em falta:</b> O sistema ativa o fluxo de elicitação conversacional (UC-24) solicitando esclarecimentos.</li>
+<li><b>3a. Falha transitória do conector MCP:</b> A Skill aciona a política de degradação graciosa (<em>Skill Fallback</em>), devolvendo os dados em cache com aviso ou indicando contacto alternativo.</li>
+</ul>
+<p>#### UC-24 — Validar ação Human-in-the-Loop</p>
+<ul>
+<li><b>Ator Principal:</b> Estudante · <b>Atores Secundários:</b> Orquestrador do Agente, Interface React PWA, Microsoft 365 MCP</li>
+<li><b>Pré-condições:</b> Estudante autenticado solicitou uma ação com efeitos secundários externos (ex.: marcação de reunião de grupo — UC-12).</li>
+<li><b>Garantias de Sucesso:</b> A operação mutável só é concretizada após a aceitação explícita do utilizador através de um cartão interativo na interface web.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O estudante instrui o assistente a marcar uma reunião de grupo.</li>
+<li>A skill (<code>MeetingCoordinationSkill</code>) valida os dados necessários (participantes, horário, assunto) e cruza disponibilidades.</li>
+<li>O orquestrador emite um evento de estado SSE <code>waiting_confirmation</code>, suspendendo a execução no backend.</li>
+<li>A interface web renderiza um cartão estruturado de confirmação com resumo dos dados e botões <code>[Confirmar]</code> e <code>[Cancelar]</code>.</li>
+<li>O estudante clica em <code>[Confirmar]</code>.</li>
+<li>O backend recebe o evento de validação, despacha a escrita via MCP e emite a confirmação de sucesso.</li>
+</ol>
+<ul>
+<li><b>Fluxos Alternativos:</b></li>
+<li><b>5a. O estudante cancela a operação:</b> O sistema descarta os parâmetros transitórios e responde confirmando o cancelamento sem qualquer alteração externa.</li>
+</ul>
+<p>#### UC-25 — Gerir catálogo e permissões de Skills</p>
+<ul>
+<li><b>Ator Principal:</b> Administrador · <b>Atores Secundários:</b> Skill Registry, PostgreSQL</li>
+<li><b>Pré-condições:</b> Administrador autenticado com perfil técnico.</li>
+<li><b>Garantias de Sucesso:</b> Habilidades do agente ativadas, desativadas ou reconfiguradas em tempo de execução sem paragem de serviço.</li>
+<li><b>Fluxo Principal:</b></li>
+</ul>
+<ol>
+<li>O administrador acede ao painel de controlo de capacidades do agente.</li>
+<li>O sistema lista as Skills registadas, o respetivo estado operacional, ferramentas MCP associadas e requisitos de autorização.</li>
+<li>O administrador altera as configurações de uma skill (ex.: ativa/desativa, ajusta limiares de confiança ou restringe a utilizadores autenticados).</li>
+<li>As alterações entram imediatamente em vigor no <em>Skill Registry</em> em memória/Redis.</li>
+</ol>
 </article>
 <footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>
 </div>

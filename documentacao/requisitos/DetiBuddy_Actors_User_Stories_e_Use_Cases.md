@@ -180,11 +180,23 @@ Critérios de aceitação expressos em *Dado que / Quando / Então*.
 | --- | --- | --- |
 | US-35 | Como **estudante**, quero poder classificar cada resposta com 👍/👎 e submeter um comentário opcional, para ajudar a equipa a aperfeiçoar o assistente. | S |
 
+### E11 — Habilidades e Inteligência do Agente (Skills & Roteamento)
+
+| ID | História | Prio |
+| --- | --- | --- |
+| US-36 | Como **estudante**, quero que o assistente reconheça de forma inteligente o objetivo da minha questão e ative a habilidade (*skill*) especializada correta, para obter uma resposta precisa sem sobrecarga de processamento ou erros de interpretação. | M |
+| US-37 | Como **estudante**, quero acompanhar o progresso das ações do assistente em tempo real e validar previamente ações sensíveis via cartões interativos (*Human-in-the-Loop*), para compreender o raciocínio do agente e interagir com segurança. | S |
+| US-38 | Como **administrador**, quero consultar e gerir o catálogo de skills do agente com controlo de permissões e telemetria, para calibrar e estender as capacidades operacionais do DetiBuddy de forma modular. | M |
+
+* **Critérios US-36:** O assistente classifica o pedido na respetiva Skill (ex.: `AcademicScheduleSkill`, `RegulatoryConsultationSkill`) e injeta no LLM apenas as ferramentas estritamente associadas a essa habilidade (*Just-in-Time Tool Injection*).
+* **Critérios US-37:** A interface web apresenta indicadores visuais de progresso de execução e, perante ações com efeito externo (marcação de reuniões ou envio de emails), suspende o fluxo e renderiza um cartão estruturado com botões de aprovação/rejeição.
+* **Critérios US-38:** A consola de administração disponibiliza o estado das skills registadas, ferramentas associadas, tempos médios de resposta e taxas de sucesso.
+
 ---
 
 ## 4. Use Cases (Casos de Uso) Organizados por Pacotes
 
-Os 22 Casos de Uso do sistema encontram-se estruturados em **6 Pacotes Lógicos (*Packages*)**, de acordo com as boas práticas de Engenharia de Software e modelação ágil:
+Os 25 Casos de Uso do sistema encontram-se estruturados em **7 Pacotes Lógicos (*Packages*)**, de acordo com as boas práticas de Engenharia de Software e modelação ágil:
 
 ```mermaid
 graph TD
@@ -227,9 +239,15 @@ graph TD
         UC10(UC-10: Registar novo conector)
         UC21(UC-21: Consultar métricas)
     end
+
+    subgraph PKG-7 [Pacote 7: Orquestração e Habilidades do Agente]
+        UC23(UC-23: Despachar e executar Skill)
+        UC24(UC-24: Validar ação Human-in-the-Loop)
+        UC25(UC-25: Gerir catálogo de Skills)
+    end
 ```
 
-> **Artefactos Visuais de Modelação (UML):** A modelação visual completa de Casos de Uso segundo o padrão *Agile Modeling* encontra-se disponível: consulte o [Diagrama Geral Completo com 22 Casos de Uso](./DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](./DetiBuddy_Use_Cases_Simplificado.png).  
+> **Artefactos Visuais de Modelação (UML):** A modelação visual de Casos de Uso segundo o padrão *Agile Modeling* encontra-se disponível na pasta `docs/diagrams/use_case/`: consulte o [Diagrama Geral com Casos de Uso](../diagrams/use_case/DetiBuddy_Use_Cases_Completo.png) e o [Diagrama Simplificado por Pacotes Funcionais](../diagrams/use_case/DetiBuddy_Use_Cases_Simplificado.png).  
 > **Nota de Rastreabilidade:** A história **US-02** (*Privacidade e confinamento on-premise*) representa um requisito transversal de qualidade e governança. Encontra-se coberta diretamente pelos requisitos **NFR-01**, **NFR-02** e **FR-07**, não necessitando de um caso de uso operacional isolado.
 
 ### Índice Resumo de Casos de Uso por Pacotes
@@ -258,6 +276,9 @@ graph TD
 | **Pacote 6: Administração e Extensibilidade** | **UC-09** | Atualizar base de conhecimento | Administrador | US-32 |
 | | **UC-10** | Registar novo conector de serviço | Administrador | US-33 |
 | | **UC-21** | Consultar métricas de utilização e diagnóstico | Administrador | US-34 |
+| **Pacote 7: Orquestração e Habilidades (Skills)** | **UC-23** | Despachar e executar Skill especializada | Estudante / Visitante | US-36, US-37 |
+| | **UC-24** | Validar ação Human-in-the-Loop | Estudante | US-10, US-37 |
+| | **UC-25** | Gerir catálogo e permissões de Skills | Administrador | US-33, US-38 |
 
 ---
 
@@ -542,3 +563,46 @@ graph TD
   3. O administrador pode filtrar as métricas por período temporal ou serviço específico.
 * **Fluxos Alternativos:**
   * **2a. Ausência de dados no intervalo:** O painel indica a inexistência de pedidos registados no período selecionado.
+
+---
+
+### Pacote 7 — Orquestração e Habilidades do Agente (Skills Framework)
+
+#### UC-23 — Despachar e executar Skill especializada
+* **Ator Principal:** Estudante / Visitante · **Atores Secundários:** Orquestrador do Agente (FastAPI), Skill Registry, Servidores MCP, Skynet LLM
+* **Pré-condições:** Mensagem conversacional submetida pelo utilizador; pelo menos uma Skill ativa no catálogo correspondente à intenção.
+* **Garantias de Sucesso:** O assistente identifica a intenção semântica, restringe o conjunto de ferramentas às declaradas na Skill selecionada (*Just-in-Time Tool Injection*), executa as chamadas MCP necessárias e formula a resposta final fundamentada.
+* **Fluxo Principal:**
+  1. O utilizador submete uma questão (ex.: *"Qual a sala da minha próxima aula prática?"*).
+  2. O classificador semântico identifica a habilidade correspondente (`AcademicScheduleSkill`).
+  3. O orquestrador injeta no prompt do LLM unicamente as ferramentas MCP do PACO e as diretivas da skill.
+  4. O agente invoca a ferramenta MCP com os parâmetros extraídos do contexto de sessão (NMEC, data atual).
+  5. A resposta estruturada é transmitida via stream SSE com citações e dados auditados.
+* **Fluxos Alternativos:**
+  * **2a. Pergunta ambígua ou parâmetros em falta:** O sistema ativa o fluxo de elicitação conversacional (UC-24) solicitando esclarecimentos.
+  * **3a. Falha transitória do conector MCP:** A Skill aciona a política de degradação graciosa (*Skill Fallback*), devolvendo os dados em cache com aviso ou indicando contacto alternativo.
+
+#### UC-24 — Validar ação Human-in-the-Loop
+* **Ator Principal:** Estudante · **Atores Secundários:** Orquestrador do Agente, Interface React PWA, Microsoft 365 MCP
+* **Pré-condições:** Estudante autenticado solicitou uma ação com efeitos secundários externos (ex.: marcação de reunião de grupo — UC-12).
+* **Garantias de Sucesso:** A operação mutável só é concretizada após a aceitação explícita do utilizador através de um cartão interativo na interface web.
+* **Fluxo Principal:**
+  1. O estudante instrui o assistente a marcar uma reunião de grupo.
+  2. A skill (`MeetingCoordinationSkill`) valida os dados necessários (participantes, horário, assunto) e cruza disponibilidades.
+  3. O orquestrador emite um evento de estado SSE `waiting_confirmation`, suspendendo a execução no backend.
+  4. A interface web renderiza um cartão estruturado de confirmação com resumo dos dados e botões `[Confirmar]` e `[Cancelar]`.
+  5. O estudante clica em `[Confirmar]`.
+  6. O backend recebe o evento de validação, despacha a escrita via MCP e emite a confirmação de sucesso.
+* **Fluxos Alternativos:**
+  * **5a. O estudante cancela a operação:** O sistema descarta os parâmetros transitórios e responde confirmando o cancelamento sem qualquer alteração externa.
+
+#### UC-25 — Gerir catálogo e permissões de Skills
+* **Ator Principal:** Administrador · **Atores Secundários:** Skill Registry, PostgreSQL
+* **Pré-condições:** Administrador autenticado com perfil técnico.
+* **Garantias de Sucesso:** Habilidades do agente ativadas, desativadas ou reconfiguradas em tempo de execução sem paragem de serviço.
+* **Fluxo Principal:**
+  1. O administrador acede ao painel de controlo de capacidades do agente.
+  2. O sistema lista as Skills registadas, o respetivo estado operacional, ferramentas MCP associadas e requisitos de autorização.
+  3. O administrador altera as configurações de uma skill (ex.: ativa/desativa, ajusta limiares de confiança ou restringe a utilizadores autenticados).
+  4. As alterações entram imediatamente em vigor no *Skill Registry* em memória/Redis.
+
