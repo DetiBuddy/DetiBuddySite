@@ -39,7 +39,7 @@ footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);disp
 <h2>Engenharia de Software — Fase de Elaboração (Milestone 2)</h2>
 <hr>
 <h3>Resumo Executivo da Arquitetura v2</h3>
-<p>A arquitetura do <b>DetiBuddy</b> foi consolidada e validada durante a Fase de Elaboração (Milestone 2), evoluindo da visão preliminar da <em>Inception</em> para a <b>Arquitetura v2</b>, uma topologia modular, assíncrona e desacoplada baseada em microsserviços e no protocolo <b>MCP (<em>Model Context Protocol</em>)</b>.</p>
+<p>A arquitetura do <b>DetiBuddy</b> foi consolidada e validada durante a Fase de Elaboração (Milestone 2), evoluindo da visão preliminar da <em>Inception</em> para a <b>Arquitetura v2</b>, uma topologia modular, assíncrona e desacoplada baseada em microsserviços, orquestração por <b>Skills do Agente</b> e no protocolo <b>MCP (<em>Model Context Protocol</em>)</b>.</p>
 <p>O sistema está confinado à infraestrutura soberana da Universidade de Aveiro (servidores DETI e cluster Skynet), garantindo conformidade rigorosa com o RGPD e total soberania dos dados dos estudantes e da comunidade académica.</p>
 <hr>
 <h3>ADR-01: Topologia de Borda e Cliente Web (Traefik + React PWA)</h3>
@@ -128,6 +128,19 @@ footer{margin-top:48px;padding:24px 0 36px;border-top:1px solid var(--line);disp
 <li>Operações financeiras acarretam requisitos de certificação bancária (PCI-DSS) e autorizações institucionais complexas que inviabilizariam o cronograma semestral de PEI.</li>
 <li>Foco prioritário na agregação pedagógica, RAG de regulamentos, horários, avaliações e serviços de campus.</li>
 <li><b>Consequências:</b> Redução de riscos críticos e garantia de entrega de um MVP robusto, funcional e perfeitamente testável.</li>
+</ul>
+<hr>
+<h3>ADR-09: Orquestração Baseada em Skills do Agente e Injeção Dinâmica de Ferramentas (Just-in-Time Tool Injection)</h3>
+<ul>
+<li><b>Estado:</b> Aprovado</li>
+<li><b>Contexto:</b> O DetiBuddy integra múltiplos domínios (académico, avaliações, regulamentos, ementas, tráfego/parques, senhas e produtividade). Disponibilizar todas as ferramentas (<em>tools</em>) de todos os servidores MCP em simultâneo na janela de contexto (<em>context window</em>) do LLM no cluster Skynet provocaria sobrecarga de tokens, aumento da latência de inferência (<em>TTFT</em>), degradação no raciocínio e risco elevado de invocações erróneas (<em>tool miscalling</em>). Adicionalmente, ações críticas (como marcação de reuniões) necessitam de elicitação de parâmetros e validação humana explícita (<em>Human-in-the-Loop</em>).</li>
+<li><b>Decisão:</b> Introdução de uma camada de <b>Skills do Agente (<em>Agent Skills</em>)</b> no serviço <code>ai-agent</code> assente num <b>Skill Registry</b>, num <b>Classificador/Roteador Semântico de Skills</b> e no padrão <b>Just-in-Time Tool Injection</b>.</li>
+<li><b>Justificação:</b></li>
+<li>Cada Skill representa uma capacidade de alto nível (ex.: <code>AcademicScheduleSkill</code>, <code>MeetingSchedulerSkill</code>, <code>RegulatoryConsultationSkill</code>), agrupando prompts especializados, regras de negócio e validação prévia de parâmetros.</li>
+<li>O roteador semântico seleciona a Skill ativa com base na intenção do estudante, injetando no prompt do LLM exclusivamente as 2 a 3 ferramentas MCP estritamente relevantes para esse domínio.</li>
+<li>Permite desacoplar fluxos sensíveis que exigem o padrão <em>Human-in-the-Loop</em> (apresentação de cartões de confirmação para ações de calendário/email) sem poluir o núcleo conversacional genérico.</li>
+<li>Assegura degradação graciosa com fallbacks locais caso o conector MCP associado reporte falha ou timeout.</li>
+<li><b>Consequências:</b> Minimização drástica do uso de tokens e da latência de resposta, redução quase total de alucinações em <em>tool calls</em>, maior facilidade na adição de novas competências e rastreabilidade estrita da execução de cada habilidade.</li>
 </ul>
 </article>
 <footer><span>DetiBuddy</span><span>Documentação oficial</span></footer>

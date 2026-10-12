@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detibuddy — Mock da Aplicação</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            deti: {
+              space: '#05070e',
+              deep: '#0a0f1d',
+              surface: '#0f172a',
+              card: '#152038',
+              border: '#1e293b',
+              borderLight: '#263554',
+              neonCyan: '#38e1db',
+              neonGreen: '#7aff7a',
+              lime: '#84ff6a'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 225, 219, 0.2) transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(56, 225, 219, 0.2);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(122, 255, 122, 0.45);
+    }
+
+    /* Brilho suave nos olhos ovais do logótipo */
+    .glow-eyes {
+      filter: drop-shadow(0 0 10px rgba(122, 255, 122, 0.45)) drop-shadow(0 0 20px rgba(56, 225, 219, 0.35));
+    }
+
+    body {
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* ==========================================================================
+       MODO CLARO (LIGHT THEME)
+       ========================================================================== */
+    html:not(.dark) {
+      --bg-main: #f8fafc;
+      --bg-side: #f1f5f9;
+      --bg-card: #ffffff;
+      --border-color: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+    }
+
+    html:not(.dark) body {
+      background-color: var(--bg-main) !important;
+      color: var(--text-main) !important;
+    }
+
+    html:not(.dark) main {
+      background-color: var(--bg-main) !important;
+    }
+
+    /* Barra Lateral no Modo Claro */
+    html:not(.dark) aside#sidebar {
+      background-color: var(--bg-side) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    html:not(.dark) #sidebar .border-deti-border,
+    html:not(.dark) #sidebar .border-t,
+    html:not(.dark) #sidebar .border-r {
+      border-color: var(--border-color) !important;
+    }
+
+    html:not(.dark) #sidebar .bg-deti-deep {
+      background-color: var(--bg-side) !important;
+    }
+
+    /* Botão Novo Chat no Modo Claro */
+    html:not(.dark) #newChatBtn {
+      background-color: #ffffff !important;
+      border-color: var(--border-color) !important;
+      color: var(--text-main) !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    html:not(.dark) #newChatBtn:hover {
+      background-color: #f8fafc !important;
+      border-color: #10b981 !important;
+      color: #047857 !important;
+    }
+
+    /* Lista de chats recentes no Modo Claro */
+    html:not(.dark) .chat-item {
+      color: #334155 !important;
+    }
+    html:not(.dark) .chat-item:hover {
+      background-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+    html:not(.dark) .chat-item.active {
+      background-color: #e2e8f0 !important;
+      color: #047857 !important;
+      border-color: #10b981 !important;
+    }
+    html:not(.dark) .chat-item svg {
+      color: #64748b !important;
+    }
+    html:not(.dark) .chat-item.active svg {
+      color: #059669 !important;
+    }
+
+    /* Botões de Ação e Ícones no Modo Claro */
+    html:not(.dark) .action-btn,
+    html:not(.dark) #collapseBtn,
+    html:not(.dark) #expandSidebarBtn,
+    html:not(.dark) #settingsSidebarBtn {
+      color: #475569 !important;
+    }
+    html:not(.dark) .action-btn:hover,
+    html:not(.dark) #collapseBtn:hover,
+    html:not(.dark) #expandSidebarBtn:hover,
+    html:not(.dark) #settingsSidebarBtn:hover {
+      background-color: #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    /* Cartão do Perfil do Estudante na Sidebar */
+    html:not(.dark) aside .bg-deti-surface {
+      background-color: #ffffff !important;
+      border-color: var(--border-color) !important;
+    }
+    html:not(.dark) aside .bg-deti-surface span.text-slate-200 {
+      color: #0f172a !important;
+    }
+    html:not(.dark) aside .bg-deti-surface span.text-slate-400 {
+      color: #64748b !important;
+    }
+
+    /* Cabeçalho no Modo Claro */
+    html:not(.dark) header {
+      background-color: rgba(255, 255, 255, 0.92) !important;
+      border-color: var(--border-color) !important;
+    }
+
+    /* Secção Hero e Sugestões Rápidas */
+    html:not(.dark) #heroSection p {
+      color: #64748b !important;
+    }
+    html:not(.dark) #heroSection .action-btn {
+      background-color: #ffffff !important;
+      border-color: var(--border-color) !important;
+      color: #334155 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    html:not(.dark) #heroSection .action-btn:hover {
+      background-color: #f1f5f9 !important;
+      border-color: #10b981 !important;
+      color: #047857 !important;
+    }
+
+    /* Bolhas de Mensagem da IA no Modo Claro */
+    html:not(.dark) .ai-msg-bubble {
+      background-color: #ffffff !important;
+      border-color: var(--border-color) !important;
+      color: #1e293b !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    html:not(.dark) .text-deti-neonCyan {
+      color: #059669 !important;
+    }
+
+    /* Formatação Markdown no Chat */
+    .msg-bold {
+      color: #f8fafc;
+    }
+    html:not(.dark) .msg-bold {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .ai-msg-bubble pre {
+      background-color: #0f172a !important;
+      color: #34d399 !important;
+      border-color: #1e293b !important;
+    }
+
+    /* Bolhas de Mensagem do Utilizador no Modo Claro */
+    html:not(.dark) .user-msg-bubble {
+      background-color: #ecfdf5 !important;
+      border-color: #a7f3d0 !important;
+      color: #064e3b !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    html:not(.dark) .user-avatar {
+      background-color: #e2e8f0 !important;
+      border-color: #10b981 !important;
+      color: #047857 !important;
+    }
+
+    /* Container de Entrada (Prompt Input) */
+    html:not(.dark) .input-box-container {
+      background-color: rgba(255, 255, 255, 0.95) !important;
+      border-color: var(--border-color) !important;
+    }
+    html:not(.dark) .input-pill {
+      background-color: #ffffff !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    html:not(.dark) .input-pill:focus-within {
+      border-color: #10b981 !important;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+    }
+    html:not(.dark) #promptInput {
+      color: #0f172a !important;
+    }
+    html:not(.dark) #promptInput::placeholder {
+      color: #94a3b8 !important;
+    }
+
+    /* Modal de Definições no Modo Claro */
+    html:not(.dark) #settingsModal > div {
+      background-color: #ffffff !important;
+      border-color: var(--border-color) !important;
+      color: #0f172a !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15) !important;
+    }
+    html:not(.dark) #settingsModal h3 {
+      color: #0f172a !important;
+    }
+    html:not(.dark) #settingsModal label {
+      color: #334155 !important;
+    }
+    html:not(.dark) #settingsModal input,
+    html:not(.dark) #settingsModal select {
+      background-color: #f8fafc !important;
+      border-color: var(--border-color) !important;
+      color: #0f172a !important;
+    }
+    html:not(.dark) #settingsModal .border-deti-border {
+      border-color: var(--border-color) !important;
+    }
+    html:not(.dark) #closeModalBtn {
+      color: #64748b !important;
+    }
+    html:not(.dark) #closeModalBtn:hover {
+      color: #0f172a !important;
+    }
+
+    /* Toast no Modo Claro */
+    html:not(.dark) #toast {
+      background-color: #ffffff !important;
+      border-color: #10b981 !important;
+      color: #065f46 !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body class="bg-deti-space text-slate-100 font-sans h-screen w-screen overflow-hidden flex flex-col antialiased">
+
+  <div class="flex h-full w-full overflow-hidden relative">
+
+    <!-- BARRA LATERAL (SIDEBAR ESTILO GEMINI) -->
+    <aside id="sidebar" class="w-64 md:w-72 bg-deti-deep border-r border-deti-border flex flex-col justify-between transition-all duration-300 ease-in-out shrink-0 z-30 select-none">
+      
+      <!-- Topo da Sidebar: Botão de Recolher e Novo Chat -->
+      <div class="p-3.5 flex flex-col gap-3">
+        <div class="flex items-center justify-between px-1">
+          <button id="collapseBtn" class="p-2 text-slate-400 hover:text-white hover:bg-deti-surface rounded-xl transition-colors" title="Recolher menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <!-- Logótipo Fiel na Sidebar -->
+          <div class="flex items-center gap-2">
+            <svg class="w-7 h-5 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="sideEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38e1db"/>
+                  <stop offset="100%" stop-color="#7aff7a"/>
+                </linearGradient>
+              </defs>
+              <rect x="3" y="3" width="154" height="94" rx="47" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+              <ellipse cx="53" cy="50" rx="15" ry="30" fill="url(#sideEyeGrad)"/>
+              <ellipse cx="107" cy="50" rx="15" ry="30" fill="url(#sideEyeGrad)"/>
+            </svg>
+            <span class="font-bold text-sm tracking-wide bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen bg-clip-text text-transparent">
+              Detibuddy
+            </span>
+          </div>
+        </div>
+
+        <!-- Botão Novo Chat Estilo Pílula Gemini -->
+        <button id="newChatBtn" class="w-full flex items-center gap-3 px-4 py-2.5 rounded-full bg-deti-surface hover:bg-deti-card border border-deti-border hover:border-deti-neonCyan/40 text-slate-200 text-xs font-semibold tracking-wide transition-all group shadow-sm">
+          <svg class="w-4 h-4 text-deti-neonGreen group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span>Novo chat</span>
+        </button>
+      </div>
+
+      <!-- Lista de Conversas Recentes Solicitadas -->
+      <div class="flex-1 overflow-y-auto px-2.5 space-y-1 py-1">
+        <div class="px-3 py-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+          Recentes
+        </div>
+
+        <div id="recentChatsList" class="space-y-1">
+          <!-- Item 1: Próxima aula -->
+          <div onclick="loadPresetConversation('aula', this)" class="chat-item active group flex items-center justify-between px-3 py-2.5 rounded-xl text-xs bg-deti-surface text-deti-neonGreen border-l-2 border-deti-neonGreen cursor-pointer transition-colors">
+            <div class="flex items-center gap-2.5 truncate">
+              <svg class="w-4 h-4 text-deti-neonCyan shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span class="truncate font-medium">Qual é a minha próxima aula?</span>
+            </div>
+            <button onclick="event.stopPropagation(); this.closest('.chat-item').remove(); showToast('Conversa removida');" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-400 transition-opacity p-0.5" title="Eliminar">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <!-- Item 2: Comida hoje -->
+          <div onclick="loadPresetConversation('comida', this)" class="chat-item group flex items-center justify-between px-3 py-2.5 rounded-xl text-xs text-slate-300 hover:bg-deti-surface hover:text-white cursor-pointer transition-colors">
+            <div class="flex items-center gap-2.5 truncate">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-deti-neonGreen shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+              <span class="truncate">O que é a comida hoje?</span>
+            </div>
+            <button onclick="event.stopPropagation(); this.closest('.chat-item').remove(); showToast('Conversa removida');" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-400 transition-opacity p-0.5" title="Eliminar">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <!-- Item 3: Salas livres DETI -->
+          <div onclick="loadPresetConversation('salas', this)" class="chat-item group flex items-center justify-between px-3 py-2.5 rounded-xl text-xs text-slate-300 hover:bg-deti-surface hover:text-white cursor-pointer transition-colors">
+            <div class="flex items-center gap-2.5 truncate">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-deti-neonCyan shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+              <span class="truncate">Salas de estudo disponíveis DETI</span>
+            </div>
+            <button onclick="event.stopPropagation(); this.closest('.chat-item').remove(); showToast('Conversa removida');" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-400 transition-opacity p-0.5" title="Eliminar">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <!-- Item 4: Horários de atendimento -->
+          <div onclick="loadPresetConversation('atendimento', this)" class="chat-item group flex items-center justify-between px-3 py-2.5 rounded-xl text-xs text-slate-300 hover:bg-deti-surface hover:text-white cursor-pointer transition-colors">
+            <div class="flex items-center gap-2.5 truncate">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-deti-neonCyan shrink-0 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span class="truncate">Horários de atendimento docentes</span>
+            </div>
+            <button onclick="event.stopPropagation(); this.closest('.chat-item').remove(); showToast('Conversa removida');" class="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-400 transition-opacity p-0.5" title="Eliminar">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rodapé da Sidebar: Definições e Conta de Utilizador -->
+      <div class="p-3 border-t border-deti-border bg-deti-deep flex flex-col gap-2">
+        <button id="settingsSidebarBtn" class="action-btn w-full flex items-center gap-3 px-3 py-2 text-xs text-slate-300 hover:text-white hover:bg-deti-surface rounded-xl transition-colors">
+          <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span>Definições</span>
+        </button>
+
+        <!-- Conta de Aluno -->
+        <div class="flex items-center justify-between p-2.5 rounded-xl bg-deti-surface border border-deti-border">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-deti-neonCyan to-deti-neonGreen text-deti-space font-bold text-xs flex items-center justify-center shrink-0 shadow-sm">
+              DETI
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="text-xs font-semibold text-slate-200 truncate">Estudante UA</span>
+              <span class="text-[10px] text-slate-400 truncate">deti@ua.pt</span>
+            </div>
+          </div>
+          <span class="w-2 h-2 rounded-full bg-deti-neonGreen shadow-[0_0_8px_#7aff7a] shrink-0 ml-1.5"></span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL DO CHAT -->
+    <main class="flex-1 flex flex-col h-full min-w-0 bg-deti-space relative">
+
+      <!-- CABEÇALHO SUPERIOR LIMPO -->
+      <header class="h-14 border-b border-deti-border px-4 md:px-6 flex items-center justify-between bg-deti-deep/80 backdrop-blur-md shrink-0 z-20">
+        <!-- Lado Esquerdo: Botão Expandir + Nome -->
+        <div class="flex items-center gap-3">
+          <button id="expandSidebarBtn" class="hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-deti-surface transition-colors" title="Abrir menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <!-- Nome da Aplicação e Logótipo Fiel no Header -->
+          <div class="flex items-center gap-2.5">
+            <svg class="w-9 h-6 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="headEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38e1db"/>
+                  <stop offset="100%" stop-color="#7aff7a"/>
+                </linearGradient>
+              </defs>
+              <rect x="3" y="3" width="154" height="94" rx="47" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+              <ellipse cx="53" cy="50" rx="15" ry="30" fill="url(#headEyeGrad)"/>
+              <ellipse cx="107" cy="50" rx="15" ry="30" fill="url(#headEyeGrad)"/>
+            </svg>
+            <span class="font-bold text-base tracking-wide bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen bg-clip-text text-transparent">
+              Detibuddy
+            </span>
+            <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-semibold tracking-wider rounded-md bg-deti-surface text-deti-neonCyan border border-deti-border">
+              Mock Preview
+            </span>
+          </div>
+        </div>
+
+        <!-- Canto Superior Direito: Opções de Página (Voltar ao Site, Modo Escuro / Claro, Limpar, Definições) -->
+        <div class="flex items-center gap-1.5">
+          <!-- Link discreto para voltar à documentação do microsite -->
+          <a href="./index.html" class="action-btn px-2.5 py-1.5 rounded-xl text-xs text-slate-400 hover:text-slate-100 hover:bg-deti-surface transition-colors flex items-center gap-1.5 border border-transparent hover:border-deti-border mr-1" title="Voltar ao portal de documentação">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span class="hidden md:inline text-[11px]">Site PEI</span>
+          </a>
+
+          <!-- Alternador Modo Escuro / Claro -->
+          <button id="themeToggleBtn" class="action-btn p-2.5 rounded-xl text-slate-300 hover:bg-deti-surface hover:text-deti-neonCyan transition-colors" title="Alternar tema Escuro / Claro">
+            <!-- Sol -->
+            <svg id="sunIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <!-- Lua -->
+            <svg id="moonIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          </button>
+
+          <!-- Limpar Conversa -->
+          <button id="clearChatBtn" class="action-btn p-2.5 rounded-xl text-slate-300 hover:bg-deti-surface hover:text-deti-neonGreen transition-colors" title="Limpar conversa">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+          </button>
+
+          <!-- Definições Header -->
+          <button id="headerSettingsBtn" class="action-btn p-2.5 rounded-xl text-slate-300 hover:bg-deti-surface hover:text-white transition-colors" title="Definições da página">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ÁREA DE MENSAGENS E CHAT -->
+      <div id="messagesContainer" class="flex-1 overflow-y-auto px-4 md:px-8 py-6 space-y-6 max-w-3xl mx-auto w-full">
+
+        <!-- LOGÓTIPO CENTRAL GRANDE FIEL AO DA IMAGEM -->
+        <div id="heroSection" class="flex flex-col items-center justify-center pt-3 pb-3 text-center space-y-3">
+          
+          <!-- Representação Vetorial Idêntica ao Logo fornecido -->
+          <div class="relative group cursor-pointer transition-transform duration-300 hover:scale-105" onclick="triggerMascotGreet()">
+            <svg class="w-36 h-24 md:w-44 md:h-28 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="mainEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38e1db"/>
+                  <stop offset="50%" stop-color="#5ff49e"/>
+                  <stop offset="100%" stop-color="#7aff7a"/>
+                </linearGradient>
+                <filter id="neonBlur" x="-10%" y="-10%" width="120%" height="120%">
+                  <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+
+              <!-- Cápsula preta com contorno ciano fino idêntico ao logo -->
+              <rect x="4" y="4" width="152" height="92" rx="46" fill="#000000" stroke="#38e1db" stroke-width="3" filter="url(#neonBlur)"/>
+              
+              <!-- Olho Oval Vertical Esquerdo com gradiente ciano -> verde-lima -->
+              <ellipse cx="50" cy="50" rx="14.5" ry="29" fill="url(#mainEyeGrad)"/>
+              
+              <!-- Olho Oval Vertical Direito com gradiente ciano -> verde-lima -->
+              <ellipse cx="110" cy="50" rx="14.5" ry="29" fill="url(#mainEyeGrad)"/>
+            </svg>
+          </div>
+
+          <div>
+            <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-deti-neonCyan via-deti-neonGreen to-emerald-300 bg-clip-text text-transparent">
+              Detibuddy
+            </h1>
+            <p class="text-xs md:text-sm text-slate-400 mt-1 font-sans">
+              O teu assistente de inteligência artificial do DETI.
+            </p>
+          </div>
+
+          <!-- Sugestões Rápidas em Estilo Gemini -->
+          <div class="flex flex-wrap justify-center gap-2 pt-1 max-w-md">
+            <button onclick="sendQuickPrompt('Qual é a minha próxima aula?')" class="action-btn px-4 py-2 rounded-full text-xs font-medium bg-deti-surface hover:bg-deti-card border border-deti-border hover:border-deti-neonCyan/40 text-slate-300 hover:text-deti-neonCyan transition-all flex items-center gap-1.5 shadow-sm">
+              <span>📅</span> Qual é a minha próxima aula?
+            </button>
+            <button onclick="sendQuickPrompt('O que é a comida hoje?')" class="action-btn px-4 py-2 rounded-full text-xs font-medium bg-deti-surface hover:bg-deti-card border border-deti-border hover:border-deti-neonGreen/40 text-slate-300 hover:text-deti-neonGreen transition-all flex items-center gap-1.5 shadow-sm">
+              <span>🍽️</span> O que é a comida hoje?
+            </button>
+          </div>
+        </div>
+
+        <!-- Mensagem Inicial do Detibuddy -->
+        <div class="flex gap-3.5 items-start">
+          <!-- Avatar Detibuddy Mini Idêntico ao Logo -->
+          <div class="w-8 h-8 rounded-full bg-black border border-deti-neonCyan/70 flex items-center justify-center shrink-0 p-0.5 shadow-sm">
+            <svg class="w-6 h-4 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="msgEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38e1db"/>
+                  <stop offset="100%" stop-color="#7aff7a"/>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="152" height="92" rx="46" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+              <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#msgEyeGrad)"/>
+              <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#msgEyeGrad)"/>
+            </svg>
+          </div>
+          <div class="flex-1 space-y-1 min-w-0">
+            <div class="flex items-center gap-2 text-[11px]">
+              <span class="font-bold text-deti-neonCyan">Detibuddy</span>
+              <span class="text-slate-500 text-[10px]">agora</span>
+            </div>
+            <div class="ai-msg-bubble p-3.5 rounded-2xl bg-deti-surface/80 border border-deti-border text-sm text-slate-100 leading-relaxed font-sans shadow-sm">
+              Olá! Como posso ajudar hoje?
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BARRA DE ENTRADA ESTILO GEMINI -->
+      <div class="input-box-container p-4 md:px-8 border-t border-deti-border bg-deti-deep/80 backdrop-blur-md shrink-0">
+        <div class="max-w-3xl mx-auto">
+          
+          <div class="input-pill relative flex items-center rounded-full bg-deti-surface border border-deti-border focus-within:border-deti-neonCyan/70 focus-within:shadow-[0_0_18px_rgba(56,225,219,0.22)] transition-all px-4 py-1.5">
+
+            <!-- Caixa de Texto Estilo Gemini -->
+            <textarea
+              id="promptInput"
+              rows="1"
+              placeholder="Escreve uma mensagem ao Detibuddy..."
+              class="w-full bg-transparent py-2.5 px-2 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none resize-none max-h-32 font-sans"
+            ></textarea>
+
+            <!-- Ações do Input: Microfone / Enviar -->
+            <div class="flex items-center gap-1.5 shrink-0 pl-2">
+              <button onclick="triggerVoiceMock()" class="p-2 text-slate-400 hover:text-deti-neonCyan rounded-full transition-colors" title="Entrada por voz">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+                </svg>
+              </button>
+
+              <button id="sendBtn" class="p-2 rounded-full bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen text-deti-space hover:opacity-90 active:scale-95 transition-all shadow-md flex items-center justify-center" title="Enviar mensagem">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-center mt-2">
+            <span class="text-[11px] text-slate-500">O Detibuddy pode cometer erros. Confirma informações críticas nos serviços oficiais do DETI.</span>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL DE DEFINIÇÕES -->
+  <div id="settingsModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-deti-deep border border-deti-border rounded-3xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-deti-border pb-3">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-6 h-4 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="modalEyeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#38e1db"/>
+                <stop offset="100%" stop-color="#7aff7a"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="152" height="92" rx="46" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+            <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#modalEyeGrad)"/>
+            <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#modalEyeGrad)"/>
+          </svg>
+          <h3 class="font-bold text-sm text-slate-100">Definições da Conta</h3>
+        </div>
+        <button id="closeModalBtn" class="text-slate-400 hover:text-white p-1 rounded-lg">✕</button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1.5">Email Universitário</label>
+          <input type="text" value="deti@ua.pt" readonly class="w-full bg-deti-surface border border-deti-border rounded-xl px-3.5 py-2.5 text-slate-400">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1.5">Departamento</label>
+          <select class="w-full bg-deti-surface border border-deti-border rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-deti-neonCyan">
+            <option>Departamento de Eletrónica, Telecomunicações e Informática (DETI)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1.5">Cantina Preferencial</label>
+          <select class="w-full bg-deti-surface border border-deti-border rounded-xl px-3.5 py-2.5 text-slate-200 focus:outline-none focus:border-deti-neonCyan">
+            <option>Cantina de Santiago</option>
+            <option>Cantina do Crasto</option>
+            <option>Restaurante Universitário</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-3 border-t border-deti-border">
+        <button id="saveSettingsBtn" class="px-5 py-2 rounded-full bg-gradient-to-r from-deti-neonCyan to-deti-neonGreen text-deti-space font-bold hover:opacity-90 transition-opacity text-xs">
+          Guardar alterações
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Notificação -->
+  <div id="toast" class="fixed bottom-24 right-6 z-50 transform translate-y-10 opacity-0 pointer-events-none transition-all duration-300 bg-deti-card border border-deti-neonCyan/50 text-deti-neonCyan px-4 py-2.5 rounded-2xl shadow-xl text-xs flex items-center gap-2">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toastMsg">Notificação</span>
+  </div>
+
+  <script>
+    // Elementos DOM
+    const sidebar = document.getElementById('sidebar');
+    const collapseBtn = document.getElementById('collapseBtn');
+    const expandSidebarBtn = document.getElementById('expandSidebarBtn');
+    const promptInput = document.getElementById('promptInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const messagesContainer = document.getElementById('messagesContainer');
+    const clearChatBtn = document.getElementById('clearChatBtn');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
+    const newChatBtn = document.getElementById('newChatBtn');
+
+    // Modais
+    const settingsModal = document.getElementById('settingsModal');
+    const settingsSidebarBtn = document.getElementById('settingsSidebarBtn');
+    const headerSettingsBtn = document.getElementById('headerSettingsBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+
+    let isSidebarCollapsed = false;
+    let isDarkMode = true;
+
+    // Redimensionamento automático do input
+    promptInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 128) + 'px';
+    });
+
+    // Recolher / Expandir Sidebar
+    function toggleSidebar() {
+      isSidebarCollapsed = !isSidebarCollapsed;
+      if (isSidebarCollapsed) {
+        sidebar.classList.add('-ml-64', 'md:-ml-72');
+        expandSidebarBtn.classList.remove('hidden');
+      } else {
+        sidebar.classList.remove('-ml-64', 'md:-ml-72');
+        expandSidebarBtn.classList.add('hidden');
+      }
+    }
+    collapseBtn.addEventListener('click', toggleSidebar);
+    expandSidebarBtn.addEventListener('click', toggleSidebar);
+
+    // Alternar Tema Claro / Escuro
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+        showToast("Modo escuro ativado");
+      } else {
+        document.documentElement.classList.remove('dark');
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+        showToast("Modo claro ativado");
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    // Modal
+    settingsSidebarBtn.addEventListener('click', () => settingsModal.classList.remove('hidden'));
+    headerSettingsBtn.addEventListener('click', () => settingsModal.classList.remove('hidden'));
+    closeModalBtn.addEventListener('click', () => settingsModal.classList.add('hidden'));
+    saveSettingsBtn.addEventListener('click', () => {
+      settingsModal.classList.add('hidden');
+      showToast("Definições atualizadas com sucesso");
+    });
+
+    // Limpar Chat
+    clearChatBtn.addEventListener('click', () => {
+      resetChatArea();
+      showToast("Conversa limpa");
+    });
+
+    newChatBtn.addEventListener('click', () => {
+      resetChatArea();
+      showToast("Nova conversa iniciada");
+    });
+
+    function resetChatArea() {
+      messagesContainer.innerHTML = `
+        <div class="flex gap-3.5 items-start">
+          <div class="w-8 h-8 rounded-full bg-black border border-deti-neonCyan/70 flex items-center justify-center shrink-0 p-0.5 shadow-sm">
+            <svg class="w-6 h-4 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="msgEyeGradR" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38e1db"/>
+                  <stop offset="100%" stop-color="#7aff7a"/>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="152" height="92" rx="46" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+              <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#msgEyeGradR)"/>
+              <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#msgEyeGradR)"/>
+            </svg>
+          </div>
+          <div class="flex-1 space-y-1 min-w-0">
+            <div class="flex items-center gap-2 text-[11px]">
+              <span class="font-bold text-deti-neonCyan">Detibuddy</span>
+              <span class="text-slate-500 text-[10px]">agora</span>
+            </div>
+            <div class="ai-msg-bubble p-3.5 rounded-2xl bg-deti-surface/80 border border-deti-border text-sm text-slate-100 leading-relaxed font-sans shadow-sm">
+              Olá! Como posso ajudar hoje?
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    window.triggerMascotGreet = function() {
+      showToast("Detibuddy: Olá! Pronto para ajudar no DETI.");
+    };
+
+    window.triggerVoiceMock = function() {
+      showToast("Entrada por voz ativada. Fala agora...");
+    };
+
+    window.sendQuickPrompt = function(text) {
+      promptInput.value = text;
+      handleUserSubmit();
+    };
+
+    window.loadPresetConversation = function(topic, element) {
+      document.querySelectorAll('#recentChatsList .chat-item').forEach(el => {
+        el.classList.remove('active', 'border-l-2', 'border-deti-neonGreen', 'text-deti-neonGreen', 'bg-deti-surface');
+        el.classList.add('text-slate-300');
+      });
+
+      const target = element || (typeof event !== 'undefined' && event ? event.currentTarget : null);
+      if (target) {
+        target.classList.add('active', 'border-l-2', 'border-deti-neonGreen', 'text-deti-neonGreen', 'bg-deti-surface');
+        target.classList.remove('text-slate-300');
+      }
+
+      if (topic === 'aula') {
+        sendQuickPrompt('Qual é a minha próxima aula?');
+      } else if (topic === 'comida') {
+        sendQuickPrompt('O que é a comida hoje?');
+      } else if (topic === 'salas') {
+        sendQuickPrompt('Quais são as salas de estudo disponíveis no DETI?');
+      } else if (topic === 'atendimento') {
+        sendQuickPrompt('Horários de atendimento dos docentes do DETI');
+      }
+    };
+
+    function appendUserMessage(text) {
+      const userDiv = document.createElement('div');
+      userDiv.className = 'flex gap-3.5 items-start justify-end';
+      userDiv.innerHTML = `
+        <div class="flex-1 space-y-1 min-w-0 flex flex-col items-end">
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="text-slate-500">Tu</span>
+          </div>
+          <div class="user-msg-bubble p-3.5 rounded-2xl bg-deti-neonCyan/15 border border-deti-neonCyan/30 text-sm text-slate-100 font-sans max-w-xl text-left shadow-sm">
+            ${escapeHtml(text)}
+          </div>
+        </div>
+        <div class="user-avatar w-8 h-8 rounded-full bg-slate-800 border border-deti-neonGreen/60 flex items-center justify-center shrink-0 text-xs font-bold text-deti-neonGreen shadow-sm">
+          UA
+        </div>
+      `;
+      messagesContainer.appendChild(userDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function appendAiMessage(rawResponse) {
+      const aiDiv = document.createElement('div');
+      aiDiv.className = 'flex gap-3.5 items-start';
+
+      aiDiv.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-black border border-deti-neonCyan/70 flex items-center justify-center shrink-0 p-0.5 shadow-sm">
+          <svg class="w-6 h-4 glow-eyes" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="msgEyeGrad${Date.now()}" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#38e1db"/>
+                <stop offset="100%" stop-color="#7aff7a"/>
+              </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="152" height="92" rx="46" fill="#000000" stroke="#38e1db" stroke-width="4.5"/>
+            <ellipse cx="50" cy="50" rx="15" ry="30" fill="url(#msgEyeGrad${Date.now()})"/>
+            <ellipse cx="110" cy="50" rx="15" ry="30" fill="url(#msgEyeGrad${Date.now()})"/>
+          </svg>
+        </div>
+        <div class="flex-1 space-y-1 min-w-0">
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="font-bold text-deti-neonCyan">Detibuddy</span>
+            <span class="text-slate-500 text-[10px]">agora</span>
+          </div>
+          <div class="ai-msg-bubble p-3.5 rounded-2xl bg-deti-surface/80 border border-deti-border text-sm text-slate-100 leading-relaxed font-sans shadow-sm">
+            <span class="typing-text"></span>
+          </div>
+        </div>
+      `;
+
+      messagesContainer.appendChild(aiDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      const typingSpan = aiDiv.querySelector('.typing-text');
+      let i = 0;
+      const speed = 10;
+
+      function typeWriter() {
+        if (i < rawResponse.length) {
+          typingSpan.innerHTML = formatMarkdown(rawResponse.substring(0, i + 1));
+          i++;
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          setTimeout(typeWriter, speed);
+        } else {
+          typingSpan.innerHTML = formatMarkdown(rawResponse);
+        }
+      }
+      typeWriter();
+    }
+
+    function escapeHtml(string) {
+      return String(string).replace(/[&<>"']/g, function(s) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[s];
+      });
+    }
+
+    function formatMarkdown(text) {
+      let formatted = text.replace(/```([\s\S]*?)```/g, function(match, p1) {
+        return `<pre class="my-2.5 p-3 rounded-xl bg-black/70 border border-deti-border text-deti-neonGreen font-mono text-xs overflow-x-auto"><code>${p1}</code></pre>`;
+      });
+      formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong class="msg-bold font-semibold">$1</strong>');
+      return formatted.replace(/\n/g, '<br/>');
+    }
+
+    function handleUserSubmit() {
+      const text = promptInput.value.trim();
+      if (!text) return;
+
+      appendUserMessage(text);
+      promptInput.value = '';
+      promptInput.style.height = 'auto';
+
+      setTimeout(() => {
+        respondToQuery(text);
+      }, 300);
+    }
+
+    function respondToQuery(query) {
+      const q = query.toLowerCase();
+
+      if (q.includes('próxima aula') || q.includes('proxima aula') || q.includes('aula') || q.includes('horário') || q.includes('horario')) {
+        const resp = `Consultando o teu horário no sistema do DETI:
+
+**Próxima Aula:**
+• **Unidade Curricular:** Sistemas Operativos (SO) - Teórico-Prática
+• **Horário:** Hoje, às 16h00 – 18h00
+• **Sala:** 4.1.18 (Edifício do DETI)
+• **Docente:** Equipa Docente de SO
+
+Precisas de consultar sumários ou o material de apoio?`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('comida') || q.includes('cantina') || q.includes('almoço') || q.includes('almoco') || q.includes('jantar') || q.includes('ementa')) {
+        const resp = `Aqui está a ementa de hoje para as Cantinas da UA:
+
+**Cantina de Santiago:**
+• **Sopa:** Creme de Legumes com Coentros
+• **Carne:** Frango assado com ervas aromáticas e batata rústica
+• **Peixe:** Filetes de pescada com arroz de tomate malandrinho
+• **Vegetariano:** Caril de grão com espinafres e arroz basmati
+• **Sobremesa:** Fruta da época ou gelatina
+
+**Cantina do Crasto:**
+• Bacalhau com natas à moda tradicional ou Estufado de lentilhas com legumes.
+
+Bom almoço no campus!`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('sala') || q.includes('estudo') || q.includes('laboratório') || q.includes('laboratorio')) {
+        const resp = `Salas de estudo e trabalho disponíveis agora no DETI:
+• **Sala 4.1.10:** Livre (Laboratório de Computadores)
+• **Sala 4.1.22:** Sala de estudo aberta a todos os alunos
+• **Espaço de Coworking do Piso 1:** Mesas com tomadas e ligação eduroam de alta velocidade.`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('atendimento') || q.includes('docente') || q.includes('professor')) {
+        const resp = `Horários de atendimento aos alunos:
+• **Sistemas Operativos:** Terças das 14h30 às 16h00 (Gabinete 4.2.11)
+• **Algoritmos e Estruturas de Dados:** Quintas das 10h00 às 12h00
+• **Arquitetura de Computadores:** Sextas das 11h00 às 13h00
+
+Recomenda-se o envio de email prévio para confirmar a presença do docente.`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('moodle') || q.includes('elearning') || q.includes('e-learning') || q.includes('entrega')) {
+        const resp = `No Moodle do DETI tens as seguintes atividades assinaladas:
+• **Sistemas Operativos:** Mini-teste 1 até sexta-feira às 23h59
+• **Projeto em Engenharia Informática:** Submissão dos artefactos da Fase de Elaboração (Milestone 2)
+• **Arquitetura de Computadores:** Guião prático de laboratório disponível.`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('paco') || q.includes('nota') || q.includes('inscrição') || q.includes('inscricao')) {
+        const resp = `Acedendo ao PACO institucional:
+• O teu estado de matrícula está **Regularizado**.
+• As classificações do semestre anterior encontram-se lançadas e validadas.
+• Próximo período de exames conforme calendário escolar da Universidade de Aveiro.`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('estacionamento') || q.includes('parque') || q.includes('carro')) {
+        const resp = `Ocupação em tempo real dos parques no Campus de Santiago:
+• **Parque DETI:** 84% lotado (~12 lugares livres)
+• **Parque Central / Reitoria:** 62% lotado (~45 lugares livres)
+• **Parque das Saibreiras:** 40% lotado com bastante disponibilidade.`;
+        appendAiMessage(resp);
+      }
+      else if (q.includes('quem és') || q.includes('quem es') || q.includes('o que fazes') || q.includes('sobre')) {
+        const resp = `Sou o **Detibuddy**, o assistente inteligente concebido para acompanhar o dia a dia dos estudantes do DETI (Universidade de Aveiro).
+Posso ajudar-te com:
+• Horários de aulas e salas de estudo
+• Ementas diárias das cantinas
+• Contactos e horários de docentes
+• Informações sobre Moodle, PACO e campus da UA.`;
+        appendAiMessage(resp);
+      }
+      else {
+        const generic = `Compreendido! Estou disponível para te ajudar com informações sobre a tua **próxima aula**, **ementas das cantinas**, **salas disponíveis no DETI**, **Moodle**, **PACO** ou qualquer dúvida académica.`;
+        appendAiMessage(generic);
+      }
+    }
+
+    sendBtn.addEventListener('click', handleUserSubmit);
+
+    promptInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleUserSubmit();
+      }
+    });
+  </script>
+</body>
+</html>

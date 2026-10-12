@@ -43,7 +43,7 @@ A priorização segue a metodologia **MoSCoW**:
 
 | ID | Requisito | US | Prio |
 | --- | --- | --- | --- |
-| FR-08 | O sistema deve classificar semanticamente a intenção do utilizador e despachar a execução para o conector de serviço ou pipeline RAG apropriado (*Tool Calling*). | todas | M |
+| FR-08 | O sistema deve classificar semanticamente a intenção do utilizador, despachar a execução para a respetiva Skill do Agente (*Skill Dispatching*) e injetar dinamicamente as ferramentas MCP ou pipeline RAG estritamente necessários (*Just-in-Time Tool Injection*). | todas | M |
 | FR-09 | O sistema deve processar linguagem natural e responder fluentemente em Português de Portugal e, opcionalmente, em Inglês. | todas | S |
 | FR-10 | Perante a falha de um serviço ou conector, o sistema deve assumir a incapacidade de obter a resposta e nunca inventar dados (*Mecanismo Anti-Alucinação*). | US-04, US-05 | M |
 | FR-11 | As respostas factuais obtidas através de conectores devem indicar a fonte oficial consultada e o *timestamp* da leitura. | US-05, US-15 | M |
@@ -134,6 +134,18 @@ A priorização segue a metodologia **MoSCoW**:
 | --- | --- | --- | --- |
 | FR-52 | O sistema deve disponibilizar botões de feedback rápido (👍 / 👎) e caixa de comentário em cada resposta, registando a classificação de forma totalmente dissociada da identidade do aluno. | US-35 | S |
 
+### 2.13 Gestão, Roteamento e Execução de Skills do Agente
+
+| ID | Requisito | US | Prio |
+| --- | --- | --- | --- |
+| FR-53 | O sistema deve manter um catálogo dinâmico de competências do assistente (*Skill Registry*), parametrizando identificador, descrição semântica, nível de autenticação obrigatório e ferramentas MCP autorizadas por habilidade. | US-33, US-36 | M |
+| FR-54 | O orquestrador deve aplicar o padrão *Just-in-Time Tool Injection*, expondo ao modelo de linguagem exclusivamente as ferramentas associadas à Skill ativada pelo classificador semântico de intenções, contendo o consumo de tokens na *context window*. | todas, US-36 | M |
+| FR-55 | O sistema deve validar e elicitar conversacionalmente os parâmetros obrigatórios em falta antes de acionar as ferramentas de uma skill (*Conversational Parameter Elicitation*). | US-10, US-37 | S |
+| FR-56 | O orquestrador deve suportar o encadeamento ordenado de múltiplas skills (*Skill Chaining*) para a resolução de pedidos complexos multi-domínio (ex.: cruzar horário com meteorologia e ocupação de parque). | US-11, US-12 | S |
+| FR-57 | O sistema deve suportar políticas de degradação graciosa a nível de skill (*Skill Fallback*), recorrendo a dados em cache ou alternativas institucionais caso o servidor MCP respetivo falhe ou exceda o tempo-limite. | US-04, US-06 | M |
+| FR-58 | O sistema deve registar métricas operacionais e de latência individualizadas por execução de skill e chamada de ferramenta (*Skill Telemetry*), de forma dissociada da identidade do estudante. | US-34 | S |
+| FR-59 | O sistema deve emitir eventos granulares de ciclo de vida da skill via streaming SSE (ex.: *SkillIdentified*, *WaitingParameters*, *ExecutingTool*, *WaitingConfirmation*, *Completed*), viabilizando atualizações de estado em tempo real e cartões *Human-in-the-Loop* na interface cliente. | US-26, US-37 | M |
+
 ---
 
 ## 3. Regras de Negócio (RN)
@@ -152,6 +164,8 @@ As Regras de Negócio definem as políticas institucionais e restrições lógic
 | **RN-08** | **Janela de Validade de Telemetria** | Informações sobre a disponibilidade de vagas de parques e senhas de atendimento só podem ser apresentadas se a última leitura válida de telemetria tiver ocorrido há menos de 15 minutos; caso contrário, devem ser acompanhadas de um aviso proeminente de potencial desatualização. |
 | **RN-09** | **Anonimização Integral do Feedback de Utilizadores** | O registo de classificações de respostas (👍/👎) e comentários de avaliação não pode incluir chaves estrangeiras que liguem o feedback à identidade do estudante, salvaguardando a liberdade de avaliação do utilizador. |
 | **RN-10** | **Direito ao Esquecimento Imediato (*Right to be Forgotten*)** | A receção de um pedido de eliminação de histórico de conversas (FR-06) despoleta a destruição atómica e irreversível de todas as mensagens de chat e representações vetoriais associadas ao identificador do estudante na base de dados. |
+| **RN-11** | **Confinamento de Ferramentas por Skill (Just-in-Time Tool Injection)** | O orquestrador não pode expor a totalidade das ferramentas dos servidores MCP em simultâneo ao LLM. Cada turno de inferência deve ser confinado às ferramentas autorizadas e declaradas na Skill selecionada para o pedido, protegendo a context window finita e prevenindo alucinações de tool calling. |
+| **RN-12** | **Governança de Skills de Escrita e Efeito Externo (Human-in-the-Loop)** | Qualquer Skill categorizada como mutável ou com impacto externo (envio de emails institucionais, alteração de calendário M365 ou emissão de senhas) não pode consumar a operação sem a aprovação explícita do estudante através do cartão interativo de confirmação. |
 
 ---
 
@@ -165,6 +179,7 @@ classDiagram
         +ConsultarEmentas()
         +ConsultarDocentes()
         +ConsultarRegulamentosPublicos()
+        +ExecutarSkillsPublicas()
         +AvaliarRespostaPublica()
     }
     class EstudanteAutenticado {
@@ -173,6 +188,8 @@ classDiagram
         +ConsultarEmailsUA()
         +MarcarReuniao()
         +OrganizarAgenda()
+        +ExecutarSkillsPrivadas()
+        +ValidarAcoesHumanInTheLoop()
         +SubscreverAlertasSenhas()
         +ApagarProprioHistorico()
     }
@@ -180,6 +197,8 @@ classDiagram
         +SubmeterDocumentosRAG()
         +ReindexarBaseVetorial()
         +RegistarConectores()
+        +GerirCatalogoSkills()
+        +ConsultarTelemetriaSkills()
         +ConsultarMetricasAgregadas()
         +AuditarErrosTecnicos()
     }
@@ -194,15 +213,19 @@ classDiagram
 |---|:---:|:---:|:---:|
 | **Consultar Ementas e Horários de Serviços** |  Permitido |  Permitido |  Permitido |
 | **Consultar Regulamentos Gerais (RAG)** |  Permitido |  Permitido |  Permitido |
+| **Executar Skills de Domínio Público** |  Permitido |  Permitido |  Permitido |
 | **Consultar Horário Pessoal (PACO)** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
 | **Consultar Avaliações e Entregas (Moodle)** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
 | **Consultar Emails Institucionais (Graph)** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
 | **Agendar Reuniões e Modificar Calendário** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
+| **Executar Skills Privadas / Académicas** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
+| **Aprovar Ações Human-in-the-Loop (HitL)** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
 | **Subscrever Alertas de Senha de Atendimento** | ❌ Requer Login |  Permitido | ❌ Proibido (privacidade) |
 | **Apagar Histórico Pessoal de Conversas** | ❌ Não aplicável |  Permitido (apenas o seu) | ❌ Não (apenas purga global) |
 | **Submeter / Atualizar Documentos RAG** | ❌ Proibido | ❌ Proibido |  Permitido |
 | **Registar / Configurar Conectores de APIs** | ❌ Proibido | ❌ Proibido |  Permitido |
-| **Visualizar Painel de Métricas e Diagnóstico** | ❌ Proibido | ❌ Proibido |  Permitido |
+| **Configurar Catálogo de Skills do Agente** | ❌ Proibido | ❌ Proibido |  Permitido |
+| **Visualizar Painel de Métricas e Telemetria de Skills** | ❌ Proibido | ❌ Proibido |  Permitido |
 
 ---
 
@@ -237,7 +260,7 @@ Os requisitos não funcionais especificam os critérios de qualidade e as restri
 | **NFR-02** | **Conformidade RGPD** | O sistema deve recolher exclusivamente os atributos mínimos para a prestação do serviço (*Privacy by Design*). Suporte obrigatório a eliminação integral de dados do aluno a pedido e purga periódica. | M |
 | **NFR-03** | **Fiabilidade / Anti-Alucinação (Busca Híbrida)** | Respostas relativas a regulamentos e notas devem apresentar 0% de dados inventados; o pipeline RAG em PostgreSQL com extensão pgvector combina **Busca Híbrida** (similaridade semântica densa vetorial + busca léxica por palavras-chave/trigramas para nomes de docentes e artigos legais). Na ausência de evidência documental com score de similaridade ponderado ≥ 0.70, o sistema recusa a resposta e faculta o contacto competente com citação da fonte. | M |
 | **NFR-04** | **Desempenho (Latência)** | O tempo total de resposta não deve exceder **10 segundos** no percentil 95 (P95). Em pedidos com geração de texto longo, o tempo até à chegada do primeiro token (*Time-to-First-Token — TTFT*) via streaming não deve exceder **2 segundos**. O tempo de resposta individual de cada conector de serviço deve ser inferior a **1.5 segundos**. | M |
-| **NFR-05** | **Extensibilidade** | A arquitetura de conectores deve ser desacoplada; a adição de um novo conector através de interface padronizada não deve exigir qualquer alteração no código do orquestrador do agente (*Open-Closed Principle*). | M |
+| **NFR-05** | **Extensibilidade** | A arquitetura de competências do agente e conectores deve ser estritamente desacoplada; a adição de uma nova Skill ou conector MCP através de manifesto/contrato padronizado não deve exigir alterações no código central do orquestrador conversacional (*Open-Closed Principle*). | M |
 | **NFR-06** | **Segurança de Comunicações** | Todas as comunicações em trânsito devem ser cifradas através de protocolos TLS 1.3 (HTTPS e SSE roteados via proxy reverso Traefik; WSS/WebSocket opcional). Credenciais de autenticação nunca são armazenadas em texto legível. | M |
 | **NFR-07** | **Segurança de Logs** | Os ficheiros de registo e auditoria de erros não podem conter dados de identificação pessoal (*PII*), números de estudante ou credenciais. | M |
 | **NFR-08** | **Integridade em Ações Críticas** | Ações de efeito externo (envio de emails institucionais e alterações de calendário) exigem confirmação explícita em dois passos mediada por cartão interativo na interface web com botões de confirmação/cancelamento, eliminando agendamentos acidentais ou ambiguidades textuais. | M |
@@ -252,7 +275,7 @@ Os requisitos não funcionais especificam os critérios de qualidade e as restri
 | **NFR-17** | **Acessibilidade** | A aplicação web deve respeitar as diretrizes de acessibilidade *WCAG 2.1 nível AA*, permitindo navegação por teclado e compatibilidade com leitores de ecrã. | C |
 | **NFR-18** | **Recuperabilidade (Recoverability)** | Em caso de falha inesperada de um processo ou contentor de conector, o sistema de supervisão deve reiniciar o serviço automaticamente num tempo inferior a **5 segundos**, preservando a integridade das sessões em curso. | S |
 | **NFR-19** | **Integridade de Dados (Data Integrity)** | As operações de modificação de utilizador, subscrições de notificações e purga de histórico devem garantir propriedades ACID no PostgreSQL. A indexação de documentos na base vetorial deve ser atómica, impedindo estados parciais ou corrompidos de *embeddings*. | M |
-| **NFR-20** | **Interoperabilidade e Protocolos de Transporte** | O sistema adota uma divisão arquitetural de transporte clara: endpoints **REST (OpenAPI 3.0)** para operações de ciclo de vida (autenticação, histórico de sessões, upload de ficheiros e configurações administrativas) e canal **SSE (*Server-Sent Events*)** de alto desempenho (com payloads em formato JSON para streaming de tokens em tempo real, cartões interativos de ação e citações de fontes). O protocolo WebSocket é suportado como canal secundário caso venham a ser necessárias comunicações bidirecionais contínuas. A comunicação interna com ferramentas segue a especificação **MCP (*Model Context Protocol*)**, com um servidor MCP por domínio funcional (`campo mode no registo`). | M |
+| **NFR-20** | **Interoperabilidade e Protocolos de Transporte** | O sistema adota uma divisão arquitetural de transporte clara: endpoints **REST (OpenAPI 3.0)** para operações de ciclo de vida (autenticação, catálogo de skills, histórico de sessões, upload de ficheiros e configurações administrativas) e canal **SSE (*Server-Sent Events*)** de alto desempenho (com payloads em formato JSON para streaming de tokens em tempo real, eventos de progresso de skills, cartões interativos de ação e citações de fontes). O protocolo WebSocket é suportado como canal secundário caso venham a ser necessárias comunicações bidirecionais contínuas. A comunicação interna com ferramentas segue a especificação **MCP (*Model Context Protocol*)**, governada pela injeção dinâmica de ferramentas (**Just-in-Time Tool Injection**) a partir do registo de Skills do agente. | M |
 
 ---
 
